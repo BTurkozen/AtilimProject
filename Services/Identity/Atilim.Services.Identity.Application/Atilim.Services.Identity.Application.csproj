@@ -7,12 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Atilim.Shared\Atilim.Shared.csproj" />
     <ProjectReference Include="..\Atilim.Services.Identity.Domain\Atilim.Services.Identity.Domain.csproj" />
-    <ProjectReference Include="..\Atilim.Services.Identity.Infrastructure\Atilim.Services.Identity.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\" />
     <Folder Include="Mapping\" />
   </ItemGroup>
 

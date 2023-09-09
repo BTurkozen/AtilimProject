@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Atilim.Services.Identity.Application\Atilim.Services.Identity.Application.csproj" />
     <ProjectReference Include="..\Atilim.Services.Identity.Domain\Atilim.Services.Identity.Domain.csproj" />
   </ItemGroup>
 
