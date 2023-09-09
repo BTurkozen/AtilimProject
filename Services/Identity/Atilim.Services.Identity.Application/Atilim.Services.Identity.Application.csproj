@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Atilim.Services.Identity.Domain\Atilim.Services.Identity.Domain.csproj" />
+    <ProjectReference Include="..\Atilim.Services.Identity.Infrastructure\Atilim.Services.Identity.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
