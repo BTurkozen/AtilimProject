@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atilim.Services.Students.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atilim.Services.Students.Domain", "Services\Students\Atilim.Services.Students.Domain\Atilim.Services.Students.Domain.csproj", "{50CB2C46-8B24-4BA6-A5DB-3BFA4F3ADF11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atilim.Services.Students.Domain.Core", "Services\Students\Atilim.Services.Students.Domain.Core\Atilim.Services.Students.Domain.Core.csproj", "{E1E85649-185E-4555-84E0-D517FED22482}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{50CB2C46-8B24-4BA6-A5DB-3BFA4F3ADF11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50CB2C46-8B24-4BA6-A5DB-3BFA4F3ADF11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50CB2C46-8B24-4BA6-A5DB-3BFA4F3ADF11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1E85649-185E-4555-84E0-D517FED22482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1E85649-185E-4555-84E0-D517FED22482}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1E85649-185E-4555-84E0-D517FED22482}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1E85649-185E-4555-84E0-D517FED22482}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +51,7 @@ Global
 		{006B5A63-0D84-4124-AE5C-08690D0CF06A} = {A0083F30-48C7-42F4-8D74-D36364506B34}
 		{FE002EEC-5DDA-4E5C-A521-A686CD411A99} = {A0083F30-48C7-42F4-8D74-D36364506B34}
 		{50CB2C46-8B24-4BA6-A5DB-3BFA4F3ADF11} = {A0083F30-48C7-42F4-8D74-D36364506B34}
+		{E1E85649-185E-4555-84E0-D517FED22482} = {A0083F30-48C7-42F4-8D74-D36364506B34}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E6B2C98-AD29-4525-B87B-1B15C217AF58}
