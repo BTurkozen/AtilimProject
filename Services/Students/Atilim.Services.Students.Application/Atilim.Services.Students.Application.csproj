@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Atilim.Services.Students.Domain\Atilim.Services.Students.Domain.csproj" />
+    <ProjectReference Include="..\Atilim.Services.Students.Infrastructure\Atilim.Services.Students.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

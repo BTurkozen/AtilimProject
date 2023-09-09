@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atilim.Services.Students.Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atilim.Services.Students.Infrastructure", "Services\Students\Atilim.Services.Students.Infrastructure\Atilim.Services.Students.Infrastructure.csproj", "{A8D80139-E8EA-4678-87C7-03CE4A065579}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{08E52F63-B3C1-4007-81BC-FA6678FA91A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atilim.Shared", "Shared\Atilim.Shared\Atilim.Shared.csproj", "{32A3506F-9C6B-4DA3-9A2B-E37BE23E523A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,10 @@ Global
 		{A8D80139-E8EA-4678-87C7-03CE4A065579}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8D80139-E8EA-4678-87C7-03CE4A065579}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8D80139-E8EA-4678-87C7-03CE4A065579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32A3506F-9C6B-4DA3-9A2B-E37BE23E523A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32A3506F-9C6B-4DA3-9A2B-E37BE23E523A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32A3506F-9C6B-4DA3-9A2B-E37BE23E523A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32A3506F-9C6B-4DA3-9A2B-E37BE23E523A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +67,7 @@ Global
 		{50CB2C46-8B24-4BA6-A5DB-3BFA4F3ADF11} = {A0083F30-48C7-42F4-8D74-D36364506B34}
 		{E1E85649-185E-4555-84E0-D517FED22482} = {A0083F30-48C7-42F4-8D74-D36364506B34}
 		{A8D80139-E8EA-4678-87C7-03CE4A065579} = {A0083F30-48C7-42F4-8D74-D36364506B34}
+		{32A3506F-9C6B-4DA3-9A2B-E37BE23E523A} = {08E52F63-B3C1-4007-81BC-FA6678FA91A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E6B2C98-AD29-4525-B87B-1B15C217AF58}
