@@ -11,4 +11,9 @@
     <ProjectReference Include="..\Atilim.Services.Identity.Infrastructure\Atilim.Services.Identity.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+    <Folder Include="Mapping\" />
+  </ItemGroup>
+
 </Project>
