@@ -1,10 +1,12 @@
 using Atilim.Services.Identity.Api.Helpers.Extentions;
 using Atilim.Services.Identity.Application.Interfaces;
 using Atilim.Services.Identity.Domain.Entities;
+using Atilim.Services.Identity.Infrastructure;
 using Atilim.Services.Identity.Infrastructure.Services;
 using Atilim.Shared.Settings.Concrates;
 using Atilim.Shared.Settings.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<IdentityContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionStr"));
+});
+
+builder.Services.AddIdentity<User, UserRole>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequiredLength = 6;
+}).AddEntityFrameworkStores<IdentityContext>()
+.AddDefaultTokenProviders();
 
 var tokenConfiguration = builder.Configuration.GetSection(nameof(TokenSettings));
 
