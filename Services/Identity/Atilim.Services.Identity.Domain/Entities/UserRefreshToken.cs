@@ -1,4 +1,4 @@
-﻿namespace Atilim.Services.Identity.Domain.Models
+﻿namespace Atilim.Services.Identity.Domain.Entities
 {
     public class UserRefreshToken
     {

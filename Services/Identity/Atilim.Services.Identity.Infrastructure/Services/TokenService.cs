@@ -1,6 +1,6 @@
 ﻿using Atilim.Services.Identity.Application.Dtos;
 using Atilim.Services.Identity.Application.Interfaces;
-using Atilim.Services.Identity.Domain.Models;
+using Atilim.Services.Identity.Domain.Entities;
 using Atilim.Shared.Dtos;
 using Atilim.Shared.Settings.Interfaces;
 using Microsoft.AspNetCore.Identity;

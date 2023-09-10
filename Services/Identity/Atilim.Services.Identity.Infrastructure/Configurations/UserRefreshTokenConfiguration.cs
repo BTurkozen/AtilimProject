@@ -1,4 +1,4 @@
-﻿using Atilim.Services.Identity.Domain.Models;
+﻿using Atilim.Services.Identity.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

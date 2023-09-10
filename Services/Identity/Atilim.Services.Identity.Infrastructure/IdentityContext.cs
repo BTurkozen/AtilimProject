@@ -1,4 +1,4 @@
-﻿using Atilim.Services.Identity.Domain.Models;
+﻿using Atilim.Services.Identity.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
