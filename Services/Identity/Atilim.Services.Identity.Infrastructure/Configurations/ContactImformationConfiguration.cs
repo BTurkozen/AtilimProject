@@ -22,7 +22,6 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
 
             builder.Property(b => b.Email)
                    .IsRequired()
-                   .HasColumnType("EmailAddress")
                    .HasMaxLength(100);
 
             builder.Property(b => b.MobilePhoneNumber)

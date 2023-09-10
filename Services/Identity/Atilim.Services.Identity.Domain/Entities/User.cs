@@ -5,7 +5,7 @@ namespace Atilim.Services.Identity.Domain.Entities
 {
     public class User : IdentityUser<string>
     {
-        public string StudentIdentityId { get; set; }
-        public StudentIdentity StudentIdentity { get; set; }
+        //public string StudentIdentityId { get; set; }
+        //public StudentIdentity StudentIdentity { get; set; }
     }
 }
