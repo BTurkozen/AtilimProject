@@ -9,27 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{85
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{EEFD8523-C7D7-4948-9CF2-3C2B44129E45}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Students", "Students", "{A0083F30-48C7-42F4-8D74-D36364506B34}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atilim.Services.Students.Api", "Services\Students\Atilim.Services.Students.Api\Atilim.Services.Students.Api.csproj", "{006B5A63-0D84-4124-AE5C-08690D0CF06A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atilim.Services.Students.Application", "Services\Students\Atilim.Services.Students.Application\Atilim.Services.Students.Application.csproj", "{FE002EEC-5DDA-4E5C-A521-A686CD411A99}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atilim.Services.Students.Domain", "Services\Students\Atilim.Services.Students.Domain\Atilim.Services.Students.Domain.csproj", "{50CB2C46-8B24-4BA6-A5DB-3BFA4F3ADF11}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atilim.Services.Students.Infrastructure", "Services\Students\Atilim.Services.Students.Infrastructure\Atilim.Services.Students.Infrastructure.csproj", "{A8D80139-E8EA-4678-87C7-03CE4A065579}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{08E52F63-B3C1-4007-81BC-FA6678FA91A2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atilim.Shared", "Shared\Atilim.Shared\Atilim.Shared.csproj", "{32A3506F-9C6B-4DA3-9A2B-E37BE23E523A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atilim.Services.Identity.Api", "Services\Identity\Atilim.Services.Identity.Api\Atilim.Services.Identity.Api.csproj", "{D6190BC7-5ADB-4DAE-8576-055618E72E18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atilim.Services.Identity.Api", "Services\Identity\Atilim.Services.Identity.Api\Atilim.Services.Identity.Api.csproj", "{D6190BC7-5ADB-4DAE-8576-055618E72E18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atilim.Services.Identity.Domain", "Services\Identity\Atilim.Services.Identity.Domain\Atilim.Services.Identity.Domain.csproj", "{4F5F6CED-336D-4457-9E41-6B46272A7B63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atilim.Services.Identity.Domain", "Services\Identity\Atilim.Services.Identity.Domain\Atilim.Services.Identity.Domain.csproj", "{4F5F6CED-336D-4457-9E41-6B46272A7B63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atilim.Services.Identity.Infrastructure", "Services\Identity\Atilim.Services.Identity.Infrastructure\Atilim.Services.Identity.Infrastructure.csproj", "{D4CEB519-2026-4803-B6C3-8EC262A5B65C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atilim.Services.Identity.Infrastructure", "Services\Identity\Atilim.Services.Identity.Infrastructure\Atilim.Services.Identity.Infrastructure.csproj", "{D4CEB519-2026-4803-B6C3-8EC262A5B65C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atilim.Services.Identity.Application", "Services\Identity\Atilim.Services.Identity.Application\Atilim.Services.Identity.Application.csproj", "{A545BDDB-23E9-46B0-B1D8-9D337A3DA88E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atilim.Services.Identity.Application", "Services\Identity\Atilim.Services.Identity.Application\Atilim.Services.Identity.Application.csproj", "{A545BDDB-23E9-46B0-B1D8-9D337A3DA88E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,22 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{006B5A63-0D84-4124-AE5C-08690D0CF06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{006B5A63-0D84-4124-AE5C-08690D0CF06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{006B5A63-0D84-4124-AE5C-08690D0CF06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{006B5A63-0D84-4124-AE5C-08690D0CF06A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE002EEC-5DDA-4E5C-A521-A686CD411A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE002EEC-5DDA-4E5C-A521-A686CD411A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE002EEC-5DDA-4E5C-A521-A686CD411A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE002EEC-5DDA-4E5C-A521-A686CD411A99}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50CB2C46-8B24-4BA6-A5DB-3BFA4F3ADF11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50CB2C46-8B24-4BA6-A5DB-3BFA4F3ADF11}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50CB2C46-8B24-4BA6-A5DB-3BFA4F3ADF11}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50CB2C46-8B24-4BA6-A5DB-3BFA4F3ADF11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A8D80139-E8EA-4678-87C7-03CE4A065579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8D80139-E8EA-4678-87C7-03CE4A065579}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A8D80139-E8EA-4678-87C7-03CE4A065579}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A8D80139-E8EA-4678-87C7-03CE4A065579}.Release|Any CPU.Build.0 = Release|Any CPU
 		{32A3506F-9C6B-4DA3-9A2B-E37BE23E523A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{32A3506F-9C6B-4DA3-9A2B-E37BE23E523A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32A3506F-9C6B-4DA3-9A2B-E37BE23E523A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -79,11 +53,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EEFD8523-C7D7-4948-9CF2-3C2B44129E45} = {853CD7E7-1ADC-40A2-9AFB-BCDF43C2C375}
-		{A0083F30-48C7-42F4-8D74-D36364506B34} = {853CD7E7-1ADC-40A2-9AFB-BCDF43C2C375}
-		{006B5A63-0D84-4124-AE5C-08690D0CF06A} = {A0083F30-48C7-42F4-8D74-D36364506B34}
-		{FE002EEC-5DDA-4E5C-A521-A686CD411A99} = {A0083F30-48C7-42F4-8D74-D36364506B34}
-		{50CB2C46-8B24-4BA6-A5DB-3BFA4F3ADF11} = {A0083F30-48C7-42F4-8D74-D36364506B34}
-		{A8D80139-E8EA-4678-87C7-03CE4A065579} = {A0083F30-48C7-42F4-8D74-D36364506B34}
 		{32A3506F-9C6B-4DA3-9A2B-E37BE23E523A} = {08E52F63-B3C1-4007-81BC-FA6678FA91A2}
 		{D6190BC7-5ADB-4DAE-8576-055618E72E18} = {EEFD8523-C7D7-4948-9CF2-3C2B44129E45}
 		{4F5F6CED-336D-4457-9E41-6B46272A7B63} = {EEFD8523-C7D7-4948-9CF2-3C2B44129E45}

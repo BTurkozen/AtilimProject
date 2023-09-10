@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Atilim.Shared\Atilim.Shared.csproj" />
     <ProjectReference Include="..\Atilim.Services.Identity.Application\Atilim.Services.Identity.Application.csproj" />
     <ProjectReference Include="..\Atilim.Services.Identity.Infrastructure\Atilim.Services.Identity.Infrastructure.csproj" />
