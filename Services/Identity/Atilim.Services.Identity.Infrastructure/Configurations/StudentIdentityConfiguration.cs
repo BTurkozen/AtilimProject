@@ -1,4 +1,5 @@
-﻿using Atilim.Services.Identity.Domain.Entities.StudentEntities;
+﻿using Atilim.Services.Identity.Domain.Entities;
+using Atilim.Services.Identity.Domain.Entities.StudentEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -35,14 +36,17 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
 
             builder.HasOne(b => b.ContactImformation)
                    .WithOne(b => b.StudentIdentity)
+                   .HasForeignKey<ContactImformation>(b => b.StudentIdentityId)
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(b => b.User)
                    .WithOne(b => b.StudentIdentity)
+                   .HasForeignKey<User>(b => b.StudentIdentityId)
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(b => b.Student)
                    .WithOne(b => b.StudentIdentity)
+                   .HasForeignKey<Student>(b => b.StudentIdentityId)
                    .OnDelete(DeleteBehavior.Restrict);
         }
     }

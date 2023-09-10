@@ -24,6 +24,7 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
 
             builder.HasOne(b => b.StudentIdentity)
                    .WithOne(b => b.Student)
+                   .HasForeignKey<StudentIdentity>(b => b.StudentId)
                    .OnDelete(DeleteBehavior.Restrict);
 
         }
