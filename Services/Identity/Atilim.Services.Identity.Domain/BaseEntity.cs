@@ -1,4 +1,4 @@
-﻿namespace Atilim.Shared
+﻿namespace Atilim.Services.Identity.Domain
 {
     public abstract class BaseEntity
     {
