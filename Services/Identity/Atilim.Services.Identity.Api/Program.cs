@@ -56,6 +56,11 @@ builder.Services.AddCustomAuthentication(tokenConfiguration.Get<TokenSettings>()
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
+builder.Configuration
+       .SetBasePath(builder.Environment.ContentRootPath)
+       .AddJsonFile("appsettings.json", optional: false)
+       .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true);
+
 var app = builder.Build();
 
 using var scope = app.Services.CreateScope();
