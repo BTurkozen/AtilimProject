@@ -103,15 +103,13 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
 
                 using var randomGen = RandomNumberGenerator.Create();
 
-                studentUsers.ForEach(async u =>
+                studentUsers.ForEach(u =>
                 {
                     randomGen.GetBytes(numberByte);
 
-                    await userManager.CreateAsync(u, Convert.ToBase64String(numberByte));
-                 
-                    _ = Task.Delay(200);
+                    userManager.CreateAsync(u, Convert.ToBase64String(numberByte)).Wait();
 
-                    await userManager.AddToRoleAsync(u, "student");
+                    userManager.AddToRoleAsync(u, "student").Wait();
                 });
 
                 #endregion
