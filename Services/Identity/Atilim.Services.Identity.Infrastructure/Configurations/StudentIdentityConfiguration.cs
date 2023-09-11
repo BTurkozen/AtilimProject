@@ -34,9 +34,9 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
 
             builder.HasIndex(b => new { b.Name, b.Surname });
 
-            builder.HasOne(b => b.ContactImformation)
+            builder.HasOne(b => b.ContactInformation)
                    .WithOne(b => b.StudentIdentity)
-                   .HasForeignKey<ContactImformation>(b => b.StudentIdentityId)
+                   .HasForeignKey<ContactInformation>(b => b.StudentIdentityId)
                    .OnDelete(DeleteBehavior.Restrict);
 
             //builder.HasOne(b => b.User)

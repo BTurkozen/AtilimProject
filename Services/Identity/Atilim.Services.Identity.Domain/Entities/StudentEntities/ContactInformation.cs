@@ -1,6 +1,6 @@
 ﻿namespace Atilim.Services.Identity.Domain.Entities.StudentEntities
 {
-    public class ContactImformation : BaseEntity
+    public class ContactInformation : BaseEntity
     {
         public string Address { get; set; }
         public string Country { get; set; }

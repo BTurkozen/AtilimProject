@@ -8,7 +8,7 @@
         public string CityOfBirth { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string ContactInformationId { get; set; }
-        public ContactImformation ContactImformation { get; set; }
+        public ContactInformation ContactInformation { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
         public string StudentId { get; set; }

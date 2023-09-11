@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Atilim.Services.Identity.Infrastructure.Configurations
 {
-    public class ContactImformationConfiguration : IEntityTypeConfiguration<ContactImformation>
+    public class ContactImformationConfiguration : IEntityTypeConfiguration<ContactInformation>
     {
-        public void Configure(EntityTypeBuilder<ContactImformation> builder)
+        public void Configure(EntityTypeBuilder<ContactInformation> builder)
         {
             builder.Property(b => b.Address)
                    .IsRequired()
@@ -34,7 +34,7 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
                    .IsUnique();
 
             builder.HasOne(b => b.StudentIdentity)
-                   .WithOne(b => b.ContactImformation)
+                   .WithOne(b => b.ContactInformation)
                    .HasForeignKey<StudentIdentity>(b => b.ContactInformationId)
                    .OnDelete(DeleteBehavior.Restrict);
         }

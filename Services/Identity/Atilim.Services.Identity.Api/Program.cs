@@ -2,6 +2,7 @@ using Atilim.Services.Identity.Api.Helpers.Extentions;
 using Atilim.Services.Identity.Application.Interfaces;
 using Atilim.Services.Identity.Domain.Entities;
 using Atilim.Services.Identity.Infrastructure;
+using Atilim.Services.Identity.Infrastructure.Seeds;
 using Atilim.Services.Identity.Infrastructure.Services;
 using Atilim.Shared.Settings.Concrates;
 using Atilim.Shared.Settings.Interfaces;
@@ -63,34 +64,14 @@ builder.Configuration
 
 var app = builder.Build();
 
-using var scope = app.Services.CreateScope();
-
-var provider = scope.ServiceProvider;
-
-var roleManager = provider.GetRequiredService<RoleManager<UserRole>>();
-
-if (roleManager.Roles.Any() is false)
-{
-    await roleManager.CreateAsync(new UserRole { Id = Guid.NewGuid().ToString(), Name = "admin", ConcurrencyStamp = Guid.NewGuid().ToString() });
-}
-
-var userManager = provider.GetRequiredService<UserManager<User>>();
-
-if (userManager.Users.Any() is false)
-{
-    var user = new User()
-    { Id = Guid.NewGuid().ToString(), UserName = "Bturk", Email = "Bturk@blabla.com" };
-
-    await userManager.CreateAsync(user, "Password_*12");
-
-    await userManager.AddToRoleAsync(user, "admin");
-}
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
+
     app.UseSwaggerUI();
+
+    DataSeeding.Seed(app);
 }
 
 app.UseHttpsRedirection();
