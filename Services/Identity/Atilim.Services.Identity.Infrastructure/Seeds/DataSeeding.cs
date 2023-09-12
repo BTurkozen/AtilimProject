@@ -43,17 +43,17 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
         /// <param name="provider"></param>
         private async static Task CreateRoleSeeds(IServiceProvider provider)
         {
-            var roleManager = provider.GetRequiredService<RoleManager<IdentityRole>>();
+            var roleManager = provider.GetRequiredService<RoleManager<Role>>();
 
             if (roleManager.Roles.Any() is false)
             {
                 _adminRoleId = Guid.NewGuid().ToString();
 
-                await roleManager.CreateAsync(new IdentityRole { Id = _adminRoleId, Name = "admin", ConcurrencyStamp = Guid.NewGuid().ToString() });
+                await roleManager.CreateAsync(new Role { Id = _adminRoleId, Name = "admin", ConcurrencyStamp = Guid.NewGuid().ToString() });
 
                 _studentRoleId = Guid.NewGuid().ToString();
 
-                await roleManager.CreateAsync(new IdentityRole { Id = _studentRoleId, Name = "student", ConcurrencyStamp = Guid.NewGuid().ToString() });
+                await roleManager.CreateAsync(new Role { Id = _studentRoleId, Name = "student", ConcurrencyStamp = Guid.NewGuid().ToString() });
             }
         }
 
@@ -72,7 +72,7 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
                 _userId = Guid.NewGuid().ToString();
 
                 var adminUser = new User()
-                { Id = _userId, UserName = "atilim.admin", Email = "admin@atilimProject.com", UserRoles = new List<UserRole> { new UserRole() { RoleId = _adminRoleId } } };
+                { Id = _userId, UserName = "atilim.admin", Email = "admin@atilimProject.com", UserRoles = new List<UserRole> { new UserRole() { RoleId = _adminRoleId} } };
 
                 await userManager.CreateAsync(adminUser, "Password_*12");
                 #endregion
