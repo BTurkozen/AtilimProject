@@ -1,6 +1,7 @@
 ﻿using Atilim.Services.Identity.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
 
 namespace Atilim.Services.Identity.Infrastructure.Configurations
 {
