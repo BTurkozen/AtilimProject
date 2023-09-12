@@ -11,6 +11,8 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
     public static class DataSeeding
     {
         private static string _userId;
+        private static string _adminRoleId;
+        private static string _studentRoleId;
 
         public async static void Seed(IApplicationBuilder app)
         {
@@ -24,31 +26,13 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
 
             await CreateRoleSeeds(provider);
 
-            _ = Task.Delay(200);
-
             await CreateUserSeeds(provider);
-
-            _ = Task.Delay(200);
-
-            var adminRoleInfo = await context.Roles.FirstAsync(r => r.Name == "admin");
-
-            var adminUserInfo = await context.UserRoles.FirstOrDefaultAsync(ur => ur.RoleId == adminRoleInfo.Id);
-
-            _userId = adminUserInfo.UserId;
-
-            _ = Task.Delay(200);
 
             await CreateCurriculumSeeds(context);
 
-            _ = Task.Delay(200);
-
             await CreateLessonSeeds(context);
 
-            _ = Task.Delay(200);
-
             //await CreateStudentSeeds(context);
-
-            //_ = Task.Delay(200);
 
             await context.SaveChangesAsync();
         }
@@ -59,12 +43,17 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
         /// <param name="provider"></param>
         private async static Task CreateRoleSeeds(IServiceProvider provider)
         {
-            var roleManager = provider.GetRequiredService<RoleManager<UserRole>>();
+            var roleManager = provider.GetRequiredService<RoleManager<IdentityRole>>();
 
             if (roleManager.Roles.Any() is false)
             {
-                await roleManager.CreateAsync(new UserRole { Id = Guid.NewGuid().ToString(), Name = "admin", ConcurrencyStamp = Guid.NewGuid().ToString() });
-                await roleManager.CreateAsync(new UserRole { Id = Guid.NewGuid().ToString(), Name = "student", ConcurrencyStamp = Guid.NewGuid().ToString() });
+                _adminRoleId = Guid.NewGuid().ToString();
+
+                await roleManager.CreateAsync(new IdentityRole { Id = _adminRoleId, Name = "admin", ConcurrencyStamp = Guid.NewGuid().ToString() });
+
+                _studentRoleId = Guid.NewGuid().ToString();
+
+                await roleManager.CreateAsync(new IdentityRole { Id = _studentRoleId, Name = "student", ConcurrencyStamp = Guid.NewGuid().ToString() });
             }
         }
 
@@ -79,37 +68,36 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
             if (userManager.Users.Any() is false)
             {
                 #region Admin User
+
+                _userId = Guid.NewGuid().ToString();
+
                 var adminUser = new User()
-                { Id = Guid.NewGuid().ToString(), UserName = "atilim.admin", Email = "admin@atilimProject.com" };
+                { Id = _userId, UserName = "atilim.admin", Email = "admin@atilimProject.com", UserRoles = new List<UserRole> { new UserRole() { RoleId = _adminRoleId } } };
 
                 await userManager.CreateAsync(adminUser, "Password_*12");
-
-                await userManager.AddToRoleAsync(adminUser, "admin");
                 #endregion
 
                 #region Student Users
 
                 var studentUsers = new List<User>()
                 {
-                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "hasan.ersoy", Email = "hasan.ersoy@atilimProject.com", },
-                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "mehmet.yilmaz", Email = "mehmet.yilmaz@atilimProject.com" },
-                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "ahmet.unal", Email = "ahmet.unal@atilimProject.com" },
-                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "mustafa.isik", Email = "mustafa.isik@atilimProject.com" },
-                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "ayse.erdogan", Email = "ayse.erdogan@atilimProject.com" },
-                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "fatma.korkmaz", Email = "fatma.korkmaz@atilimProject.com" },
+                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "hasan.ersoy", Email = "hasan.ersoy@atilimProject.com",UserRoles = new List<UserRole> { new UserRole() { RoleId = _studentRoleId } }},
+                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "mehmet.yilmaz", Email = "mehmet.yilmaz@atilimProject.com" ,UserRoles = new List<UserRole> { new UserRole() { RoleId = _studentRoleId } }},
+                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "ahmet.unal", Email = "ahmet.unal@atilimProject.com" ,UserRoles = new List<UserRole> { new UserRole() { RoleId = _studentRoleId } }},
+                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "mustafa.isik", Email = "mustafa.isik@atilimProject.com" ,UserRoles = new List<UserRole> { new UserRole() { RoleId = _studentRoleId } }},
+                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "ayse.erdogan", Email = "ayse.erdogan@atilimProject.com" ,UserRoles = new List<UserRole> { new UserRole() { RoleId = _studentRoleId } }},
+                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "fatma.korkmaz", Email = "fatma.korkmaz@atilimProject.com" ,UserRoles = new List<UserRole> { new UserRole() { RoleId = _studentRoleId } }},
                 };
 
                 var numberByte = new byte[8];
 
                 using var randomGen = RandomNumberGenerator.Create();
 
-                studentUsers.ForEach(u =>
+                studentUsers.ForEach(async u =>
                 {
                     randomGen.GetBytes(numberByte);
 
-                    userManager.CreateAsync(u, Convert.ToBase64String(numberByte)).Wait();
-
-                    userManager.AddToRoleAsync(u, "student").Wait();
+                    await userManager.CreateAsync(u, Convert.ToBase64String(numberByte));
                 });
 
                 #endregion
