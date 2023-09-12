@@ -72,33 +72,48 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
                 _userId = Guid.NewGuid().ToString();
 
                 var adminUser = new User()
-                { Id = _userId, UserName = "atilim.admin", Email = "admin@atilimProject.com", UserRoles = new List<UserRole> { new UserRole() { RoleId = _adminRoleId} } };
+                { UserName = "atilim.admin", Email = "admin@atilimProject.com" };
 
                 await userManager.CreateAsync(adminUser, "Password_*12");
+
+                var adminRole = new UserRole { RoleId = _adminRoleId, UserId = adminUser.Id };
+
+                var context = provider.GetRequiredService<IdentityContext>();
+
+                await context.AddAsync(adminRole);
+
                 #endregion
 
                 #region Student Users
 
                 var studentUsers = new List<User>()
                 {
-                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "hasan.ersoy", Email = "hasan.ersoy@atilimProject.com",UserRoles = new List<UserRole> { new UserRole() { RoleId = _studentRoleId } }},
-                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "mehmet.yilmaz", Email = "mehmet.yilmaz@atilimProject.com" ,UserRoles = new List<UserRole> { new UserRole() { RoleId = _studentRoleId } }},
-                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "ahmet.unal", Email = "ahmet.unal@atilimProject.com" ,UserRoles = new List<UserRole> { new UserRole() { RoleId = _studentRoleId } }},
-                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "mustafa.isik", Email = "mustafa.isik@atilimProject.com" ,UserRoles = new List<UserRole> { new UserRole() { RoleId = _studentRoleId } }},
-                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "ayse.erdogan", Email = "ayse.erdogan@atilimProject.com" ,UserRoles = new List<UserRole> { new UserRole() { RoleId = _studentRoleId } }},
-                    new User(){ Id = Guid.NewGuid().ToString(), UserName = "fatma.korkmaz", Email = "fatma.korkmaz@atilimProject.com" ,UserRoles = new List<UserRole> { new UserRole() { RoleId = _studentRoleId } }},
+                    new User(){ UserName = "hasan.ersoy", Email = "hasan.ersoy@atilimProject.com"},
+                    new User(){ UserName = "mehmet.yilmaz", Email = "mehmet.yilmaz@atilimProject.com" },
+                    new User(){ UserName = "ahmet.unal", Email = "ahmet.unal@atilimProject.com" },
+                    new User(){ UserName = "mustafa.isik", Email = "mustafa.isik@atilimProject.com"},
+                    new User(){ UserName = "ayse.erdogan", Email = "ayse.erdogan@atilimProject.com"},
+                    new User(){ UserName = "fatma.korkmaz", Email = "fatma.korkmaz@atilimProject.com"},
                 };
 
                 var numberByte = new byte[8];
 
                 using var randomGen = RandomNumberGenerator.Create();
 
-                studentUsers.ForEach(async u =>
+                userManager = provider.GetRequiredService<UserManager<User>>();
+
+                foreach (var u in studentUsers)
                 {
                     randomGen.GetBytes(numberByte);
 
-                    await userManager.CreateAsync(u, Convert.ToBase64String(numberByte));
-                });
+                    var password = Convert.ToBase64String(numberByte);
+
+                    await userManager.CreateAsync(u, password);
+
+                    var studentRole = new UserRole { RoleId = _studentRoleId, UserId = u.Id };
+
+                    await context.AddAsync(studentRole);
+                }
 
                 #endregion
             }

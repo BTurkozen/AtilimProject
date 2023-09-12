@@ -8,19 +8,15 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<UserRole> builder)
         {
-            builder.Property(b => b.UserId).ValueGeneratedOnAdd();
-
-            builder.HasKey(b => b.UserId);
-
             builder.HasOne(b => b.User)
                    .WithMany(b => b.UserRoles)
                    .HasForeignKey(b => b.UserId)
                    .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(b => b.Role)
-                   .WithMany(b => b.UserRoles)
-                   .HasForeignKey(b => b.RoleId)
-                   .OnDelete(DeleteBehavior.Restrict);
+            //builder.HasOne(b => b.Role)
+            //       .WithMany(b => b.UserRoles)
+            //       .HasForeignKey(b => b.RoleId)
+            //       .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
