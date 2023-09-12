@@ -1,11 +1,19 @@
 ﻿using Atilim.Services.Identity.Domain.Entities;
 using Atilim.Services.Identity.Domain.Entities.StudentEntities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Atilim.Services.Identity.Infrastructure
 {
-    public class IdentityContext : IdentityDbContext<User, UserRole, string>
+    public class IdentityContext : IdentityDbContext<User,
+                                                     Role,
+                                                     string,
+                                                     IdentityUserClaim<string>,
+                                                     UserRole,
+                                                     IdentityUserLogin<string>,
+                                                     IdentityRoleClaim<string>,
+                                                     IdentityUserToken<string>>
     {
         public IdentityContext(DbContextOptions<IdentityContext> options) : base(options) { }
 

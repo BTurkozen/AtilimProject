@@ -12,6 +12,11 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
                    .WithMany(b => b.UserRoles)
                    .HasForeignKey(b => b.UserId)
                    .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(b => b.Role)
+                   .WithMany(b => b.UserRoles)
+                   .HasForeignKey(b => b.RoleId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
