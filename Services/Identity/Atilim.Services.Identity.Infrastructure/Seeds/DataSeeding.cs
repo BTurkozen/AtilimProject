@@ -24,9 +24,9 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
 
             context.Database.Migrate();
 
-            await CreateRoleSeeds(provider);
+            CreateRoleSeeds(provider);
 
-            await CreateUserSeeds(provider);
+            CreateUserSeeds(provider);
 
             await CreateCurriculumSeeds(context);
 
@@ -41,19 +41,15 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
         /// Role oluşturma işlemleri.
         /// </summary>
         /// <param name="provider"></param>
-        private async static Task CreateRoleSeeds(IServiceProvider provider)
+        private static void CreateRoleSeeds(IServiceProvider provider)
         {
-            var roleManager = provider.GetRequiredService<RoleManager<Role>>();
+            var roleManager = provider.GetRequiredService<RoleManager<IdentityRole>>();
 
             if (roleManager.Roles.Any() is false)
             {
-                _adminRoleId = Guid.NewGuid().ToString();
+                roleManager.CreateAsync(new IdentityRole { Id = _adminRoleId, Name = "admin", NormalizedName = "ADMIN", ConcurrencyStamp = Guid.NewGuid().ToString() }).Wait();
 
-                await roleManager.CreateAsync(new Role { Id = _adminRoleId, Name = "admin", ConcurrencyStamp = Guid.NewGuid().ToString() });
-
-                _studentRoleId = Guid.NewGuid().ToString();
-
-                await roleManager.CreateAsync(new Role { Id = _studentRoleId, Name = "student", ConcurrencyStamp = Guid.NewGuid().ToString() });
+                roleManager.CreateAsync(new IdentityRole { Id = _studentRoleId, Name = "student", NormalizedName = "STUDENT", ConcurrencyStamp = Guid.NewGuid().ToString() }).Wait();
             }
         }
 
@@ -61,7 +57,7 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
         /// Kullanıcı oluşturma ve kullanıcılara role ekleme işlemleri.
         /// </summary>
         /// <param name="provider"></param>
-        private async static Task CreateUserSeeds(IServiceProvider provider)
+        private static void CreateUserSeeds(IServiceProvider provider)
         {
             var userManager = provider.GetRequiredService<UserManager<User>>();
 
@@ -69,18 +65,12 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
             {
                 #region Admin User
 
-                _userId = Guid.NewGuid().ToString();
-
                 var adminUser = new User()
-                { UserName = "atilim.admin", Email = "admin@atilimProject.com" };
+                { UserName = "atilim.admin", Email = "admin@atilimProject.com", Name = "atilim", Surname = "admin" };
 
-                await userManager.CreateAsync(adminUser, "Password_*12");
+                userManager.CreateAsync(adminUser, "Password_*12").Wait();
 
-                var adminRole = new UserRole { RoleId = _adminRoleId, UserId = adminUser.Id };
-
-                var context = provider.GetRequiredService<IdentityContext>();
-
-                await context.AddAsync(adminRole);
+                userManager.AddToRoleAsync(adminUser, "admin").Wait();
 
                 #endregion
 
@@ -100,19 +90,17 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
 
                 using var randomGen = RandomNumberGenerator.Create();
 
-                userManager = provider.GetRequiredService<UserManager<User>>();
+                //userManager = provider.GetRequiredService<UserManager<User>>();
 
-                foreach (var u in studentUsers)
+                for (int i = 0; i < studentUsers.Count; i++)
                 {
                     randomGen.GetBytes(numberByte);
 
                     var password = Convert.ToBase64String(numberByte);
 
-                    await userManager.CreateAsync(u, password);
+                    userManager.CreateAsync(studentUsers[i], password).Wait();
 
-                    var studentRole = new UserRole { RoleId = _studentRoleId, UserId = u.Id };
-
-                    await context.AddAsync(studentRole);
+                    userManager.AddToRoleAsync(studentUsers[i], "student").Wait();
                 }
 
                 #endregion

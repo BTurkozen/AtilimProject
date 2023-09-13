@@ -6,10 +6,10 @@ namespace Atilim.Services.Identity.Domain.Entities
     {
         public User()
         {
-            UserRoles = new List<UserRole>();
             Id = Guid.NewGuid().ToString();
         }
 
-        public ICollection<UserRole> UserRoles { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
     }
 }

@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore;
 namespace Atilim.Services.Identity.Infrastructure
 {
     public class IdentityContext : IdentityDbContext<User,
-                                                     Role,
+                                                     IdentityRole<string>,
                                                      string,
                                                      IdentityUserClaim<string>,
-                                                     UserRole,
+                                                     IdentityUserRole<string>,
                                                      IdentityUserLogin<string>,
                                                      IdentityRoleClaim<string>,
                                                      IdentityUserToken<string>>
