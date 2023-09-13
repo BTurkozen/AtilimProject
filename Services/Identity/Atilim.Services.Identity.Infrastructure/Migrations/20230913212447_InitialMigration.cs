@@ -17,11 +17,11 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -32,7 +32,8 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -59,10 +60,11 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 name: "Curriculums",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CurriculumName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
                     UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -76,13 +78,14 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 name: "Lessons",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     LessonCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LessonName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
                     Credit = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
                     UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -96,7 +99,8 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 name: "UserRefreshTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Expiration = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -111,7 +115,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -132,7 +136,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -154,7 +158,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -171,8 +175,8 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -195,7 +199,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -215,17 +219,18 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 name: "StudentIdentities",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    TCIdentificationNo = table.Column<int>(type: "int", maxLength: 11, nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TCIdentificationNo = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CityOfBirth = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ContactInformationId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    StudentId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ContactInformationId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    StudentId = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
                     UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -245,8 +250,8 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 name: "CurriculumLesson",
                 columns: table => new
                 {
-                    CurriculumsId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LessonsId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    CurriculumsId = table.Column<int>(type: "int", nullable: false),
+                    LessonsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -269,16 +274,17 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 name: "ContactInformations",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Country = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     District = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     MobilePhoneNumber = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    StudentIdentityId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    StudentIdentityId = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
                     UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -298,12 +304,13 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 name: "Students",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     StudentNo = table.Column<int>(type: "int", maxLength: 25, nullable: false),
-                    StudentIdentityId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CurriculumId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    StudentIdentityId = table.Column<int>(type: "int", nullable: false),
+                    CurriculumId = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
                     UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -327,11 +334,25 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "85703526-89dd-4df4-ab60-4d7ffb3d4c19", "f4f2c33f-1188-4811-9f9c-76b83d0ddd22", "IdentityRole", "student", "STUDENT" },
-                    { "adbdc105-8db5-4f2e-a12f-91a88a34063c", "ab3062ec-2f11-450b-a930-66b5ec9db9fc", "IdentityRole", "admin", "ADMIN" }
+                    { 1, "6b4633da-8d01-4f6a-b39a-cd837ec7a019", "admin", "ADMIN" },
+                    { 2, "d2c93ca6-415d-46bb-ba1a-9b0e3815e1fd", "student", "STUDENT" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { 1, 0, "b19d4e7a-bc35-4055-a69a-31cc16debc87", "admin@atilimProject.com", false, false, null, "atilim", null, null, null, null, false, "d4c714c0-281c-4b47-a043-e388ed3ba833", "admin", false, "atilim.admin" },
+                    { 2, 0, "454e5ff8-1115-4e08-8c3e-08a1511f76d1", "hasan.ersoy@atilimProject.com", false, false, null, "hasan", null, null, null, null, false, "acd42ae1-3934-423d-a404-ac2deed8d227", "ersoy", false, "hasan.ersoy" },
+                    { 3, 0, "475e5861-876f-4ce5-bd76-511b2a459e17", "mehmet.yilmaz@atilimProject.com", false, false, null, "mehmet", null, null, null, null, false, "ed42ec6e-f0d2-4dff-aa15-7827de404744", "yilmaz", false, "mehmet.yilmaz" },
+                    { 4, 0, "cdbbfb49-630c-4257-85f2-b811301ab859", "ahmet.unal@atilimProject.com", false, false, null, "ahmet", null, null, null, null, false, "3408a097-486d-46be-83f9-b76b83730a07", "unal", false, "ahmet.unal" },
+                    { 5, 0, "e8832e57-5fdc-4669-b334-cf70879a6cb8", "mustafa.isik@atilimProject.com", false, false, null, "mustafa", null, null, null, null, false, "cbb4dbd9-7f81-4ea0-9948-49002ea40915", "isik", false, "mustafa.isik" },
+                    { 6, 0, "e22030a3-f2bc-4ac2-8ab7-59f66021c33a", "ayse.erdogan@atilimProject.com", false, false, null, "ayse", null, null, null, null, false, "eb91707a-4fec-436c-9aec-560416a0896f", "erdogan", false, "ayse.erdogan" },
+                    { 7, 0, "dcdfb8c2-8f23-4b4f-bb08-960aaadb69bb", "fatma.korkmaz@atilimProject.com", false, false, null, "fatma", null, null, null, null, false, "ee6d4dbf-7e87-4124-b17f-79b8f567ef03", "korkmaz", false, "fatma.korkmaz" }
                 });
 
             migrationBuilder.InsertData(
@@ -339,9 +360,9 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "CurriculumName", "IsDeleted", "UpdatedBy", "UpdatedOn" },
                 values: new object[,]
                 {
-                    { "10b7d598-aac5-40d4-b523-97b9e90c9091", "1", new DateTime(2023, 9, 13, 22, 11, 25, 151, DateTimeKind.Local).AddTicks(975), "Bilgisayar_Mühendisliği", false, null, null },
-                    { "34067ef3-588e-4fff-a9e6-e0362c4370f4", "1", new DateTime(2023, 9, 13, 22, 11, 25, 151, DateTimeKind.Local).AddTicks(996), "Grafik_Mühendisliği", false, null, null },
-                    { "da9a06bc-5b53-4af8-a37a-979e77d9ce1c", "1", new DateTime(2023, 9, 13, 22, 11, 25, 151, DateTimeKind.Local).AddTicks(1002), "Ingiliz_Dil_Edebiyatı", false, null, null }
+                    { 1, 1, new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(3347), "Bilgisayar_Mühendisliği", false, null, null },
+                    { 2, 1, new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(3354), "Grafik_Mühendisliği", false, null, null },
+                    { 3, 1, new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(3355), "Ingiliz_Dil_Edebiyatı", false, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -349,13 +370,52 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "Credit", "IsDeleted", "LessonCode", "LessonName", "Status", "UpdatedBy", "UpdatedOn" },
                 values: new object[,]
                 {
-                    { "0953b2ba-196f-4706-ba41-e465d47a28b8", "1", new DateTime(2023, 9, 13, 22, 11, 25, 151, DateTimeKind.Local).AddTicks(4092), 5, false, "HUM101", "Türk Demokrasi Tarihi", true, null, null },
-                    { "214023db-bc37-497e-a26d-5e9a4bf2a71e", "1", new DateTime(2023, 9, 13, 22, 11, 25, 151, DateTimeKind.Local).AddTicks(4110), 6, false, "MATH102", "Calculus 2", true, null, null },
-                    { "425fa278-a8b3-4b67-87ed-cb3cdc489d30", "1", new DateTime(2023, 9, 13, 22, 11, 25, 151, DateTimeKind.Local).AddTicks(4140), 6, false, "MATH201", "İleri Calculus ", true, null, null },
-                    { "582ef29d-5dee-4472-9ec7-dc1780cb1fd7", "1", new DateTime(2023, 9, 13, 22, 11, 25, 151, DateTimeKind.Local).AddTicks(4135), 4, false, "ENG102", "İngilizce 2", true, null, null },
-                    { "ac216603-1807-48b4-aa40-8d8a64ca8512", "1", new DateTime(2023, 9, 13, 22, 11, 25, 151, DateTimeKind.Local).AddTicks(4127), 4, false, "CMPE201", "Bilgisayar Teknolojileri", true, null, null },
-                    { "c8ac964b-1721-4197-a18c-3473b3970a0c", "1", new DateTime(2023, 9, 13, 22, 11, 25, 151, DateTimeKind.Local).AddTicks(4122), 5, false, "GRA105", "Grafik Dizayn", true, null, null },
-                    { "d09436d6-de01-4845-a8d6-99eb58df5662", "1", new DateTime(2023, 9, 13, 22, 11, 25, 151, DateTimeKind.Local).AddTicks(4116), 6, false, "MATE103", "Metalurjiye Giriş", false, null, null }
+                    { 1, 1, new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6549), 5, false, "HUM101", "Türk Demokrasi Tarihi", true, null, null },
+                    { 2, 1, new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6558), 6, false, "MATH102", "Calculus 2", true, null, null },
+                    { 3, 1, new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6560), 6, false, "MATE103", "Metalurjiye Giriş", false, null, null },
+                    { 4, 1, new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6562), 5, false, "GRA105", "Grafik Dizayn", true, null, null },
+                    { 5, 1, new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6564), 4, false, "CMPE201", "Bilgisayar Teknolojileri", true, null, null },
+                    { 6, 1, new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6566), 4, false, "ENG102", "İngilizce 2", true, null, null },
+                    { 7, 1, new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6567), 6, false, "MATH201", "İleri Calculus ", true, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "StudentIdentities",
+                columns: new[] { "Id", "CityOfBirth", "ContactInformationId", "CreatedBy", "CreatedOn", "DateOfBirth", "IsDeleted", "Name", "StudentId", "Surname", "TCIdentificationNo", "UpdatedBy", "UpdatedOn", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "Kayseri", 0, 1, new DateTime(2023, 9, 14, 0, 24, 47, 410, DateTimeKind.Local).AddTicks(6468), new DateTime(1983, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Hasan", 1, "Ersoy", "45456747611", null, null, 2 },
+                    { 2, "Adana", 0, 1, new DateTime(2023, 9, 14, 0, 24, 47, 410, DateTimeKind.Local).AddTicks(6556), new DateTime(2000, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Mehmet", 2, "Yılmaz", "67967856634", null, null, 3 },
+                    { 3, "Ankara", 0, 1, new DateTime(2023, 9, 14, 0, 24, 47, 410, DateTimeKind.Local).AddTicks(6564), new DateTime(2001, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Ahmet", 3, "Ünal", "72347322958", null, null, 4 },
+                    { 4, "Sivas", 0, 1, new DateTime(2023, 9, 14, 0, 24, 47, 410, DateTimeKind.Local).AddTicks(6571), new DateTime(2000, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Mustafa", 4, "Işık", "97850348520", null, null, 5 },
+                    { 5, "Uşak", 0, 1, new DateTime(2023, 9, 14, 0, 24, 47, 410, DateTimeKind.Local).AddTicks(6614), new DateTime(2001, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Ayşe", 5, "Erdoğan", "32756874239", null, null, 6 },
+                    { 6, "Kütahya", 0, 1, new DateTime(2023, 9, 14, 0, 24, 47, 410, DateTimeKind.Local).AddTicks(6620), new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Fatma", 6, "Korkmaz", "98423479320", null, null, 7 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ContactInformations",
+                columns: new[] { "Id", "Address", "City", "Country", "CreatedBy", "CreatedOn", "District", "Email", "IsDeleted", "MobilePhoneNumber", "StudentIdentityId", "UpdatedBy", "UpdatedOn" },
+                values: new object[,]
+                {
+                    { 1, "DEMİRCİKARA MAH. B.ONAT CAD. HEDE SİT. B BLOK NO : 1", "ANKARA", "Türkiye", 1, new DateTime(2023, 9, 14, 0, 24, 47, 406, DateTimeKind.Local).AddTicks(9087), "PURSAKLAR", "mno@xyz.com", false, "5555424245", 1, null, null },
+                    { 2, "CUMHURİYET MAH. BİRİNCİ SOK. İKİNCİ APT. NO:111/6", "Ankara", "Türkiye", 1, new DateTime(2023, 9, 14, 0, 24, 47, 406, DateTimeKind.Local).AddTicks(9111), "YENİMAHALLE", "abc@hotmail.com", false, "5332342342", 2, null, null },
+                    { 3, "SİTELER MAHALLESİ 6223 SOKAK DURU APT. NO:11 KAT:3 ", "Ankara", "Türkiye", 1, new DateTime(2023, 9, 14, 0, 24, 47, 406, DateTimeKind.Local).AddTicks(9113), "POLATLI", "klm@outlook.com", false, "5408932042", 3, null, null },
+                    { 4, "TURAN GÜNEŞ BULVARI TAMTAM SİTESİ 13. CAD. NO:51", "Ankara", "Türkiye", 0, new DateTime(2023, 9, 14, 0, 24, 47, 406, DateTimeKind.Local).AddTicks(9115), "KEÇİÖREN", "ghi@abc.com", false, "5305464646", 4, null, null },
+                    { 5, "AHMET HAMDİ SOK. NO:19/15", "Ankara", "Türkiye", 1, new DateTime(2023, 9, 14, 0, 24, 47, 406, DateTimeKind.Local).AddTicks(9118), "SİNCAN", "prs@hotmail.com", false, "5302908432", 5, null, null },
+                    { 6, "KUŞADASI SOK. NO:123 KARAAĞAÇ", "Ankara", "Türkiye", 1, new DateTime(2023, 9, 14, 0, 24, 47, 406, DateTimeKind.Local).AddTicks(9119), "ÇANKAYA", "def@gmail.com", false, "5437657567", 6, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Id", "CreatedBy", "CreatedOn", "CurriculumId", "IsDeleted", "StudentIdentityId", "StudentNo", "UpdatedBy", "UpdatedOn" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2023, 9, 14, 0, 24, 47, 408, DateTimeKind.Local).AddTicks(5016), 1, false, 1, 23462368, null, null },
+                    { 2, 1, new DateTime(2023, 9, 14, 0, 24, 47, 408, DateTimeKind.Local).AddTicks(5024), 1, false, 2, 27482379, null, null },
+                    { 3, 1, new DateTime(2023, 9, 14, 0, 24, 47, 408, DateTimeKind.Local).AddTicks(5025), 2, false, 3, 34565479, null, null },
+                    { 4, 1, new DateTime(2023, 9, 14, 0, 24, 47, 408, DateTimeKind.Local).AddTicks(5027), 2, false, 4, 53456346, null, null },
+                    { 5, 1, new DateTime(2023, 9, 14, 0, 24, 47, 408, DateTimeKind.Local).AddTicks(5029), 3, false, 5, 34674575, null, null },
+                    { 6, 1, new DateTime(2023, 9, 14, 0, 24, 47, 408, DateTimeKind.Local).AddTicks(5030), 3, false, 6, 64672359, null, null }
                 });
 
             migrationBuilder.CreateIndex(

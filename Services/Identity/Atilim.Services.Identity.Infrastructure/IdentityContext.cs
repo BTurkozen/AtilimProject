@@ -6,14 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Atilim.Services.Identity.Infrastructure
 {
-    public class IdentityContext : IdentityDbContext<User,
-                                                     IdentityRole<string>,
-                                                     string,
-                                                     IdentityUserClaim<string>,
-                                                     IdentityUserRole<string>,
-                                                     IdentityUserLogin<string>,
-                                                     IdentityRoleClaim<string>,
-                                                     IdentityUserToken<string>>
+    public class IdentityContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public IdentityContext(DbContextOptions<IdentityContext> options) : base(options) { }
 

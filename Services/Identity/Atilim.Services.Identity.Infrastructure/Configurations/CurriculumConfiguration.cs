@@ -27,9 +27,9 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasData(
-                new Curriculum() { Id = Guid.NewGuid().ToString(), CreatedBy = "1", CurriculumName = "Bilgisayar_Mühendisliği" },
-                new Curriculum() { Id = Guid.NewGuid().ToString(), CreatedBy = "1", CurriculumName = "Grafik_Mühendisliği" },
-                new Curriculum() { Id = Guid.NewGuid().ToString(), CreatedBy = "1", CurriculumName = "Ingiliz_Dil_Edebiyatı" });
+                new Curriculum() {Id =1, CreatedBy = 1, CurriculumName = "Bilgisayar_Mühendisliği" },
+                new Curriculum() {Id =2, CreatedBy = 1, CurriculumName = "Grafik_Mühendisliği" },
+                new Curriculum() {Id =3, CreatedBy = 1, CurriculumName = "Ingiliz_Dil_Edebiyatı" });
         }
     }
 }

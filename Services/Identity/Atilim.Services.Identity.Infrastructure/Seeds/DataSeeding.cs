@@ -25,7 +25,9 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
 
             UpdateLessonSeeds(context);
 
-            InsertCurriculumToStudent(context);
+            //CreateStudent(context);
+
+            //InsertCurriculumToStudent(context);
         }
 
         /// <summary>
@@ -36,14 +38,15 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
         {
             var userManager = provider.GetRequiredService<UserManager<User>>();
 
-            if (userManager.Users.Any() is false)
+            if (userManager.Users.Any() && userManager.Users.Any(u => u.PasswordHash == null))
             {
+                var users = userManager.Users.ToList();
+
                 #region Admin User
 
-                var adminUser = new User()
-                { UserName = "atilim.admin", Email = "admin@atilimProject.com", Name = "atilim", Surname = "admin" };
+                var adminUser = users.FirstOrDefault(u => u.Id == 1);
 
-                userManager.CreateAsync(adminUser, "Password_*12").Wait();
+                userManager.AddPasswordAsync(adminUser, "Password_*12").Wait();
 
                 userManager.AddToRoleAsync(adminUser, "admin").Wait();
 
@@ -51,15 +54,7 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
 
                 #region Student Users
 
-                var studentUsers = new List<User>()
-                {
-                    new User(){ UserName = "hasan.ersoy", Email = "hasan.ersoy@atilimProject.com",Name ="hasan", Surname="ersoy"},
-                    new User(){ UserName = "mehmet.yilmaz", Email = "mehmet.yilmaz@atilimProject.com",Name ="mehmet", Surname="yilmaz"},
-                    new User(){ UserName = "ahmet.unal", Email = "ahmet.unal@atilimProject.com",Name ="ahmet", Surname="unal"},
-                    new User(){ UserName = "mustafa.isik", Email = "mustafa.isik@atilimProject.com",Name ="mustafa", Surname="isik"},
-                    new User(){ UserName = "ayse.erdogan", Email = "ayse.erdogan@atilimProject.com",Name ="ayse", Surname="erdogan"},
-                    new User(){ UserName = "fatma.korkmaz", Email = "fatma.korkmaz@atilimProject.com",Name ="fatma", Surname="korkmaz"},
-                };
+                var studentUsers = users.Where(u => u.Id != 1).ToList();
 
                 var numberByte = new byte[8];
 
@@ -73,11 +68,17 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
 
                     var password = Convert.ToBase64String(numberByte);
 
-                    userManager.CreateAsync(studentUsers[i], password).Wait();
+                    userManager.AddPasswordAsync(studentUsers[i], password).Wait();
 
-                    userManager.GenerateConcurrencyStampAsync(studentUsers[i]).Wait();
+                    if (string.IsNullOrEmpty(studentUsers[i].ConcurrencyStamp))
+                    {
+                        userManager.GenerateConcurrencyStampAsync(studentUsers[i]).Wait();
+                    }
 
-                    userManager.GetSecurityStampAsync(studentUsers[i]).Wait();
+                    if (string.IsNullOrEmpty(studentUsers[i].SecurityStamp))
+                    {
+                        userManager.GetSecurityStampAsync(studentUsers[i]).Wait();
+                    }
 
                     userManager.AddToRoleAsync(studentUsers[i], "student").Wait();
                 }
@@ -125,17 +126,29 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
             }
         }
 
-        private static void InsertCurriculumToStudent(IdentityContext context)
-        {
-            if (context.Students.Any() && context.Students.Select(s => s.Curriculum) is null)
-            {
-                var students = context.Students.ToList();
+        //private static void InsertCurriculumToStudent(IdentityContext context)
+        //{
+        //    if (context.Students.Any() && context.Students.All(s => s.CurriculumId == 1))
+        //    {
+        //        var students = context.Students.ToList();
 
-                for (int i = 0; i < students.Count; i++)
-                {
+        //        var curriculums = context.Curriculums.ToList();
 
-                }
-            }
-        }
+        //        var users = context.Users.ToList();
+
+        //        for (int i = 0; i < students.Count; i++)
+        //        {
+        //            students[i].CurriculumId = curriculums[i].Id;
+
+        //            var userId = users.FirstOrDefault(u => u.Name.Contains(students[i].StudentIdentity.Name) && u.Surname.Contains(students[i].StudentIdentity.Surname)).Id;
+
+        //            students[i].StudentIdentity.UserId = userId;
+
+        //            context.Students.Update(students[i]);
+        //        }
+
+        //        context.SaveChanges();
+        //    }
+        //}
     }
 }

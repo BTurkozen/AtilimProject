@@ -33,9 +33,10 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddDbContext<IdentityContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionStr"));
+    options.EnableSensitiveDataLogging(true);
 });
 
-builder.Services.AddIdentity<User, IdentityRole>(options =>
+builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
 {
     options.Password.RequireDigit = true;
     options.Password.RequiredLength = 6;

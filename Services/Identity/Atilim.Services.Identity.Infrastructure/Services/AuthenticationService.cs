@@ -64,7 +64,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services
             if (existRefreshToken is null)
                 return ResponseDto<TokenDto>.Fail("Refresh token not found", HttpStatusCode.NotFound);
 
-            var user = await _userManager.FindByIdAsync(existRefreshToken.UserId);
+            var user = await _userManager.FindByIdAsync($"{existRefreshToken.UserId}");
 
             if (user is null)
                 return ResponseDto<TokenDto>.Fail("Username or Password is wrong", HttpStatusCode.BadRequest);

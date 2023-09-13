@@ -2,13 +2,8 @@
 
 namespace Atilim.Services.Identity.Domain.Entities
 {
-    public class User : IdentityUser<string>
+    public class User : IdentityUser<int>
     {
-        public User()
-        {
-            Id = Guid.NewGuid().ToString();
-        }
-
         public string Name { get; set; }
         public string Surname { get; set; }
     }
