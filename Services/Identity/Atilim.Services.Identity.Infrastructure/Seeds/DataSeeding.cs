@@ -23,7 +23,9 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
 
             CreateUserSeeds(provider);
 
-            CreateLessonSeeds(context);
+            UpdateLessonSeeds(context);
+
+            InsertCurriculumToStudent(context);
         }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        private static void CreateLessonSeeds(IdentityContext context)
+        private static void UpdateLessonSeeds(IdentityContext context)
         {
             if (context.Lessons.Any() && context.Curriculums.Select(c => c.Lessons).Any() is false)
             {
@@ -120,6 +122,19 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
                 }
 
                 context.SaveChanges();
+            }
+        }
+
+        private static void InsertCurriculumToStudent(IdentityContext context)
+        {
+            if (context.Students.Any() && context.Students.Select(s => s.Curriculum) is null)
+            {
+                var students = context.Students.ToList();
+
+                for (int i = 0; i < students.Count; i++)
+                {
+
+                }
             }
         }
     }

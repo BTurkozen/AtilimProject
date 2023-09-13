@@ -2,6 +2,10 @@
 {
     public class ContactInformation : BaseEntity
     {
+        public ContactInformation()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
         public string Address { get; set; }
         public string Country { get; set; }
         public string City { get; set; }

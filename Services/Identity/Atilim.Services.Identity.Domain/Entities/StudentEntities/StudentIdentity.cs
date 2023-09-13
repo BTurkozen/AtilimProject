@@ -2,7 +2,11 @@
 {
     public class StudentIdentity : BaseEntity
     {
-        public int TCIdentificationNo { get; set; }
+        public StudentIdentity()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+        public string TCIdentificationNo { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string CityOfBirth { get; set; }
