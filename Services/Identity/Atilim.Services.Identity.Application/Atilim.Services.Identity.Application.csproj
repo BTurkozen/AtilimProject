@@ -17,8 +17,8 @@
     <Folder Include="Features\Commands\LessonCommands\" />
     <Folder Include="Features\Commands\StudentCommands\" />
     <Folder Include="Features\Commands\StudentIdentityCommands\" />
-    <Folder Include="Features\Queries\LessonQueries\" />
     <Folder Include="Features\Queries\CurriculumQueries\" />
+    <Folder Include="Features\Queries\LessonQueries\" />
     <Folder Include="Mapping\" />
   </ItemGroup>
 
