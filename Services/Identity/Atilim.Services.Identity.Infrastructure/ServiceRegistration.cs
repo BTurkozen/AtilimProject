@@ -19,8 +19,14 @@ namespace Atilim.Services.Identity.Infrastructure
             });
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+
             services.AddScoped<ITokenService, TokenService>();
+
+            #region Students Register
             services.AddScoped<IStudentService, StudentService>();
+
+            services.AddScoped<IStudentIdentityService, StudentIdentityService>();
+            #endregion
 
         }
     }

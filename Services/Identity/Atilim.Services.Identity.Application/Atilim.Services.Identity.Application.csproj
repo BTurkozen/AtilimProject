@@ -20,7 +20,6 @@
     <Folder Include="Features\Queries\LessonQueries\" />
     <Folder Include="Features\Queries\ContactInformationQueries\" />
     <Folder Include="Features\Queries\CurriculumQueries\" />
-    <Folder Include="Features\Queries\StudentIdentityQueries\" />
     <Folder Include="Mapping\" />
   </ItemGroup>
 
