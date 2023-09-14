@@ -1,4 +1,5 @@
 using Atilim.Services.Identity.Api.Helpers.Extentions;
+using Atilim.Services.Identity.Application;
 using Atilim.Services.Identity.Application.Interfaces;
 using Atilim.Services.Identity.Domain.Entities;
 using Atilim.Services.Identity.Infrastructure;
@@ -30,11 +31,7 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
-builder.Services.AddDbContext<IdentityContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionStr"));
-    options.EnableSensitiveDataLogging(true);
-});
+
 
 builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
 {
@@ -61,13 +58,15 @@ builder.Services.AddSingleton<ITokenSettings>(options =>
 
 builder.Services.AddCustomAuthentication(tokenConfiguration.Get<TokenSettings>());
 
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddApplicationServices();
+
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 builder.Configuration
        .SetBasePath(builder.Environment.ContentRootPath)
        .AddJsonFile("appsettings.json", optional: false)
        .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true);
+
 
 var app = builder.Build();
 
