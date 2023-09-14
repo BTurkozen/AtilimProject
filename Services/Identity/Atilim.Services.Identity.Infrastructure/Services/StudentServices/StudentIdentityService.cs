@@ -1,6 +1,5 @@
 ﻿using Atilim.Services.Identity.Application.Dtos.StudentIdentityDtos;
 using Atilim.Services.Identity.Application.Interfaces.StudentInterfaces;
-using Atilim.Services.Identity.Domain.Entities.StudentEntities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
@@ -20,7 +19,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
                                                 .AsNoTracking()
                                                 .FirstOrDefaultAsync(si => si.Id == id);
 
-            if (studentIndetity is not null)
+            if (studentIndetity is null)
             {
                 // TODO: BURAK Log ekle
 
@@ -44,7 +43,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
         {
             var studentIndetity = await _context.StudentIdentities.AsNoTracking().FirstOrDefaultAsync(si => si.StudentId == studentId);
 
-            if (studentIndetity is not null)
+            if (studentIndetity is null)
             {
                 // TODO: BURAK Log ekle
 
