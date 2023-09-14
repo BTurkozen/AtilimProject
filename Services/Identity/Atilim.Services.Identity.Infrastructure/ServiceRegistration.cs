@@ -26,6 +26,8 @@ namespace Atilim.Services.Identity.Infrastructure
             services.AddScoped<IStudentService, StudentService>();
 
             services.AddScoped<IStudentIdentityService, StudentIdentityService>();
+
+            services.AddScoped<IContactInformationService, ContactInformationService>();
             #endregion
 
         }

@@ -18,7 +18,6 @@
     <Folder Include="Features\Commands\StudentCommands\" />
     <Folder Include="Features\Commands\StudentIdentityCommands\" />
     <Folder Include="Features\Queries\LessonQueries\" />
-    <Folder Include="Features\Queries\ContactInformationQueries\" />
     <Folder Include="Features\Queries\CurriculumQueries\" />
     <Folder Include="Mapping\" />
   </ItemGroup>
