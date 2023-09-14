@@ -21,7 +21,6 @@
     <Folder Include="Features\Queries\ContactInformationQueries\" />
     <Folder Include="Features\Queries\CurriculumQueries\" />
     <Folder Include="Features\Queries\StudentIdentityQueries\" />
-    <Folder Include="Features\Queries\StudentQueries\" />
     <Folder Include="Mapping\" />
   </ItemGroup>
 

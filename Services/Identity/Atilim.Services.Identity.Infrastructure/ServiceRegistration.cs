@@ -1,5 +1,7 @@
 ﻿using Atilim.Services.Identity.Application.Interfaces;
+using Atilim.Services.Identity.Application.Interfaces.StudentInterfaces;
 using Atilim.Services.Identity.Infrastructure.Services;
+using Atilim.Services.Identity.Infrastructure.Services.StudentServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +20,8 @@ namespace Atilim.Services.Identity.Infrastructure
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IStudentService, StudentService>();
+
         }
     }
 }
