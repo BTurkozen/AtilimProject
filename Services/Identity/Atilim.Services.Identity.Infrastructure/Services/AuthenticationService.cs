@@ -40,7 +40,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services
 
             if (userRefreshToken is null)
             {
-                await _context.UserRefreshTokens.AddAsync(new UserRefreshToken
+                await _context.AddAsync(new UserRefreshToken
                 {
                     UserId = user.Id,
                     Code = tokenResponse.Data.RefreshToken,

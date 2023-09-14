@@ -8,7 +8,11 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<UserRefreshToken> builder)
         {
-            builder.HasKey(b => b.UserId);
+            //builder.HasKey(b => b.UserId);
+
+            builder.HasKey(ent => ent.UserId);
+            builder.Property(ent => ent.UserId).ValueGeneratedNever();
+
             builder.Property(b => b.Code).IsRequired().HasMaxLength(200);
         }
     }

@@ -1,8 +1,6 @@
 ﻿using Atilim.Services.Identity.Application.Dtos;
 using Atilim.Services.Identity.Application.Interfaces;
 using Atilim.Shared.CustomControllerBases;
-using Atilim.Shared.Dtos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Atilim.Services.Identity.Api.Controllers

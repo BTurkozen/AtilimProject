@@ -1,4 +1,6 @@
-﻿namespace Atilim.Services.Identity.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Atilim.Services.Identity.Domain.Entities
 {
     public class UserRefreshToken
     {

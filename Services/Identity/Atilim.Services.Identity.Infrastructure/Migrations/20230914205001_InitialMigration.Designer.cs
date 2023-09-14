@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Atilim.Services.Identity.Infrastructure.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230913212447_InitialMigration")]
+    [Migration("20230914205001_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -100,7 +100,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                             City = "ANKARA",
                             Country = "Türkiye",
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 406, DateTimeKind.Local).AddTicks(9087),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 885, DateTimeKind.Local).AddTicks(7352),
                             District = "PURSAKLAR",
                             Email = "mno@xyz.com",
                             IsDeleted = false,
@@ -114,7 +114,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                             City = "Ankara",
                             Country = "Türkiye",
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 406, DateTimeKind.Local).AddTicks(9111),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 885, DateTimeKind.Local).AddTicks(7373),
                             District = "YENİMAHALLE",
                             Email = "abc@hotmail.com",
                             IsDeleted = false,
@@ -128,7 +128,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                             City = "Ankara",
                             Country = "Türkiye",
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 406, DateTimeKind.Local).AddTicks(9113),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 885, DateTimeKind.Local).AddTicks(7375),
                             District = "POLATLI",
                             Email = "klm@outlook.com",
                             IsDeleted = false,
@@ -142,7 +142,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                             City = "Ankara",
                             Country = "Türkiye",
                             CreatedBy = 0,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 406, DateTimeKind.Local).AddTicks(9115),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 885, DateTimeKind.Local).AddTicks(7377),
                             District = "KEÇİÖREN",
                             Email = "ghi@abc.com",
                             IsDeleted = false,
@@ -156,7 +156,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                             City = "Ankara",
                             Country = "Türkiye",
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 406, DateTimeKind.Local).AddTicks(9118),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 885, DateTimeKind.Local).AddTicks(7379),
                             District = "SİNCAN",
                             Email = "prs@hotmail.com",
                             IsDeleted = false,
@@ -170,7 +170,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                             City = "Ankara",
                             Country = "Türkiye",
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 406, DateTimeKind.Local).AddTicks(9119),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 885, DateTimeKind.Local).AddTicks(7381),
                             District = "ÇANKAYA",
                             Email = "def@gmail.com",
                             IsDeleted = false,
@@ -222,7 +222,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(3347),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 886, DateTimeKind.Local).AddTicks(1748),
                             CurriculumName = "Bilgisayar_Mühendisliği",
                             IsDeleted = false
                         },
@@ -230,7 +230,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(3354),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 886, DateTimeKind.Local).AddTicks(1756),
                             CurriculumName = "Grafik_Mühendisliği",
                             IsDeleted = false
                         },
@@ -238,7 +238,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 3,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(3355),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 886, DateTimeKind.Local).AddTicks(1757),
                             CurriculumName = "Ingiliz_Dil_Edebiyatı",
                             IsDeleted = false
                         });
@@ -298,7 +298,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6549),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 886, DateTimeKind.Local).AddTicks(4811),
                             Credit = 5,
                             IsDeleted = false,
                             LessonCode = "HUM101",
@@ -309,7 +309,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6558),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 886, DateTimeKind.Local).AddTicks(4820),
                             Credit = 6,
                             IsDeleted = false,
                             LessonCode = "MATH102",
@@ -320,7 +320,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 3,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6560),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 886, DateTimeKind.Local).AddTicks(4822),
                             Credit = 6,
                             IsDeleted = false,
                             LessonCode = "MATE103",
@@ -331,7 +331,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 4,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6562),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 886, DateTimeKind.Local).AddTicks(4824),
                             Credit = 5,
                             IsDeleted = false,
                             LessonCode = "GRA105",
@@ -342,7 +342,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 5,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6564),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 886, DateTimeKind.Local).AddTicks(4826),
                             Credit = 4,
                             IsDeleted = false,
                             LessonCode = "CMPE201",
@@ -353,7 +353,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 6,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6566),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 886, DateTimeKind.Local).AddTicks(4827),
                             Credit = 4,
                             IsDeleted = false,
                             LessonCode = "ENG102",
@@ -364,7 +364,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 7,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 407, DateTimeKind.Local).AddTicks(6567),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 886, DateTimeKind.Local).AddTicks(4829),
                             Credit = 6,
                             IsDeleted = false,
                             LessonCode = "MATH201",
@@ -425,7 +425,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 408, DateTimeKind.Local).AddTicks(5016),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 887, DateTimeKind.Local).AddTicks(3013),
                             CurriculumId = 1,
                             IsDeleted = false,
                             StudentIdentityId = 1,
@@ -435,7 +435,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 408, DateTimeKind.Local).AddTicks(5024),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 887, DateTimeKind.Local).AddTicks(3020),
                             CurriculumId = 1,
                             IsDeleted = false,
                             StudentIdentityId = 2,
@@ -445,7 +445,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 3,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 408, DateTimeKind.Local).AddTicks(5025),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 887, DateTimeKind.Local).AddTicks(3022),
                             CurriculumId = 2,
                             IsDeleted = false,
                             StudentIdentityId = 3,
@@ -455,7 +455,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 4,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 408, DateTimeKind.Local).AddTicks(5027),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 887, DateTimeKind.Local).AddTicks(3024),
                             CurriculumId = 2,
                             IsDeleted = false,
                             StudentIdentityId = 4,
@@ -465,7 +465,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 5,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 408, DateTimeKind.Local).AddTicks(5029),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 887, DateTimeKind.Local).AddTicks(3025),
                             CurriculumId = 3,
                             IsDeleted = false,
                             StudentIdentityId = 5,
@@ -475,7 +475,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 6,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 408, DateTimeKind.Local).AddTicks(5030),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 887, DateTimeKind.Local).AddTicks(3027),
                             CurriculumId = 3,
                             IsDeleted = false,
                             StudentIdentityId = 6,
@@ -557,7 +557,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                             CityOfBirth = "Kayseri",
                             ContactInformationId = 0,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 410, DateTimeKind.Local).AddTicks(6468),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 890, DateTimeKind.Local).AddTicks(7),
                             DateOfBirth = new DateTime(1983, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Hasan",
@@ -572,7 +572,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                             CityOfBirth = "Adana",
                             ContactInformationId = 0,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 410, DateTimeKind.Local).AddTicks(6556),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 890, DateTimeKind.Local).AddTicks(99),
                             DateOfBirth = new DateTime(2000, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Mehmet",
@@ -587,7 +587,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                             CityOfBirth = "Ankara",
                             ContactInformationId = 0,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 410, DateTimeKind.Local).AddTicks(6564),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 890, DateTimeKind.Local).AddTicks(107),
                             DateOfBirth = new DateTime(2001, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Ahmet",
@@ -602,7 +602,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                             CityOfBirth = "Sivas",
                             ContactInformationId = 0,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 410, DateTimeKind.Local).AddTicks(6571),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 890, DateTimeKind.Local).AddTicks(113),
                             DateOfBirth = new DateTime(2000, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Mustafa",
@@ -617,7 +617,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                             CityOfBirth = "Uşak",
                             ContactInformationId = 0,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 410, DateTimeKind.Local).AddTicks(6614),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 890, DateTimeKind.Local).AddTicks(119),
                             DateOfBirth = new DateTime(2001, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Ayşe",
@@ -632,7 +632,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                             CityOfBirth = "Kütahya",
                             ContactInformationId = 0,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2023, 9, 14, 0, 24, 47, 410, DateTimeKind.Local).AddTicks(6620),
+                            CreatedOn = new DateTime(2023, 9, 14, 23, 50, 0, 890, DateTimeKind.Local).AddTicks(124),
                             DateOfBirth = new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Fatma",
@@ -723,13 +723,13 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b19d4e7a-bc35-4055-a69a-31cc16debc87",
+                            ConcurrencyStamp = "6477d422-3b68-461a-9187-fe48d8f6932d",
                             Email = "admin@atilimProject.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "atilim",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d4c714c0-281c-4b47-a043-e388ed3ba833",
+                            SecurityStamp = "0e35c1da-c059-4fcf-bf00-ed2b1f41790e",
                             Surname = "admin",
                             TwoFactorEnabled = false,
                             UserName = "atilim.admin"
@@ -738,13 +738,13 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "454e5ff8-1115-4e08-8c3e-08a1511f76d1",
+                            ConcurrencyStamp = "e01b5384-be07-4c4d-80e4-885cc5015a7b",
                             Email = "hasan.ersoy@atilimProject.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "hasan",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "acd42ae1-3934-423d-a404-ac2deed8d227",
+                            SecurityStamp = "5be026b4-97ed-4700-80c4-2b55fe8d02fe",
                             Surname = "ersoy",
                             TwoFactorEnabled = false,
                             UserName = "hasan.ersoy"
@@ -753,13 +753,13 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "475e5861-876f-4ce5-bd76-511b2a459e17",
+                            ConcurrencyStamp = "5d57a25a-8208-4222-b961-70ad25273c60",
                             Email = "mehmet.yilmaz@atilimProject.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "mehmet",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ed42ec6e-f0d2-4dff-aa15-7827de404744",
+                            SecurityStamp = "f943e121-7666-473e-b6b1-8256a5dab836",
                             Surname = "yilmaz",
                             TwoFactorEnabled = false,
                             UserName = "mehmet.yilmaz"
@@ -768,13 +768,13 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cdbbfb49-630c-4257-85f2-b811301ab859",
+                            ConcurrencyStamp = "a39809d8-87bb-432b-931d-f162ec095dcf",
                             Email = "ahmet.unal@atilimProject.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "ahmet",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3408a097-486d-46be-83f9-b76b83730a07",
+                            SecurityStamp = "41d56997-91f0-47df-8a9a-1bf9e6a85713",
                             Surname = "unal",
                             TwoFactorEnabled = false,
                             UserName = "ahmet.unal"
@@ -783,13 +783,13 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 5,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e8832e57-5fdc-4669-b334-cf70879a6cb8",
+                            ConcurrencyStamp = "b7e8399c-ad9d-4ed5-b3c5-9deab29f0794",
                             Email = "mustafa.isik@atilimProject.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "mustafa",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cbb4dbd9-7f81-4ea0-9948-49002ea40915",
+                            SecurityStamp = "3702270a-95d7-4058-942f-8dfc813fe362",
                             Surname = "isik",
                             TwoFactorEnabled = false,
                             UserName = "mustafa.isik"
@@ -798,13 +798,13 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 6,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e22030a3-f2bc-4ac2-8ab7-59f66021c33a",
+                            ConcurrencyStamp = "ec69b772-44e9-4873-aeae-45984ce3fc17",
                             Email = "ayse.erdogan@atilimProject.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "ayse",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "eb91707a-4fec-436c-9aec-560416a0896f",
+                            SecurityStamp = "02d9c1b5-ef72-4ed4-aebb-ca0c093fa697",
                             Surname = "erdogan",
                             TwoFactorEnabled = false,
                             UserName = "ayse.erdogan"
@@ -813,13 +813,13 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         {
                             Id = 7,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "dcdfb8c2-8f23-4b4f-bb08-960aaadb69bb",
+                            ConcurrencyStamp = "22fc427f-0aa3-4fe0-a525-18b3f8e0964e",
                             Email = "fatma.korkmaz@atilimProject.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "fatma",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ee6d4dbf-7e87-4124-b17f-79b8f567ef03",
+                            SecurityStamp = "b793ac02-507c-49f9-a92e-ebf4ed4de524",
                             Surname = "korkmaz",
                             TwoFactorEnabled = false,
                             UserName = "fatma.korkmaz"
@@ -829,10 +829,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
             modelBuilder.Entity("Atilim.Services.Identity.Domain.Entities.UserRefreshToken", b =>
                 {
                     b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -895,14 +892,14 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "6b4633da-8d01-4f6a-b39a-cd837ec7a019",
+                            ConcurrencyStamp = "f4371c72-ae1b-461d-8d1b-8e8f75a1a0b6",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "d2c93ca6-415d-46bb-ba1a-9b0e3815e1fd",
+                            ConcurrencyStamp = "b8a814d1-8463-486b-88c0-b612e98fb6a9",
                             Name = "student",
                             NormalizedName = "STUDENT"
                         });
