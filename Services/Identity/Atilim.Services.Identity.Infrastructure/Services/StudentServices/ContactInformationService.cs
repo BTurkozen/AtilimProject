@@ -30,14 +30,10 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
                 Address = contactInformation.Address,
                 City = contactInformation.City,
                 Country = contactInformation.Country,
-                CreatedBy = contactInformation.CreatedBy,
-                CreatedOn = contactInformation.CreatedOn,
                 District = contactInformation.District,
                 Email = contactInformation.Email,
                 IsDeleted = contactInformation.IsDeleted,
                 MobilePhoneNumber = contactInformation.MobilePhoneNumber,
-                UpdatedBy = contactInformation.UpdatedBy,
-                UpdatedOn = contactInformation.UpdatedOn,
             };
 
             return contactInformationDto;

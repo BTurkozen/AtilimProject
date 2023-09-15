@@ -57,12 +57,8 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
                 Name = studentIndetity.Name,
                 Surname = studentIndetity.Surname,
                 CityOfBirth = studentIndetity.CityOfBirth,
-                CreatedBy = studentIndetity.CreatedBy,
-                CreatedOn = studentIndetity.CreatedOn,
                 DateOfBirth = studentIndetity.DateOfBirth,
                 IsDeleted = studentIndetity.IsDeleted,
-                UpdatedBy = studentIndetity.UpdatedBy,
-                UpdatedOn = studentIndetity.UpdatedOn,
             };
 
             return studentIndetityDto;

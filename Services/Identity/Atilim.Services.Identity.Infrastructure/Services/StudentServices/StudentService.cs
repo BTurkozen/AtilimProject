@@ -19,13 +19,9 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
                                         .Select(s => new StudentDto
                                         {
                                             Id = s.Id,
-                                            CreatedBy = s.CreatedBy,
-                                            CreatedOn = s.CreatedOn,
                                             FullName = $"{s.StudentIdentity.Name} {s.StudentIdentity.Surname}",
                                             IsDeleted = s.IsDeleted,
                                             StudentNo = s.StudentNo,
-                                            UpdatedBy = s.UpdatedBy,
-                                            UpdatedOn = s.UpdatedOn,
                                         })
                                         .FirstOrDefaultAsync(s => s.Id == studentId);
 
@@ -39,13 +35,9 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
                                          .Select(s => new StudentDto
                                          {
                                              Id = s.Id,
-                                             CreatedBy = s.CreatedBy,
-                                             CreatedOn = s.CreatedOn,
                                              FullName = $"{s.StudentIdentity.Name} {s.StudentIdentity.Surname}",
                                              IsDeleted = s.IsDeleted,
                                              StudentNo = s.StudentNo,
-                                             UpdatedBy = s.UpdatedBy,
-                                             UpdatedOn = s.UpdatedOn,
                                          })
                                          .ToListAsync();
 
