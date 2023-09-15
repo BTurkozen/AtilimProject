@@ -28,6 +28,10 @@ namespace Atilim.Services.Identity.Infrastructure
             services.AddScoped<IStudentIdentityService, StudentIdentityService>();
 
             services.AddScoped<IContactInformationService, ContactInformationService>();
+
+            services.AddScoped<ICurriculumService, CurriculumService>();
+
+            services.AddScoped<ILessonService, LessonService>();
             #endregion
 
         }
