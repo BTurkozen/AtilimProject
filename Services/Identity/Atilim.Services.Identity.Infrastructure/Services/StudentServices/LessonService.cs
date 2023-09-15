@@ -31,7 +31,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
             return lessonDtos;
         }
 
-        public async Task<LessonDto> GetLessonById(int id)
+        public async Task<LessonDto> GetLessonByIdAsync(int id)
         {
             var lessonDto = await _context.Lessons
                                            .AsNoTracking()

@@ -4,7 +4,7 @@ namespace Atilim.Services.Identity.Application.Interfaces.StudentInterfaces
 {
     public interface ILessonService
     {
-        Task<LessonDto> GetLessonById(int id);
+        Task<LessonDto> GetLessonByIdAsync(int id);
         Task<List<LessonDto>> GetAllLessonAsync();
     }
 }
