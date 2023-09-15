@@ -19,9 +19,15 @@ namespace Atilim.Services.Identity.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll() => CustomActionResult(await _mediator.Send(new GetAllLessonQuery()));
+        public async Task<IActionResult> GetAll()
+        {
+            return CustomActionResult(await _mediator.Send(new GetAllLessonQuery()));
+        }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id) => CustomActionResult(await _mediator.Send(new GetLessonByIdQuery() { Id = id }));
+        public async Task<IActionResult> GetById(int id)
+        {
+            return CustomActionResult(await _mediator.Send(new GetLessonByIdQuery() { Id = id }));
+        }
     }
 }
