@@ -12,6 +12,25 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
         {
             _context = context;
         }
+        public async Task<StudentDto> GetStudentByIdAsycn(int studentId)
+        {
+            var student = await _context.Students
+                                        .AsNoTracking()
+                                        .Select(s => new StudentDto
+                                        {
+                                            Id = s.Id,
+                                            CreatedBy = s.CreatedBy,
+                                            CreatedOn = s.CreatedOn,
+                                            FullName = $"{s.StudentIdentity.Name} {s.StudentIdentity.Surname}",
+                                            IsDeleted = s.IsDeleted,
+                                            StudentNo = s.StudentNo,
+                                            UpdatedBy = s.UpdatedBy,
+                                            UpdatedOn = s.UpdatedOn,
+                                        })
+                                        .FirstOrDefaultAsync(s => s.Id == studentId);
+
+            return student;
+        }
 
         public async Task<List<StudentDto>> GetAllStudentAsync()
         {
@@ -32,5 +51,6 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
 
             return students;
         }
+
     }
 }

@@ -19,9 +19,17 @@ namespace Atilim.Services.Identity.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> GetAll()
         {
             return CustomActionResult(await _medator.Send(new GetAllStudentQuery()));
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin,student")]
+        public async Task<IActionResult> GetById(int studentId)
+        {
+            return CustomActionResult(await _medator.Send(new GetStudentByIdQuery() { StudentId = studentId }));
         }
     }
 }
