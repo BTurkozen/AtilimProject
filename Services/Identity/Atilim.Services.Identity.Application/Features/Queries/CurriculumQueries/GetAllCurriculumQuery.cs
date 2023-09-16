@@ -13,7 +13,7 @@ namespace Atilim.Services.Identity.Application.Features.Queries.CurriculumQuerie
 
             public GetAllCurriculumQueryHandler(ICurriculumService curriculumService)
             {
-                _curriculumService = curriculumService;
+                _curriculumService = curriculumService ?? throw new ArgumentNullException(nameof(curriculumService));
             }
 
             public async Task<ResponseDto<List<CurriculumDto>>> Handle(GetAllCurriculumQuery request, CancellationToken cancellationToken)

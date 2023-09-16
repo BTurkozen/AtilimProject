@@ -11,6 +11,8 @@ namespace Atilim.Services.Identity.Application
             var assembly = Assembly.GetExecutingAssembly();
 
             services.AddMediatR(assembly);
+
+            services.AddAutoMapper(assembly);
         }
     }
 }

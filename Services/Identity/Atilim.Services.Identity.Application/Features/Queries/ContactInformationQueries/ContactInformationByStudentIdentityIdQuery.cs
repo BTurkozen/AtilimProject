@@ -14,7 +14,7 @@ namespace Atilim.Services.Identity.Application.Features.Queries.ContactInformati
 
             public ContactInformationByStudentIdentityIdQueryHandler(IContactInformationService contactInformationService)
             {
-                _contactInformationService = contactInformationService;
+                _contactInformationService = contactInformationService ?? throw new ArgumentNullException(nameof(contactInformationService));
             }
 
             public async Task<ResponseDto<ContactInformationDto>> Handle(ContactInformationByStudentIdentityIdQuery request, CancellationToken cancellationToken)

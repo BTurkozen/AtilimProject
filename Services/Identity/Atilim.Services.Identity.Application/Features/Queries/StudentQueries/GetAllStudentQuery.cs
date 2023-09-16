@@ -13,7 +13,7 @@ namespace Atilim.Services.Identity.Application.Features.Queries.StudentQueries
 
             public GetAllStudentQueryHandler(IStudentService studentService)
             {
-                _studentService = studentService;
+                _studentService = studentService ?? throw new ArgumentNullException(nameof(studentService));
             }
 
             public async Task<ResponseDto<List<StudentDto>>> Handle(GetAllStudentQuery request, CancellationToken cancellationToken)

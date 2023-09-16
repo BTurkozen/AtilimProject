@@ -14,7 +14,7 @@ namespace Atilim.Services.Identity.Application.Features.Queries.LessonQueries
 
             public GetAllLessonQueryHandler(ILessonService lessonService)
             {
-                _lessonService = lessonService;
+                _lessonService = lessonService ?? throw new ArgumentNullException(nameof(lessonService));
             }
 
             public async Task<ResponseDto<List<LessonDto>>> Handle(GetAllLessonQuery request, CancellationToken cancellationToken)

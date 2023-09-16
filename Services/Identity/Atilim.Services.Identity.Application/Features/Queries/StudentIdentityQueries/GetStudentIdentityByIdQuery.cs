@@ -15,7 +15,7 @@ namespace Atilim.Services.Identity.Application.Features.Queries.StudentIdentityQ
 
             public GetStudentIdentityByIdQueryHandler(IStudentIdentityService studentIdentityService)
             {
-                _studentIdentityService = studentIdentityService;
+                _studentIdentityService = studentIdentityService ?? throw new ArgumentNullException(nameof(studentIdentityService));
             }
 
             public async Task<ResponseDto<StudentIdentityDto>> Handle(GetStudentIdentityByIdQuery request, CancellationToken cancellationToken)

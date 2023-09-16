@@ -15,7 +15,7 @@ namespace Atilim.Services.Identity.Application.Features.Queries.CurriculumQuerie
 
             public GetCurriculumWithLessonsByIdQueryHandler(ICurriculumService curriculumService)
             {
-                _curriculumService = curriculumService;
+                _curriculumService = curriculumService ?? throw new ArgumentNullException(nameof(curriculumService));
             }
 
             public async Task<ResponseDto<CurriculumWithLessonsDto>> Handle(GetCurriculumWithLessonsByIdQuery request, CancellationToken cancellationToken)
