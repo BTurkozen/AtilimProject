@@ -1,16 +1,16 @@
 ﻿@model LoginViewModel
 
 <div class="col-md-6">
-    <form asp-controller="Account" asp-action="Signin" method="post">
+    <form asp-controller="Home" asp-action="Signin" method="post" autocomplete="off">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-        <div class="form-floating">
+        <div class="form-group">
             <label asp-for="Username"></label>
-            <input asp-for="Username" class="form-control" placeholder="name@example.com">
+            <input asp-for="Username" class="form-control" value="atilim.admin">
         </div>
-        <div class="form-floating">
+        <div class="form-group">
             <label asp-for="Password"></label>
-            <input asp-for="Password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input asp-for="Password" class="form-control" value="Password_*12">
         </div>
 
         <div class="form-check text-start my-3">

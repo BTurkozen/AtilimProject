@@ -1,23 +1,12 @@
-﻿using Atilim.Presentations.WebApplication.ViewModels;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Atilim.Presentations.WebApplication.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AccountController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-
-        public AccountController(IHttpClientFactory httpClientFactory)
-        {
-            _httpClientFactory = httpClientFactory;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public async Task<IActionResult> Login(LoginViewModel loginViewModel)
+        public async Task<IActionResult> Index()
         {
             return View();
         }

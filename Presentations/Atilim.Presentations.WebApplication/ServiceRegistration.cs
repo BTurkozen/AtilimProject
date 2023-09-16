@@ -1,11 +1,9 @@
-﻿using Atilim.Shared.Settings.Concrates;
+﻿using Atilim.Presentations.WebApplication.Extententions;
+using Atilim.Presentations.WebApplication.Services.Concrates;
+using Atilim.Presentations.WebApplication.Services.Interfaces;
+using Atilim.Shared.Settings.Concrates;
 using Atilim.Shared.Settings.Interfaces;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 namespace Atilim.Presentations.WebApplication
 {
@@ -13,6 +11,19 @@ namespace Atilim.Presentations.WebApplication
     {
         public static void AddWebApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddHttpContextAccessor();
+
+            services.AddHttpClient<IIdentityService, IdentityService>();
+
+            var clientInfosConfiguration = configuration.GetSection(nameof(ClientInfos));
+
+            services.Configure<ClientInfos>(clientInfosConfiguration);
+
+            services.AddSingleton<IClientInfos>(options =>
+            {
+                return options.GetRequiredService<IOptions<ClientInfos>>().Value;
+            });
+
             var tokenConfiguration = configuration.GetSection(nameof(TokenSettings));
 
             services.Configure<TokenSettings>(tokenConfiguration);
@@ -22,37 +33,8 @@ namespace Atilim.Presentations.WebApplication
                 return options.GetRequiredService<IOptions<TokenSettings>>().Value;
             });
 
-            var tokenSettings = tokenConfiguration.Get<TokenSettings>();
-
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-            }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidIssuer = tokenSettings.Issuer,
-                    ValidAudience = tokenSettings.Audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenSettings.SecurityKey)),
-                    ValidateIssuerSigningKey = true,
-                    ValidateAudience = true,
-                    ValidateIssuer = true,
-                    ValidateLifetime = true,
-                    ClockSkew = TimeSpan.Zero,
-                };
-            }).AddCookie(IdentityConstants.ApplicationScheme, options =>
-            {
-                options.LoginPath = new PathString("/Account/Login");
-                options.Events = new CookieAuthenticationEvents()
-                {
-                    OnValidatePrincipal = SecurityStampValidator.ValidatePrincipalAsync
-                };
-                options.ExpireTimeSpan = TimeSpan.FromDays(60);
-                options.SlidingExpiration = true;
-                options.Cookie.Name = "atilimprojectcookie";
-            });
+            // Authentication => JWT ve Cookie service register.
+            services.AddCookieAuthenticationService(tokenConfiguration.Get<TokenSettings>());
         }
     }
 }
