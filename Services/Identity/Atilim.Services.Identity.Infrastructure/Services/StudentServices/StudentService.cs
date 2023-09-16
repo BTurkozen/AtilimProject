@@ -1,5 +1,6 @@
 ﻿using Atilim.Services.Identity.Application.Dtos.StudentDtos;
 using Atilim.Services.Identity.Application.Interfaces.StudentInterfaces;
+using Atilim.Services.Identity.Domain.Entities.StudentEntities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
@@ -12,33 +13,19 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
         {
             _context = context;
         }
-        public async Task<StudentDto> GetStudentByIdAsycn(int studentId)
+        public async Task<Student> GetStudentByIdAsycn(int studentId)
         {
             var student = await _context.Students
                                         .AsNoTracking()
-                                        .Select(s => new StudentDto
-                                        {
-                                            Id = s.Id,
-                                            FullName = $"{s.StudentIdentity.Name} {s.StudentIdentity.Surname}",
-                                            IsDeleted = s.IsDeleted,
-                                            StudentNo = s.StudentNo,
-                                        })
                                         .FirstOrDefaultAsync(s => s.Id == studentId);
 
             return student;
         }
 
-        public async Task<List<StudentDto>> GetAllStudentAsync()
+        public async Task<List<Student>> GetAllStudentAsync()
         {
             var students = await _context.Students
                                          .AsNoTracking()
-                                         .Select(s => new StudentDto
-                                         {
-                                             Id = s.Id,
-                                             FullName = $"{s.StudentIdentity.Name} {s.StudentIdentity.Surname}",
-                                             IsDeleted = s.IsDeleted,
-                                             StudentNo = s.StudentNo,
-                                         })
                                          .ToListAsync();
 
             return students;
