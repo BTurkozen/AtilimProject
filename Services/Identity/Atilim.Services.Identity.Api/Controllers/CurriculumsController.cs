@@ -1,4 +1,6 @@
-﻿using Atilim.Services.Identity.Application.Features.Queries.CurriculumQueries;
+﻿using Atilim.Services.Identity.Application.Dtos.CurriculumDtos;
+using Atilim.Services.Identity.Application.Features.Commands.CurriculumCommands;
+using Atilim.Services.Identity.Application.Features.Queries.CurriculumQueries;
 using Atilim.Shared.CustomControllerBases;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -43,6 +45,12 @@ namespace Atilim.Services.Identity.Api.Controllers
         public async Task<IActionResult> GetCurriculumWithLessonsById(int id)
         {
             return CustomActionResult(await _mediator.Send(new GetCurriculumWithLessonsByIdQuery() { Id = id }));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> InsertCurriculumWithLesson(CreateCurriculumWithLessonsDto curriculumWithLessonsDto)
+        {
+            return CustomActionResult(await _mediator.Send(new CreateCurriculumWithLessonsCommand() { Curriculum = curriculumWithLessonsDto }));
         }
     }
 }

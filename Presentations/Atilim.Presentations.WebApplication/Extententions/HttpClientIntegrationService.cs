@@ -13,6 +13,8 @@ namespace Atilim.Presentations.WebApplication.Extententions
             services.AddTransient<JwtAuthenticationHandler>();
 
             services.AddHttpClient<ICurriculumService, CurriculumService>().AddHttpMessageHandler<JwtAuthenticationHandler>();
+
+            services.AddHttpClient<ILessonService, LessonService>().AddHttpMessageHandler<JwtAuthenticationHandler>();
         }
     }
 }

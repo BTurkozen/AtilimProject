@@ -9,7 +9,7 @@ namespace Atilim.Services.Identity.Application.Mapping.CurriculumProfiles
         public CurriculumProfile()
         {
             CreateMap<Curriculum, CurriculumDto>().ReverseMap();
-            CreateMap<Curriculum, CreateCurriculumDto>().ReverseMap();
+            CreateMap<Curriculum, CreateCurriculumWithLessonsDto>().ReverseMap();
             CreateMap<Curriculum, UpdateCurriculumDto>().ReverseMap();
             CreateMap<Curriculum, CurriculumWithLessonsDto>().ForMember(dest => dest.Lessons, src => src.MapFrom(s => s.Lessons)).ReverseMap();
         }

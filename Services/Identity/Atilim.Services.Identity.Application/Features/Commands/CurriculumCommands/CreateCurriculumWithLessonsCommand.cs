@@ -7,21 +7,22 @@ using MediatR;
 
 namespace Atilim.Services.Identity.Application.Features.Commands.CurriculumCommands
 {
-    public class CreateCurriculumCommand : IRequest<ResponseDto<int>>
+    public class CreateCurriculumWithLessonsCommand : IRequest<ResponseDto<int>>
     {
-        public CreateCurriculumDto Curriculum { get; set; }
-        public class CreateCurriculumCommandHandler : IRequestHandler<CreateCurriculumCommand, ResponseDto<int>>
+        public CreateCurriculumWithLessonsDto Curriculum { get; set; }
+
+        public class CreateCurriculumWithLessonsCommandHandler : IRequestHandler<CreateCurriculumWithLessonsCommand, ResponseDto<int>>
         {
             private readonly ICurriculumService _curriculumService;
             private readonly IMapper _mapper;
 
-            public CreateCurriculumCommandHandler(ICurriculumService curriculumService, IMapper mapper)
+            public CreateCurriculumWithLessonsCommandHandler(ICurriculumService curriculumService, IMapper mapper)
             {
                 _curriculumService = curriculumService;
                 _mapper = mapper;
             }
 
-            public async Task<ResponseDto<int>> Handle(CreateCurriculumCommand request, CancellationToken cancellationToken)
+            public async Task<ResponseDto<int>> Handle(CreateCurriculumWithLessonsCommand request, CancellationToken cancellationToken)
             {
                 var curriculum = _mapper.Map<Curriculum>(request.Curriculum);
 

@@ -115,7 +115,7 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
 
                     curriculums[i].Lessons = curriculumLessons;
 
-                    context.UpdateRange(curriculums[i].Lessons);
+                    context.AddAsync(curriculums[i].Lessons);
                 }
 
                 context.SaveChanges();
