@@ -38,5 +38,20 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
 
             return studentIndetity;
         }
+
+        public async Task<bool> UpdateAsync(StudentIdentity studentIdentity)
+        {
+            var hasStudentIdentity = await _context.StudentIdentities
+                                                   .AnyAsync(l => l.Id == studentIdentity.Id);
+
+            if (hasStudentIdentity)
+            {
+                _context.Update(studentIdentity);
+
+                await _context.SaveChangesAsync();
+            }
+
+            return hasStudentIdentity;
+        }
     }
 }

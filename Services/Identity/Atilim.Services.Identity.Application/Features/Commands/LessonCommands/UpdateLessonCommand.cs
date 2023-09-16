@@ -25,9 +25,14 @@ namespace Atilim.Services.Identity.Application.Features.Commands.LessonCommands
             {
                 var lesson = _mapper.Map<Lesson>(request.Lesson);
 
-                await _lessonService.UpdateAsync(lesson);
+                var hasUpdatedLesson = await _lessonService.UpdateAsync(lesson);
 
-                return ResponseDto<NoContentDto>.Success(new NoContentDto(), System.Net.HttpStatusCode.NoContent);
+                if (hasUpdatedLesson)
+                {
+                    return ResponseDto<NoContentDto>.Success(new NoContentDto(), System.Net.HttpStatusCode.NoContent);
+                }
+
+                return ResponseDto<NoContentDto>.Fail("Ders Güncelleme işlemi gerçekleştirilemedi!!!", System.Net.HttpStatusCode.BadRequest);
             }
         }
     }

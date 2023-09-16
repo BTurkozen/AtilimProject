@@ -13,8 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Commands\ContactInformationCommands\" />
-    <Folder Include="Features\Commands\StudentCommands\" />
-    <Folder Include="Features\Commands\StudentIdentityCommands\" />
   </ItemGroup>
 
   <ItemGroup>

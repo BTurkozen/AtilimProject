@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Atilim.Services.Identity.Application.Dtos.StudentIdentityDtos;
 
 namespace Atilim.Services.Identity.Application.Dtos.StudentDtos
 {
-    internal class UpdateStudentDto
+    public sealed class UpdateStudentDto
     {
+        public int Id { get; set; }
+
+        public int StudentNo { get; set; }
+
+        public StudentIdentityDto StudentItentity { get; set; }
     }
 }

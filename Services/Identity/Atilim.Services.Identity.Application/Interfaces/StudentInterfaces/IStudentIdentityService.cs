@@ -6,5 +6,6 @@ namespace Atilim.Services.Identity.Application.Interfaces.StudentInterfaces
     {
         Task<StudentIdentity> GetStudentIdentityById(int id);
         Task<StudentIdentity> GetStudentIdentityByStudentId(int studentId);
+        Task<bool> UpdateAsync(StudentIdentity studentIdentity);
     }
 }
