@@ -13,7 +13,7 @@ namespace Atilim.Services.Identity.Application.Interfaces.StudentInterfaces
         Task<List<Curriculum>> GetAllCurriculumWithLessonsAsync();
 
         Task<int> InsertAsync(Curriculum curriculum);
-        Task UpdateAsync(Curriculum curriculum);
-        Task DeleteAsync(Curriculum curriculum);
+        Task<bool> UpdateAsync(Curriculum curriculum);
+        Task<bool> DeleteAsync(int id);
     }
 }

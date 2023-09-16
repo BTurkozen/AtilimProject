@@ -61,7 +61,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
             return curriculum.Id;
         }
 
-        public async Task UpdateAsync(Curriculum curriculum)
+        public async Task<bool> UpdateAsync(Curriculum curriculum)
         {
             var hasCurriculum = await _context.Curriculums
                                               .AnyAsync(c => c.Id == curriculum.Id);
@@ -72,28 +72,32 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
 
                 await _context.SaveChangesAsync();
             }
+
+            return hasCurriculum;
         }
 
-        public async Task DeleteAsync(Curriculum curriculum)
+        public async Task<bool> DeleteAsync(int id)
         {
-            var hasCurriculum = await _context.Curriculums.AnyAsync(c => c.Id == curriculum.Id);
+            var hasCurriculum = await _context.Curriculums.AnyAsync(c => c.Id == id);
 
             if (hasCurriculum)
             {
                 var changeCurriculum = new Lesson()
                 {
-                    Id = curriculum.Id,
+                    Id = id,
                     IsDeleted = true,
                 };
 
-                _context.Attach(curriculum);
+                _context.Attach(changeCurriculum);
 
-                _context.Entry(curriculum)
+                _context.Entry(changeCurriculum)
                         .Property(l => l.IsDeleted)
                         .IsModified = true;
 
                 await _context.SaveChangesAsync();
             }
+
+            return hasCurriculum;
         }
     }
 }

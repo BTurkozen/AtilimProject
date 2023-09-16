@@ -66,9 +66,9 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
                     IsDeleted = true,
                 };
 
-                _context.Attach(lesson);
+                _context.Attach(changeLesson);
 
-                _context.Entry(lesson)
+                _context.Entry(changeLesson)
                         .Property(l => l.IsDeleted)
                         .IsModified = true;
 
