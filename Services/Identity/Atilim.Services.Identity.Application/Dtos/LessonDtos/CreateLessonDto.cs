@@ -8,5 +8,6 @@ namespace Atilim.Services.Identity.Application.Dtos.LessonDtos
         public string LessonName { get; set; }
         public bool Status { get; set; }
         public int Credit { get; set; }
+        public int CreatedBy { get; set; }
     }
 }
