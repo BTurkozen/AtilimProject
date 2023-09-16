@@ -39,7 +39,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
             return lesson.Id;
         }
 
-        public async Task UpdateAsync(Lesson lesson)
+        public async Task<bool> UpdateAsync(Lesson lesson)
         {
             var hasLesson = await _context.Lessons
                                           .AnyAsync(l => l.Id == lesson.Id);
@@ -50,17 +50,19 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
 
                 await _context.SaveChangesAsync();
             }
+
+            return hasLesson;
         }
 
-        public async Task DeleteAsync(Lesson lesson)
+        public async Task<bool> DeleteAsync(int id)
         {
-            var hasLesson = await _context.Lessons.AnyAsync(l => l.Id == lesson.Id);
+            var hasLesson = await _context.Lessons.AnyAsync(l => l.Id == id);
 
             if (hasLesson)
             {
                 var changeLesson = new Lesson()
                 {
-                    Id = lesson.Id,
+                    Id = id,
                     IsDeleted = true,
                 };
 
@@ -72,6 +74,8 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
 
                 await _context.SaveChangesAsync();
             }
+
+            return hasLesson;
         }
     }
 }

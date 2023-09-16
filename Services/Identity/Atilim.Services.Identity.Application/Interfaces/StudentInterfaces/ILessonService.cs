@@ -8,7 +8,7 @@ namespace Atilim.Services.Identity.Application.Interfaces.StudentInterfaces
         Task<Lesson> GetLessonByIdAsync(int id);
         Task<List<Lesson>> GetAllLessonAsync();
         Task<int> InsertAsync(Lesson lesson);
-        Task UpdateAsync(Lesson lesson);
-        Task DeleteAsync(Lesson lesson);
+        Task<bool> UpdateAsync(Lesson lesson);
+        Task<bool> DeleteAsync(int id);
     }
 }
