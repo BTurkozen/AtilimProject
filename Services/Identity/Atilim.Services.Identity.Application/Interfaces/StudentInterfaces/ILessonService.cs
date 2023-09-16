@@ -1,14 +1,14 @@
 ﻿using Atilim.Services.Identity.Application.Dtos.LessonDtos;
-using Atilim.Shared.Dtos;
+using Atilim.Services.Identity.Domain.Entities.StudentEntities;
 
 namespace Atilim.Services.Identity.Application.Interfaces.StudentInterfaces
 {
     public interface ILessonService
     {
-        Task<LessonDto> GetLessonByIdAsync(int id);
-        Task<List<LessonDto>> GetAllLessonAsync();
-        Task<int> InsertAsync(CreateLessonDto createLessonDto);
-        Task UpdateAsync(UpdateLessonDto updateLessonDto);
-        Task DeleteAsync(DeleteLessonDto deleteLessonDto);
+        Task<Lesson> GetLessonByIdAsync(int id);
+        Task<List<Lesson>> GetAllLessonAsync();
+        Task<int> InsertAsync(Lesson lesson);
+        Task UpdateAsync(Lesson lesson);
+        Task DeleteAsync(Lesson lesson);
     }
 }

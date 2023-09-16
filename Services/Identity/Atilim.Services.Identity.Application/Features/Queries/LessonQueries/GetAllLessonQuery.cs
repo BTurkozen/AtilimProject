@@ -21,9 +21,19 @@ namespace Atilim.Services.Identity.Application.Features.Queries.LessonQueries
             {
                 var lessons = await _lessonService.GetAllLessonAsync();
 
-                if (lessons.Count > 0)
+                var lessonDtos = lessons.Select(l => new LessonDto
                 {
-                    return ResponseDto<List<LessonDto>>.Success(lessons, HttpStatusCode.OK);
+                    Id = l.Id,
+                    Credit = l.Credit,
+                    IsDeleted = l.IsDeleted,
+                    LessonCode = l.LessonCode,
+                    LessonName = l.LessonName,
+                    Status = l.Status,
+                }).ToList();
+
+                if (lessonDtos.Count > 0)
+                {
+                    return ResponseDto<List<LessonDto>>.Success(lessonDtos, HttpStatusCode.OK);
                 }
 
                 return ResponseDto<List<LessonDto>>.Fail("Dersler Bulunamadı!!!", HttpStatusCode.NotFound);

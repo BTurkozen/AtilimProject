@@ -21,9 +21,19 @@ namespace Atilim.Services.Identity.Application.Features.Queries.LessonQueries
             {
                 var lesson = await _lessonService.GetLessonByIdAsync(request.Id);
 
-                if (lesson is not null)
+                var lessonDto = new LessonDto
                 {
-                    return ResponseDto<LessonDto>.Success(lesson, System.Net.HttpStatusCode.OK);
+                    Id = lesson.Id,
+                    Credit = lesson.Credit,
+                    IsDeleted = lesson.IsDeleted,
+                    LessonCode = lesson.LessonCode,
+                    LessonName = lesson.LessonName,
+                    Status = lesson.Status,
+                };
+
+                if (lessonDto is not null)
+                {
+                    return ResponseDto<LessonDto>.Success(lessonDto, System.Net.HttpStatusCode.OK);
                 }
 
                 return ResponseDto<LessonDto>.Fail($"{request.Id} Id'li ders bulunamadı!!!", System.Net.HttpStatusCode.NotFound);
