@@ -1,9 +1,8 @@
-﻿using Atilim.Services.Identity.Application.Wrappers;
-
-namespace Atilim.Services.Identity.Application.Dtos.LessonDtos
+﻿namespace Atilim.Services.Identity.Application.Dtos.LessonDtos
 {
-    public sealed class LessonDto : BaseEntityDto
+    public sealed class LessonDto
     {
+        public int Id { get; set; }
         public string LessonCode { get; set; }
         public string LessonName { get; set; }
         public bool Status { get; set; }

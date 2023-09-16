@@ -9,8 +9,8 @@ namespace Atilim.Services.Identity.Application.Mapping.StudentProfiles
         public StudentProfile()
         {
             CreateMap<Student, StudentDto>().ReverseMap();
-            CreateMap<Student, CreateStudentDto>().ReverseMap().IncludeMembers(s => s.StudentItentity);
-            CreateMap<Student, UpdateStudentDto>().ReverseMap().IncludeMembers(s => s.StudentItentity);
+            CreateMap<Student, CreateStudentDto>().ForMember(dest => dest.StudentItentity, src => src.MapFrom(s => s.StudentIdentity)).ReverseMap();
+            CreateMap<Student, UpdateStudentDto>().ForMember(dest => dest.StudentItentity, src => src.MapFrom(s => s.StudentIdentity)).ReverseMap();
         }
     }
 }

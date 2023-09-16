@@ -25,7 +25,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
         {
             var lesson = await _context.Lessons
                                  .AsNoTracking()
-                                 .FirstOrDefaultAsync(l => l.Id == id) ?? null;
+                                 .FirstOrDefaultAsync(l => l.Id == id);
 
             return lesson;
         }

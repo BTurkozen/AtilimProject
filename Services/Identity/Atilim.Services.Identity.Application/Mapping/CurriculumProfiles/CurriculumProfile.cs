@@ -11,7 +11,7 @@ namespace Atilim.Services.Identity.Application.Mapping.CurriculumProfiles
             CreateMap<Curriculum, CurriculumDto>().ReverseMap();
             CreateMap<Curriculum, CreateCurriculumDto>().ReverseMap();
             CreateMap<Curriculum, UpdateCurriculumDto>().ReverseMap();
-            CreateMap<Curriculum, CurriculumWithLessonsDto>().IncludeMembers(c => c.Lessons).ReverseMap();
+            CreateMap<Curriculum, CurriculumWithLessonsDto>().ForMember(dest => dest.Lessons, src => src.MapFrom(s => s.Lessons)).ReverseMap();
         }
     }
 }

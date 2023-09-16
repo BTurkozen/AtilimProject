@@ -8,9 +8,9 @@ namespace Atilim.Services.Identity.Application.Mapping.LessonProfiles
     {
         public LessonProfile()
         {
-            CreateMap<Lesson, LessonDto>().ReverseMap();
-            CreateMap<Lesson, CreateLessonDto>().ReverseMap();
-            CreateMap<Lesson, UpdateLessonDto>().ReverseMap();
+            CreateMap<LessonDto, Lesson>().ReverseMap();
+            CreateMap<CreateLessonDto, Lesson>().ReverseMap();
+            CreateMap<UpdateLessonDto, Lesson>().ReverseMap();
         }
     }
 }
