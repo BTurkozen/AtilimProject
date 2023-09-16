@@ -1,6 +1,4 @@
 ﻿using Atilim.Presentations.WebApplication.Extententions;
-using Atilim.Presentations.WebApplication.Services.Concrates;
-using Atilim.Presentations.WebApplication.Services.Interfaces;
 using Atilim.Shared.Settings.Concrates;
 using Atilim.Shared.Settings.Interfaces;
 using Microsoft.Extensions.Options;
@@ -13,7 +11,7 @@ namespace Atilim.Presentations.WebApplication
         {
             services.AddHttpContextAccessor();
 
-            services.AddHttpClient<IIdentityService, IdentityService>();
+            services.AddCustomHttpClientIntegration();
 
             var clientInfosConfiguration = configuration.GetSection(nameof(ClientInfos));
 

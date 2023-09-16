@@ -1,4 +1,5 @@
-﻿using Atilim.Services.Identity.Application.Dtos.CurriculumDtos;
+﻿
+using Atilim.Services.Identity.Application.Dtos.CurriculumDtos;
 using Atilim.Services.Identity.Application.Interfaces.StudentInterfaces;
 using Atilim.Shared.Dtos;
 using AutoMapper;
@@ -21,11 +22,11 @@ namespace Atilim.Services.Identity.Application.Features.Queries.CurriculumQuerie
 
             public async Task<ResponseDto<List<CurriculumDto>>> Handle(GetAllCurriculumQuery request, CancellationToken cancellationToken)
             {
-                var curriculum = await _curriculumService.GetAllCurriculumAsync();
+                var curriculums = await _curriculumService.GetAllCurriculumAsync();
 
-                if (curriculum.Count > 0)
+                if (curriculums.Count > 0)
                 {
-                    var curriculumDtos = _mapper.Map<List<CurriculumDto>>(curriculum);
+                    var curriculumDtos = _mapper.Map<List<CurriculumDto>>(curriculums);
 
                     return ResponseDto<List<CurriculumDto>>.Success(curriculumDtos, System.Net.HttpStatusCode.OK);
                 }

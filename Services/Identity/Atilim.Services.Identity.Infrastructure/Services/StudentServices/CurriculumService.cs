@@ -25,8 +25,8 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
         public async Task<List<Curriculum>> GetAllCurriculumAsync()
         {
             var curriculums = await _context.Curriculums
-                                           .AsNoTracking()
-                                           .ToListAsync();
+                                            .AsNoTracking()
+                                            .ToListAsync();
 
             return curriculums;
         }

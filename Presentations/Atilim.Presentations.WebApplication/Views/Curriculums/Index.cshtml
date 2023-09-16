@@ -1,0 +1,14 @@
+﻿@model List<CurriculumViewModel>
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <select>
+            @foreach (var curriculum in Model)
+            {
+                <option value="@curriculum.Id">@curriculum.CurriculumName</option>
+            }
+        </select>
+    </div>
+</div>

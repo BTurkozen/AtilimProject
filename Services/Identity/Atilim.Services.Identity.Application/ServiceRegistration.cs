@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Atilim.Services.Identity.Application.Features.Queries.CurriculumQueries;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -10,9 +11,11 @@ namespace Atilim.Services.Identity.Application
         {
             var assembly = Assembly.GetExecutingAssembly();
 
-            services.AddMediatR(assembly);
-
             services.AddAutoMapper(assembly);
+
+            //services.AddMediatR(typeof(GetAllCurriculumQuery).GetTypeInfo().Assembly);
+
+            services.AddMediatR(assembly);
         }
     }
 }

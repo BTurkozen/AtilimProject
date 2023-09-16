@@ -4,14 +4,8 @@ using Atilim.Shared.Dtos;
 using Atilim.Shared.Settings.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net.Http.Json;
-using System.Reflection;
 using System.Security.Claims;
-using System.Text;
-using System.Text.Json;
 
 namespace Atilim.Presentations.WebApplication.Services.Concrates
 {
@@ -28,12 +22,23 @@ namespace Atilim.Presentations.WebApplication.Services.Concrates
             _clientInfos = clientInfos;
         }
 
+        public async Task<string> GetJwtTokenAsync()
+        {
+            var jwtToken = _contextAccessor.HttpContext.Request.Cookies["access_token"];
+
+            if (jwtToken == null)
+            {
+                return string.Empty;
+            }
+
+            return jwtToken.ToString();
+        }
 
         public async Task<bool> SigninAsync(LoginViewModel loginViewModel)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            var response = await _httpClient.PostAsJsonAsync<LoginViewModel>($"{_clientInfos.URL}auth/CreateToken", loginViewModel);
+            var response = await _httpClient.PostAsJsonAsync<LoginViewModel>($"{_clientInfos.URL}/auth/CreateToken", loginViewModel);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -42,6 +47,16 @@ namespace Atilim.Presentations.WebApplication.Services.Concrates
                 var token = tokenHandler.ReadJwtToken(responseToken.Data.AccessToken);
 
                 var tokenString = tokenHandler.WriteToken(token);
+
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict,
+                    Expires = DateTime.Now.AddMinutes(5)
+                };
+
+                _contextAccessor.HttpContext.Response.Cookies.Append("access_token", responseToken.Data.AccessToken, cookieOptions);
 
                 var claims = token.Claims.ToList();
 
@@ -59,6 +74,7 @@ namespace Atilim.Presentations.WebApplication.Services.Concrates
                 await _contextAccessor.HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     principal, properties);
+
                 return true;
             }
 
