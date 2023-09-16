@@ -44,7 +44,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
             var hasLesson = await _context.Lessons
                                           .AnyAsync(l => l.Id == lesson.Id);
 
-            if (lesson is not null)
+            if (hasLesson)
             {
                 _context.Update(lesson);
 

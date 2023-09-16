@@ -1,5 +1,4 @@
-﻿using Atilim.Services.Identity.Application.Dtos.ContactInformationDtos;
-using Atilim.Services.Identity.Application.Interfaces.StudentInterfaces;
+﻿using Atilim.Services.Identity.Application.Interfaces.StudentInterfaces;
 using Atilim.Services.Identity.Domain.Entities.StudentEntities;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,15 +1,19 @@
-﻿using Atilim.Services.Identity.Application.Dtos.CurriculumDtos;
+﻿using Atilim.Services.Identity.Domain.Entities.StudentEntities;
 
 namespace Atilim.Services.Identity.Application.Interfaces.StudentInterfaces
 {
     public interface ICurriculumService
     {
-        Task<CurriculumDto> GetCurriculumByIdAsync(int id);
+        Task<Curriculum> GetCurriculumByIdAsync(int id);
 
-        Task<List<CurriculumDto>> GetAllCurriculumAsync();
+        Task<List<Curriculum>> GetAllCurriculumAsync();
 
-        Task<CurriculumWithLessonsDto> GetCurriculumWithLessonsByIdAsync(int id);
+        Task<Curriculum> GetCurriculumWithLessonsByIdAsync(int id);
 
-        Task<List<CurriculumWithLessonsDto>> GetAllCurriculumWithLessonsAsync();
+        Task<List<Curriculum>> GetAllCurriculumWithLessonsAsync();
+
+        Task<int> InsertAsync(Curriculum curriculum);
+        Task UpdateAsync(Curriculum curriculum);
+        Task DeleteAsync(Curriculum curriculum);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Atilim.Services.Identity.Application.Dtos.LessonDtos;
 using Atilim.Services.Identity.Application.Interfaces.StudentInterfaces;
 using Atilim.Shared.Dtos;
+using AutoMapper;
 using MediatR;
 
 namespace Atilim.Services.Identity.Application.Features.Queries.LessonQueries
@@ -11,6 +12,7 @@ namespace Atilim.Services.Identity.Application.Features.Queries.LessonQueries
         public class GetLessonByIdQueryHandler : IRequestHandler<GetLessonByIdQuery, ResponseDto<LessonDto>>
         {
             private readonly ILessonService _lessonService;
+            private readonly IMapper _mapper;
 
             public GetLessonByIdQueryHandler(ILessonService lessonService)
             {
@@ -21,18 +23,10 @@ namespace Atilim.Services.Identity.Application.Features.Queries.LessonQueries
             {
                 var lesson = await _lessonService.GetLessonByIdAsync(request.Id);
 
-                var lessonDto = new LessonDto
+                if (lesson is not null)
                 {
-                    Id = lesson.Id,
-                    Credit = lesson.Credit,
-                    IsDeleted = lesson.IsDeleted,
-                    LessonCode = lesson.LessonCode,
-                    LessonName = lesson.LessonName,
-                    Status = lesson.Status,
-                };
+                    var lessonDto = _mapper.Map<LessonDto>(lesson);
 
-                if (lessonDto is not null)
-                {
                     return ResponseDto<LessonDto>.Success(lessonDto, System.Net.HttpStatusCode.OK);
                 }
 

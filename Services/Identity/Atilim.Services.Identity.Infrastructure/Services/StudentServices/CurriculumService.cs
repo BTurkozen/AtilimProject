@@ -1,6 +1,5 @@
-﻿using Atilim.Services.Identity.Application.Dtos.CurriculumDtos;
-using Atilim.Services.Identity.Application.Dtos.LessonDtos;
-using Atilim.Services.Identity.Application.Interfaces.StudentInterfaces;
+﻿using Atilim.Services.Identity.Application.Interfaces.StudentInterfaces;
+using Atilim.Services.Identity.Domain.Entities.StudentEntities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
@@ -14,89 +13,87 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
             _context = context;
         }
 
-        public async Task<CurriculumDto> GetCurriculumByIdAsync(int id)
+        public async Task<Curriculum> GetCurriculumByIdAsync(int id)
         {
             var curriculum = await _context.Curriculums
                                            .AsNoTracking()
-                                           .Select(c => new CurriculumDto
-                                           {
-                                               Id = c.Id,
-                                               CurriculumName = c.CurriculumName,
-                                               IsDeleted = c.IsDeleted,
-                                           })
                                            .FirstOrDefaultAsync(c => c.Id == id);
 
             return curriculum;
         }
 
-        public async Task<List<CurriculumDto>> GetAllCurriculumAsync()
+        public async Task<List<Curriculum>> GetAllCurriculumAsync()
         {
             var curriculums = await _context.Curriculums
                                            .AsNoTracking()
-                                           .Select(c => new CurriculumDto
-                                           {
-                                               Id = c.Id,
-                                               CurriculumName = c.CurriculumName,
-                                               IsDeleted = c.IsDeleted,
-                                           })
                                            .ToListAsync();
 
             return curriculums;
         }
 
-        public async Task<CurriculumWithLessonsDto> GetCurriculumWithLessonsByIdAsync(int id)
+        public async Task<Curriculum> GetCurriculumWithLessonsByIdAsync(int id)
         {
             var curriculumWithLessonsDto = await _context.Curriculums
                                                          .AsNoTracking()
                                                          .Include(c => c.Lessons)
                                                          .AsSplitQuery()
-                                                         .Select(c => new CurriculumWithLessonsDto
-                                                         {
-                                                             Id = c.Id,
-                                                             CurriculumName = c.CurriculumName,
-                                                             IsDeleted = c.IsDeleted,
-                                                             Lessons = c.Lessons
-                                                                        .Select(l => new LessonDto
-                                                                        {
-                                                                            Id = l.Id,
-                                                                            IsDeleted = l.IsDeleted,
-                                                                            Credit = l.Credit,
-                                                                            LessonCode = l.LessonCode,
-                                                                            LessonName = l.LessonName,
-                                                                            Status = l.Status,
-                                                                        })
-                                                                        .ToList()
-                                                         })
                                                          .FirstOrDefaultAsync(c => c.Id == id);
 
             return curriculumWithLessonsDto;
         }
 
-        public async Task<List<CurriculumWithLessonsDto>> GetAllCurriculumWithLessonsAsync()
+        public async Task<List<Curriculum>> GetAllCurriculumWithLessonsAsync()
         {
             var curriculumWithLessonsDtos = await _context.Curriculums
                                                           .AsNoTracking()
                                                           .Include(c => c.Lessons)
                                                           .AsSplitQuery()
-                                                          .Select(c => new CurriculumWithLessonsDto
-                                                          {
-                                                              Id = c.Id,
-                                                              CurriculumName = c.CurriculumName,
-                                                              IsDeleted = c.IsDeleted,
-                                                              Lessons = c.Lessons
-                                                                         .Select(l => new LessonDto
-                                                                         {
-                                                                             Id = l.Id,
-                                                                             IsDeleted = l.IsDeleted,
-                                                                             Credit = l.Credit,
-                                                                             LessonCode = l.LessonCode,
-                                                                             LessonName = l.LessonName,
-                                                                             Status = l.Status,
-                                                                         })
-                                                                         .ToList()
-                                                          })
                                                           .ToListAsync();
             return curriculumWithLessonsDtos;
+        }
+
+        public async Task<int> InsertAsync(Curriculum curriculum)
+        {
+            await _context.AddAsync(curriculum);
+
+            await _context.SaveChangesAsync();
+
+            return curriculum.Id;
+        }
+
+        public async Task UpdateAsync(Curriculum curriculum)
+        {
+            var hasCurriculum = await _context.Curriculums
+                                              .AnyAsync(c => c.Id == curriculum.Id);
+
+            if (hasCurriculum)
+            {
+                _context.Update(hasCurriculum);
+
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task DeleteAsync(Curriculum curriculum)
+        {
+            var hasCurriculum = await _context.Curriculums.AnyAsync(c => c.Id == curriculum.Id);
+
+            if (hasCurriculum)
+            {
+                var changeCurriculum = new Lesson()
+                {
+                    Id = curriculum.Id,
+                    IsDeleted = true,
+                };
+
+                _context.Attach(curriculum);
+
+                _context.Entry(curriculum)
+                        .Property(l => l.IsDeleted)
+                        .IsModified = true;
+
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }
