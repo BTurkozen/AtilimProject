@@ -1,5 +1,6 @@
 ﻿using Atilim.Services.Identity.Application.Dtos.ContactInformationDtos;
 using Atilim.Services.Identity.Application.Interfaces.StudentInterfaces;
+using Atilim.Services.Identity.Domain.Entities.StudentEntities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
@@ -13,7 +14,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
             _context = context;
         }
 
-        public async Task<ContactInformationDto> GetContactInformationByStudentId(int studentIdentityId)
+        public async Task<ContactInformation> GetContactInformationByStudentId(int studentIdentityId)
         {
             var contactInformation = await _context.ContactInformations
                                                    .AsNoTracking()
@@ -24,19 +25,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
                 return null;
             }
 
-            ContactInformationDto contactInformationDto = new()
-            {
-                Id = contactInformation.Id,
-                Address = contactInformation.Address,
-                City = contactInformation.City,
-                Country = contactInformation.Country,
-                District = contactInformation.District,
-                Email = contactInformation.Email,
-                IsDeleted = contactInformation.IsDeleted,
-                MobilePhoneNumber = contactInformation.MobilePhoneNumber,
-            };
-
-            return contactInformationDto;
+            return contactInformation;
         }
     }
 }

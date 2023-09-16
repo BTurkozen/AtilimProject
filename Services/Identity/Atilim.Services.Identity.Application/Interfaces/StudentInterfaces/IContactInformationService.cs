@@ -1,9 +1,9 @@
-﻿using Atilim.Services.Identity.Application.Dtos.ContactInformationDtos;
+﻿using Atilim.Services.Identity.Domain.Entities.StudentEntities;
 
 namespace Atilim.Services.Identity.Application.Interfaces.StudentInterfaces
 {
     public interface IContactInformationService
     {
-        Task<ContactInformationDto> GetContactInformationByStudentId(int studentIdentityId);
+        Task<ContactInformation> GetContactInformationByStudentId(int studentIdentityId);
     }
 }
