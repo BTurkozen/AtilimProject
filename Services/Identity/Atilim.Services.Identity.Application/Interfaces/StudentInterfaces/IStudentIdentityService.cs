@@ -1,10 +1,10 @@
-﻿using Atilim.Services.Identity.Application.Dtos.StudentIdentityDtos;
+﻿using Atilim.Services.Identity.Domain.Entities.StudentEntities;
 
 namespace Atilim.Services.Identity.Application.Interfaces.StudentInterfaces
 {
     public interface IStudentIdentityService
     {
-        Task<StudentIdentityDto> GetStudentIdentityById(int id);
-        Task<StudentIdentityDto> GetStudentIdentityByStudentId(int studentId);
+        Task<StudentIdentity> GetStudentIdentityById(int id);
+        Task<StudentIdentity> GetStudentIdentityByStudentId(int studentId);
     }
 }
