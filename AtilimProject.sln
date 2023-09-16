@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atilim.Services.Identity.In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atilim.Services.Identity.Application", "Services\Identity\Atilim.Services.Identity.Application\Atilim.Services.Identity.Application.csproj", "{A545BDDB-23E9-46B0-B1D8-9D337A3DA88E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atilim.Presentations.WebApplication", "Presentations\Atilim.Presentations.WebApplication\Atilim.Presentations.WebApplication.csproj", "{380B483D-0ECD-4376-83F3-E24B786F0918}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{A545BDDB-23E9-46B0-B1D8-9D337A3DA88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A545BDDB-23E9-46B0-B1D8-9D337A3DA88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A545BDDB-23E9-46B0-B1D8-9D337A3DA88E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{380B483D-0ECD-4376-83F3-E24B786F0918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{380B483D-0ECD-4376-83F3-E24B786F0918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{380B483D-0ECD-4376-83F3-E24B786F0918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{380B483D-0ECD-4376-83F3-E24B786F0918}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{4F5F6CED-336D-4457-9E41-6B46272A7B63} = {EEFD8523-C7D7-4948-9CF2-3C2B44129E45}
 		{D4CEB519-2026-4803-B6C3-8EC262A5B65C} = {EEFD8523-C7D7-4948-9CF2-3C2B44129E45}
 		{A545BDDB-23E9-46B0-B1D8-9D337A3DA88E} = {EEFD8523-C7D7-4948-9CF2-3C2B44129E45}
+		{380B483D-0ECD-4376-83F3-E24B786F0918} = {40CE4BC1-4756-4531-88AE-7BDAAB781CD4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E6B2C98-AD29-4525-B87B-1B15C217AF58}
