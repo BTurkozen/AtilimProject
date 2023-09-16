@@ -9,4 +9,5 @@
   <li>Database Update için gereken Kod => update-database -Context IdentityContext -Project Atilim.Services.Identity.Infrastructure -StartupProject Atilim.Services.Identity.Api</li>
   <li>Update işlemi gerçekleştirmeden Yapılan Migration'ı silmek için gereken Kod => remove-migration -Context IdentityContext -Project Atilim.Services.Identity.Infrastructure -StartupProject Atilim.Services.Identity.Api</li>
 </ul>
+
 ---
