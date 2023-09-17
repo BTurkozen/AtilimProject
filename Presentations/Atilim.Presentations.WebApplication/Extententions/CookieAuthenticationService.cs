@@ -34,6 +34,12 @@ namespace Atilim.Presentations.WebApplication.Extententions
                 options.ExpireTimeSpan = TimeSpan.FromDays(tokenSettings.AccessTokenExpiration);
                 options.SlidingExpiration = true;
                 options.Cookie.Name = "atilimprojectcookie";
+                options.Events.OnSigningOut = context =>
+                {
+                    var cookieName = "atilimprojectcookie";
+                    context.Response.Cookies.Delete(cookieName);
+                    return Task.CompletedTask;
+                };
             });
         }
     }
