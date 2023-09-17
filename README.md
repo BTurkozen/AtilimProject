@@ -7,7 +7,7 @@
   
   <li>Api > Properties > LaunchSettings Environment "Production" / "Development" yaptıktan sonra aşağıdaki işlemleri gerçekleştirebilirsiniz.</li>
   <li>Migration Ekleme için gereken Kod => add-migration "{MIGRATION_MESSAGE}" -c IdentityContext -o Migrations -p Atilim.Services.Identity.Infrastructure -s Atilim.Services.Identity.Api</li>
-  <li>Database Update için gereken Kod => update-database -Context IdentityContext -Project Atilim.Services.Identity.Infrastructure -StartupProject Atilim.Services.Identity.Api</li>
+  <li>Database Update için gereken Kod (* Projeyi çalıştırdığınız zaman Seed içinde bulunan DatabaseMigration komutu Update db işlevi görmektedir.) => update-database -Context IdentityContext -Project Atilim.Services.Identity.Infrastructure -StartupProject Atilim.Services.Identity.Api</li>
   <li>Update işlemi gerçekleştirmeden Yapılan Migration'ı silmek için gereken Kod => remove-migration -Context IdentityContext -Project Atilim.Services.Identity.Infrastructure -StartupProject Atilim.Services.Identity.Api</li>
 </ul>
 
