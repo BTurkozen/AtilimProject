@@ -8,7 +8,7 @@ namespace Atilim.Services.Identity.Application.Features.Queries.ContactInformati
 {
     public class ContactInformationByStudentIdentityIdQuery : IRequest<ResponseDto<ContactInformationDto>>
     {
-        public int StudentIdentityId { get; set; }
+        public int Id { get; set; }
         public class ContactInformationByStudentIdentityIdQueryHandler : IRequestHandler<ContactInformationByStudentIdentityIdQuery, ResponseDto<ContactInformationDto>>
         {
             private readonly IContactInformationService _contactInformationService;
@@ -22,16 +22,25 @@ namespace Atilim.Services.Identity.Application.Features.Queries.ContactInformati
 
             public async Task<ResponseDto<ContactInformationDto>> Handle(ContactInformationByStudentIdentityIdQuery request, CancellationToken cancellationToken)
             {
-                var contactInformation = await _contactInformationService.GetContactInformationByStudentId(request.StudentIdentityId);
+                var contactInformation = await _contactInformationService.GetContactInformationById(request.Id);
 
                 if (contactInformation is not null)
                 {
-                    var contactIdentityDto = _mapper.Map<ContactInformationDto>(contactInformation);
+                    var contactIdentityDto = new ContactInformationDto()
+                    {
+                        Id = contactInformation.Id,
+                        Address = contactInformation.Address,
+                        City = contactInformation.City,
+                        Country = contactInformation.Country,
+                        District = contactInformation.District,
+                        Email = contactInformation.Email,
+                        MobilePhoneNumber = contactInformation.MobilePhoneNumber,
+                    };
 
                     return ResponseDto<ContactInformationDto>.Success(contactIdentityDto, System.Net.HttpStatusCode.OK);
                 }
 
-                return ResponseDto<ContactInformationDto>.Fail($"{request.StudentIdentityId} Id'li İletişim bilgilerine bulunamadı!!!", System.Net.HttpStatusCode.NotFound);
+                return ResponseDto<ContactInformationDto>.Fail($"{request.Id} Id'li İletişim bilgilerine bulunamadı!!!", System.Net.HttpStatusCode.NotFound);
             }
         }
     }

@@ -2,7 +2,6 @@
 using Atilim.Presentations.WebApplication.ViewModels.StudentViewModels;
 using Atilim.Shared.Dtos;
 using Atilim.Shared.Settings.Interfaces;
-using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 
@@ -44,6 +43,51 @@ namespace Atilim.Presentations.WebApplication.Services.Concrates
             var result = await response.Content.ReadFromJsonAsync<ResponseDto<int>>();
 
             return result.Data;
+        }
+
+        public async Task<bool> UpdateStudentIdentityAsync(StudentIdentityViewModel studentIdentityViewModel)
+        {
+            var jsonData = JsonSerializer.Serialize(studentIdentityViewModel);
+
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PutAsync($"{_clientInfos.URL}/students/student-identity", content);
+
+            var result = await response.Content.ReadFromJsonAsync<ResponseDto<NoContentDto>>();
+
+            return result.HttpStatusCode == System.Net.HttpStatusCode.NotFound;
+        }
+
+        public async Task<bool> UpdateContactInformationAsync(ContactInformationViewModel contactInformationViewModel)
+        {
+            var jsonData = JsonSerializer.Serialize(contactInformationViewModel);
+
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PutAsync($"{_clientInfos.URL}/students/contact-information", content);
+
+            var result = await response.Content.ReadFromJsonAsync<ResponseDto<NoContentDto>>();
+
+            return result.HttpStatusCode == System.Net.HttpStatusCode.NotFound;
+
+        }
+
+        public async Task<StudentIdentityViewModel> GetStudentIdentityByIdAsync(int id)
+        {
+            var response = await _httpClient.GetFromJsonAsync<ResponseDto<StudentIdentityViewModel>>($"{_clientInfos.URL}/StudentIdentities/{id}");
+
+            var result = response.Data;
+
+            return result;
+        }
+
+        public async Task<StudentIdentityViewModel> GetContactInformationByIdAsync(int id)
+        {
+            var response = await _httpClient.GetFromJsonAsync<ResponseDto<StudentIdentityViewModel>>($"{_clientInfos.URL}/StudentIdentities/contact-information-by-id/{id}");
+
+            var result = response.Data;
+
+            return result;
         }
     }
 }

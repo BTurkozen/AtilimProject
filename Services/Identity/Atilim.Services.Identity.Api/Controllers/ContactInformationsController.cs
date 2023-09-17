@@ -1,4 +1,6 @@
-﻿using Atilim.Services.Identity.Application.Features.Queries.ContactInformationQueries;
+﻿using Atilim.Services.Identity.Application.Dtos.ContactInformationDtos;
+using Atilim.Services.Identity.Application.Features.Commands.ContactInformationCommands;
+using Atilim.Services.Identity.Application.Features.Queries.ContactInformationQueries;
 using Atilim.Shared.CustomControllerBases;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -18,15 +20,23 @@ namespace Atilim.Services.Identity.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{studentIdentityId}")]
-        public async Task<IActionResult> GetByStudentIdentityId(int studentIdentityId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByStudentIdentityId(int id)
         {
             var queryModel = new ContactInformationByStudentIdentityIdQuery()
             {
-                StudentIdentityId = studentIdentityId
+                Id = id
             };
 
             return CustomActionResult(await _mediator.Send(queryModel));
+        }
+
+        [HttpPut("contact-information-by-id/{id}")]
+        public async Task<IActionResult> UpdateContactInformation(UpdateContactInformationDto updateContactInformationDto)
+        {
+            var commandModel = new UpdateContactInformationCommand() { ContactInformation = updateContactInformationDto };
+
+            return CustomActionResult(await _mediator.Send(commandModel));
         }
     }
 }

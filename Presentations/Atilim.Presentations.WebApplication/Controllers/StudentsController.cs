@@ -41,5 +41,35 @@ namespace Atilim.Presentations.WebApplication.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> UpdateStudentIdentity(int id)
+        {
+            var studentIdentity = await _studentService.GetStudentIdentityByIdAsync(id);
+
+            return PartialView(studentIdentity);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateStudentIdentity(StudentIdentityViewModel studentIdentityViewModel)
+        {
+            var result = await _studentService.UpdateStudentIdentityAsync(studentIdentityViewModel);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> UpdateContactInformation(int id)
+        {
+            var contactInformation = await _studentService.GetContactInformationByIdAsync(id);
+
+            return PartialView(contactInformation);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateContactInformation(ContactInformationViewModel contactInformationViewModel)
+        {
+            var result = await _studentService.UpdateContactInformationAsync(contactInformationViewModel);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

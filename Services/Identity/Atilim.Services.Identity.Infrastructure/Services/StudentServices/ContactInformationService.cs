@@ -13,11 +13,11 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
             _context = context;
         }
 
-        public async Task<ContactInformation> GetContactInformationByStudentId(int studentIdentityId)
+        public async Task<ContactInformation> GetContactInformationById(int id)
         {
             var contactInformation = await _context.ContactInformations
                                                    .AsNoTracking()
-                                                   .FirstOrDefaultAsync(ci => ci.StudentIdentityId == studentIdentityId);
+                                                   .FirstOrDefaultAsync(ci => ci.Id == id);
 
             if (contactInformation is null)
             {
@@ -25,6 +25,21 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
             }
 
             return contactInformation;
+        }
+
+        public async Task<bool> UpdateAsync(ContactInformation contactInformation)
+        {
+            var hasContactInformation = await _context.ContactInformations
+                                                   .AnyAsync(l => l.Id == contactInformation.Id);
+
+            if (hasContactInformation)
+            {
+                _context.Update(contactInformation);
+
+                await _context.SaveChangesAsync();
+            }
+
+            return hasContactInformation;
         }
     }
 }

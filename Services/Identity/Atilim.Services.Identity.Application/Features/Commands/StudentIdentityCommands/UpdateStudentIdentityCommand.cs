@@ -23,7 +23,15 @@ namespace Atilim.Services.Identity.Application.Features.Commands.StudentIdentity
 
             public async Task<ResponseDto<NoContentDto>> Handle(UpdateStudentIdentityCommand request, CancellationToken cancellationToken)
             {
-                var studentIdentity = _mapper.Map<StudentIdentity>(request.StudentIdentity);
+                var studentIdentity = new StudentIdentity()
+                {
+                    CityOfBirth = request.StudentIdentity.CityOfBirth,
+                    DateOfBirth = request.StudentIdentity.DateOfBirth,
+                    TCIdentificationNo = request.StudentIdentity.TCIdentificationNo,
+                    Name = request.StudentIdentity.Name,
+                    Surname = request.StudentIdentity.Surname,
+                    Id = request.StudentIdentity.Id,
+                };
 
                 var hasUpdated = await _studentIdentityService.UpdateAsync(studentIdentity);
 

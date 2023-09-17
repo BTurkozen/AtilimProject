@@ -4,6 +4,8 @@ namespace Atilim.Services.Identity.Application.Interfaces.StudentInterfaces
 {
     public interface IContactInformationService
     {
-        Task<ContactInformation> GetContactInformationByStudentId(int studentIdentityId);
+        Task<ContactInformation> GetContactInformationById(int id);
+
+        Task<bool> UpdateAsync(ContactInformation contactInformation);
     }
 }

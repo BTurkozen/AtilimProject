@@ -1,8 +1,9 @@
-﻿using Atilim.Services.Identity.Application.Features.Queries.StudentIdentityQueries;
+﻿using Atilim.Services.Identity.Application.Dtos.StudentIdentityDtos;
+using Atilim.Services.Identity.Application.Features.Commands.StudentIdentityCommands;
+using Atilim.Services.Identity.Application.Features.Queries.StudentIdentityQueries;
 using Atilim.Shared.CustomControllerBases;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Atilim.Services.Identity.Api.Controllers
@@ -35,5 +36,12 @@ namespace Atilim.Services.Identity.Api.Controllers
             return CustomActionResult(await _mediator.Send(queryModel));
         }
 
+        [HttpPut()]
+        public async Task<IActionResult> UpdateStudentIdentity(UpdateStudentIdentityDto updateStudentIdentityDto)
+        {
+            var commandModel = new UpdateStudentIdentityCommand() { StudentIdentity = updateStudentIdentityDto };
+
+            return CustomActionResult(await _mediator.Send(commandModel));
+        }
     }
 }
