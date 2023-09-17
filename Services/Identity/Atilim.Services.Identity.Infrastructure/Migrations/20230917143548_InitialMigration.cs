@@ -307,7 +307,7 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentNo = table.Column<int>(type: "int", maxLength: 25, nullable: false),
                     StudentIdentityId = table.Column<int>(type: "int", nullable: false),
-                    CurriculumId = table.Column<int>(type: "int", nullable: false),
+                    CurriculumId = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
                     UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -336,8 +336,8 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "9eb3c90e-586b-44bb-bbd4-868d6b2a7970", "admin", "ADMIN" },
-                    { 2, "9f0a4374-7754-41ee-b75e-2a6bad22031c", "student", "STUDENT" }
+                    { 1, "b2ebc2a6-9761-43a1-9941-9f59b87b613f", "admin", "ADMIN" },
+                    { 2, "1047007a-604a-4010-bd99-b06b5bfaf78a", "student", "STUDENT" }
                 });
 
             migrationBuilder.InsertData(
@@ -345,13 +345,13 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "60f012c1-5d17-4f1a-810a-7274f1831de5", "admin@atilimProject.com", false, false, null, "atilim", null, null, null, null, false, "fcf1fc58-e56d-4143-876a-42d88e4405d5", "admin", false, "atilim.admin" },
-                    { 2, 0, "437a89f1-84b6-47ef-be87-b587078ebe02", "hasan.ersoy@atilimProject.com", false, false, null, "hasan", null, null, null, null, false, "d22af253-b1a6-4153-bf46-99f3b060715d", "ersoy", false, "hasan.ersoy" },
-                    { 3, 0, "e5a64900-4807-4808-906f-5475f9b1746a", "mehmet.yilmaz@atilimProject.com", false, false, null, "mehmet", null, null, null, null, false, "231aeb93-e89c-4e14-bfc8-d5018382723b", "yilmaz", false, "mehmet.yilmaz" },
-                    { 4, 0, "321322b4-60d4-4f75-87ee-f9e850a5f372", "ahmet.unal@atilimProject.com", false, false, null, "ahmet", null, null, null, null, false, "26f55d41-aeee-4cb7-9ea0-ef594c57fca1", "unal", false, "ahmet.unal" },
-                    { 5, 0, "79578d10-3c94-4258-b7d9-02a9c4482b91", "mustafa.isik@atilimProject.com", false, false, null, "mustafa", null, null, null, null, false, "37742e3d-ba98-44b9-81e6-8d304b4d1d19", "isik", false, "mustafa.isik" },
-                    { 6, 0, "40285e1b-4daa-47e6-b25f-746647d84209", "ayse.erdogan@atilimProject.com", false, false, null, "ayse", null, null, null, null, false, "0ddd68b4-04c9-423c-b6a3-2fc018e09a89", "erdogan", false, "ayse.erdogan" },
-                    { 7, 0, "eef51d94-0750-4a30-8287-68ecdfaeb041", "fatma.korkmaz@atilimProject.com", false, false, null, "fatma", null, null, null, null, false, "6de80e5f-17e8-492a-b9fd-c02702ea8d0a", "korkmaz", false, "fatma.korkmaz" }
+                    { 1, 0, "5d77ab0e-0e9f-42f8-b84c-a7bb0391631d", "admin@atilimProject.com", false, false, null, "atilim", null, null, null, null, false, "733ef870-dd8f-4408-a070-fed38ee23ffd", "admin", false, "atilim.admin" },
+                    { 2, 0, "127fdbae-7c81-4c50-9f20-23e1e0bb5d95", "hasan.ersoy@atilimProject.com", false, false, null, "hasan", null, null, null, null, false, "eee8cfbd-09a1-4a0f-a181-868edfe26f99", "ersoy", false, "hasan.ersoy" },
+                    { 3, 0, "9e301ae6-fe74-4c41-a750-f43eb0f83d73", "mehmet.yilmaz@atilimProject.com", false, false, null, "mehmet", null, null, null, null, false, "c7189670-7e5b-431e-9bbb-f33da4548482", "yilmaz", false, "mehmet.yilmaz" },
+                    { 4, 0, "a6919cea-0c37-47fe-94c0-76f52eee8e7e", "ahmet.unal@atilimProject.com", false, false, null, "ahmet", null, null, null, null, false, "64ed9d98-cc95-49de-9a5c-b6ee37249193", "unal", false, "ahmet.unal" },
+                    { 5, 0, "b971ac0a-7732-487a-bba9-75566ddc5bf6", "mustafa.isik@atilimProject.com", false, false, null, "mustafa", null, null, null, null, false, "125219e1-59a9-4226-9ac2-0af78b91a53e", "isik", false, "mustafa.isik" },
+                    { 6, 0, "c929b846-8aa1-43f2-a1a3-3d9464290cb0", "ayse.erdogan@atilimProject.com", false, false, null, "ayse", null, null, null, null, false, "8ac4d01a-a4e0-4880-a397-2fde5d5311df", "erdogan", false, "ayse.erdogan" },
+                    { 7, 0, "d757067c-f0b8-4e80-9d6b-2fceff98b667", "fatma.korkmaz@atilimProject.com", false, false, null, "fatma", null, null, null, null, false, "d111a67c-1b92-4aa4-9c6c-3fee3f24058b", "korkmaz", false, "fatma.korkmaz" }
                 });
 
             migrationBuilder.InsertData(
@@ -359,9 +359,9 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "CurriculumName", "IsDeleted", "UpdatedBy", "UpdatedOn" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 9, 17, 10, 19, 50, 659, DateTimeKind.Local).AddTicks(8825), "Bilgisayar_Mühendisliği", false, null, null },
-                    { 2, 1, new DateTime(2023, 9, 17, 10, 19, 50, 659, DateTimeKind.Local).AddTicks(8832), "Grafik_Mühendisliği", false, null, null },
-                    { 3, 1, new DateTime(2023, 9, 17, 10, 19, 50, 659, DateTimeKind.Local).AddTicks(8833), "Ingiliz_Dil_Edebiyatı", false, null, null }
+                    { 1, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(7044), "Bilgisayar_Mühendisliği", false, null, null },
+                    { 2, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(7047), "Grafik_Mühendisliği", false, null, null },
+                    { 3, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(7049), "Ingiliz_Dil_Edebiyatı", false, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -369,13 +369,29 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "Credit", "IsDeleted", "LessonCode", "LessonName", "Status", "UpdatedBy", "UpdatedOn" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 9, 17, 10, 19, 50, 660, DateTimeKind.Local).AddTicks(7144), 5, false, "HUM101", "Türk Demokrasi Tarihi", true, null, null },
-                    { 2, 1, new DateTime(2023, 9, 17, 10, 19, 50, 660, DateTimeKind.Local).AddTicks(7153), 6, false, "MATH102", "Calculus 2", true, null, null },
-                    { 3, 1, new DateTime(2023, 9, 17, 10, 19, 50, 660, DateTimeKind.Local).AddTicks(7155), 6, false, "MATE103", "Metalurjiye Giriş", false, null, null },
-                    { 4, 1, new DateTime(2023, 9, 17, 10, 19, 50, 660, DateTimeKind.Local).AddTicks(7157), 5, false, "GRA105", "Grafik Dizayn", true, null, null },
-                    { 5, 1, new DateTime(2023, 9, 17, 10, 19, 50, 660, DateTimeKind.Local).AddTicks(7158), 4, false, "CMPE201", "Bilgisayar Teknolojileri", true, null, null },
-                    { 6, 1, new DateTime(2023, 9, 17, 10, 19, 50, 660, DateTimeKind.Local).AddTicks(7160), 4, false, "ENG102", "İngilizce 2", true, null, null },
-                    { 7, 1, new DateTime(2023, 9, 17, 10, 19, 50, 660, DateTimeKind.Local).AddTicks(7161), 6, false, "MATH201", "İleri Calculus ", true, null, null }
+                    { 1, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(6993), 5, false, "HUM101", "Türk Demokrasi Tarihi", true, null, null },
+                    { 2, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(7003), 6, false, "MATH102", "Calculus 2", true, null, null },
+                    { 3, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(7005), 6, false, "MATE103", "Metalurjiye Giriş", false, null, null },
+                    { 4, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(7006), 5, false, "GRA105", "Grafik Dizayn", true, null, null },
+                    { 5, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(7008), 4, false, "CMPE201", "Bilgisayar Teknolojileri", true, null, null },
+                    { 6, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(7010), 4, false, "ENG102", "İngilizce 2", true, null, null },
+                    { 7, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(7011), 6, false, "MATH201", "İleri Calculus ", true, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CurriculumLesson",
+                columns: new[] { "CurriculumId", "LessonId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 1, 3 },
+                    { 1, 7 },
+                    { 2, 1 },
+                    { 2, 6 },
+                    { 3, 1 },
+                    { 3, 2 },
+                    { 3, 4 },
+                    { 3, 5 }
                 });
 
             migrationBuilder.InsertData(
@@ -383,12 +399,12 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 columns: new[] { "Id", "CityOfBirth", "ContactInformationId", "CreatedBy", "CreatedOn", "DateOfBirth", "IsDeleted", "Name", "StudentId", "Surname", "TCIdentificationNo", "UpdatedBy", "UpdatedOn", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Kayseri", 0, 1, new DateTime(2023, 9, 17, 10, 19, 50, 663, DateTimeKind.Local).AddTicks(7089), new DateTime(1983, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Hasan", 1, "Ersoy", "45456747611", null, null, 2 },
-                    { 2, "Adana", 0, 1, new DateTime(2023, 9, 17, 10, 19, 50, 663, DateTimeKind.Local).AddTicks(7176), new DateTime(2000, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Mehmet", 2, "Yılmaz", "67967856634", null, null, 3 },
-                    { 3, "Ankara", 0, 1, new DateTime(2023, 9, 17, 10, 19, 50, 663, DateTimeKind.Local).AddTicks(7183), new DateTime(2001, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Ahmet", 3, "Ünal", "72347322958", null, null, 4 },
-                    { 4, "Sivas", 0, 1, new DateTime(2023, 9, 17, 10, 19, 50, 663, DateTimeKind.Local).AddTicks(7190), new DateTime(2000, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Mustafa", 4, "Işık", "97850348520", null, null, 5 },
-                    { 5, "Uşak", 0, 1, new DateTime(2023, 9, 17, 10, 19, 50, 663, DateTimeKind.Local).AddTicks(7197), new DateTime(2001, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Ayşe", 5, "Erdoğan", "32756874239", null, null, 6 },
-                    { 6, "Kütahya", 0, 1, new DateTime(2023, 9, 17, 10, 19, 50, 663, DateTimeKind.Local).AddTicks(7202), new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Fatma", 6, "Korkmaz", "98423479320", null, null, 7 }
+                    { 1, "Kayseri", 0, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(2598), new DateTime(1983, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Hasan", 1, "Ersoy", "45456747611", null, null, 2 },
+                    { 2, "Adana", 0, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(2681), new DateTime(2000, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Mehmet", 2, "Yılmaz", "67967856634", null, null, 3 },
+                    { 3, "Ankara", 0, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(2690), new DateTime(2001, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Ahmet", 3, "Ünal", "72347322958", null, null, 4 },
+                    { 4, "Sivas", 0, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(2695), new DateTime(2000, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Mustafa", 4, "Işık", "97850348520", null, null, 5 },
+                    { 5, "Uşak", 0, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(2701), new DateTime(2001, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Ayşe", 5, "Erdoğan", "32756874239", null, null, 6 },
+                    { 6, "Kütahya", 0, 1, new DateTime(2023, 9, 17, 17, 35, 48, 325, DateTimeKind.Local).AddTicks(2706), new DateTime(2001, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Fatma", 6, "Korkmaz", "98423479320", null, null, 7 }
                 });
 
             migrationBuilder.InsertData(
@@ -396,12 +412,12 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 columns: new[] { "Id", "Address", "City", "Country", "CreatedBy", "CreatedOn", "District", "Email", "IsDeleted", "MobilePhoneNumber", "StudentIdentityId", "UpdatedBy", "UpdatedOn" },
                 values: new object[,]
                 {
-                    { 1, "DEMİRCİKARA MAH. B.ONAT CAD. HEDE SİT. B BLOK NO : 1", "ANKARA", "Türkiye", 1, new DateTime(2023, 9, 17, 10, 19, 50, 659, DateTimeKind.Local).AddTicks(3799), "PURSAKLAR", "mno@xyz.com", false, "5555424245", 1, null, null },
-                    { 2, "CUMHURİYET MAH. BİRİNCİ SOK. İKİNCİ APT. NO:111/6", "Ankara", "Türkiye", 1, new DateTime(2023, 9, 17, 10, 19, 50, 659, DateTimeKind.Local).AddTicks(3825), "YENİMAHALLE", "abc@hotmail.com", false, "5332342342", 2, null, null },
-                    { 3, "SİTELER MAHALLESİ 6223 SOKAK DURU APT. NO:11 KAT:3 ", "Ankara", "Türkiye", 1, new DateTime(2023, 9, 17, 10, 19, 50, 659, DateTimeKind.Local).AddTicks(3828), "POLATLI", "klm@outlook.com", false, "5408932042", 3, null, null },
-                    { 4, "TURAN GÜNEŞ BULVARI TAMTAM SİTESİ 13. CAD. NO:51", "Ankara", "Türkiye", 0, new DateTime(2023, 9, 17, 10, 19, 50, 659, DateTimeKind.Local).AddTicks(3830), "KEÇİÖREN", "ghi@abc.com", false, "5305464646", 4, null, null },
-                    { 5, "AHMET HAMDİ SOK. NO:19/15", "Ankara", "Türkiye", 1, new DateTime(2023, 9, 17, 10, 19, 50, 659, DateTimeKind.Local).AddTicks(3832), "SİNCAN", "prs@hotmail.com", false, "5302908432", 5, null, null },
-                    { 6, "KUŞADASI SOK. NO:123 KARAAĞAÇ", "Ankara", "Türkiye", 1, new DateTime(2023, 9, 17, 10, 19, 50, 659, DateTimeKind.Local).AddTicks(3834), "ÇANKAYA", "def@gmail.com", false, "5437657567", 6, null, null }
+                    { 1, "DEMİRCİKARA MAH. B.ONAT CAD. HEDE SİT. B BLOK NO : 1", "ANKARA", "Türkiye", 1, new DateTime(2023, 9, 17, 17, 35, 48, 321, DateTimeKind.Local).AddTicks(181), "PURSAKLAR", "mno@xyz.com", false, "5555424245", 1, null, null },
+                    { 2, "CUMHURİYET MAH. BİRİNCİ SOK. İKİNCİ APT. NO:111/6", "Ankara", "Türkiye", 1, new DateTime(2023, 9, 17, 17, 35, 48, 321, DateTimeKind.Local).AddTicks(203), "YENİMAHALLE", "abc@hotmail.com", false, "5332342342", 2, null, null },
+                    { 3, "SİTELER MAHALLESİ 6223 SOKAK DURU APT. NO:11 KAT:3 ", "Ankara", "Türkiye", 1, new DateTime(2023, 9, 17, 17, 35, 48, 321, DateTimeKind.Local).AddTicks(205), "POLATLI", "klm@outlook.com", false, "5408932042", 3, null, null },
+                    { 4, "TURAN GÜNEŞ BULVARI TAMTAM SİTESİ 13. CAD. NO:51", "Ankara", "Türkiye", 0, new DateTime(2023, 9, 17, 17, 35, 48, 321, DateTimeKind.Local).AddTicks(208), "KEÇİÖREN", "ghi@abc.com", false, "5305464646", 4, null, null },
+                    { 5, "AHMET HAMDİ SOK. NO:19/15", "Ankara", "Türkiye", 1, new DateTime(2023, 9, 17, 17, 35, 48, 321, DateTimeKind.Local).AddTicks(209), "SİNCAN", "prs@hotmail.com", false, "5302908432", 5, null, null },
+                    { 6, "KUŞADASI SOK. NO:123 KARAAĞAÇ", "Ankara", "Türkiye", 1, new DateTime(2023, 9, 17, 17, 35, 48, 321, DateTimeKind.Local).AddTicks(211), "ÇANKAYA", "def@gmail.com", false, "5437657567", 6, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -409,12 +425,12 @@ namespace Atilim.Services.Identity.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "CurriculumId", "IsDeleted", "StudentIdentityId", "StudentNo", "UpdatedBy", "UpdatedOn" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 9, 17, 10, 19, 50, 661, DateTimeKind.Local).AddTicks(6265), 1, false, 1, 23462368, null, null },
-                    { 2, 1, new DateTime(2023, 9, 17, 10, 19, 50, 661, DateTimeKind.Local).AddTicks(6274), 1, false, 2, 27482379, null, null },
-                    { 3, 1, new DateTime(2023, 9, 17, 10, 19, 50, 661, DateTimeKind.Local).AddTicks(6276), 2, false, 3, 34565479, null, null },
-                    { 4, 1, new DateTime(2023, 9, 17, 10, 19, 50, 661, DateTimeKind.Local).AddTicks(6277), 2, false, 4, 53456346, null, null },
-                    { 5, 1, new DateTime(2023, 9, 17, 10, 19, 50, 661, DateTimeKind.Local).AddTicks(6279), 3, false, 5, 34674575, null, null },
-                    { 6, 1, new DateTime(2023, 9, 17, 10, 19, 50, 661, DateTimeKind.Local).AddTicks(6280), 3, false, 6, 64672359, null, null }
+                    { 1, 1, new DateTime(2023, 9, 17, 17, 35, 48, 323, DateTimeKind.Local).AddTicks(1257), 1, false, 1, 23462368, null, null },
+                    { 2, 1, new DateTime(2023, 9, 17, 17, 35, 48, 323, DateTimeKind.Local).AddTicks(1264), 1, false, 2, 27482379, null, null },
+                    { 3, 1, new DateTime(2023, 9, 17, 17, 35, 48, 323, DateTimeKind.Local).AddTicks(1266), 2, false, 3, 34565479, null, null },
+                    { 4, 1, new DateTime(2023, 9, 17, 17, 35, 48, 323, DateTimeKind.Local).AddTicks(1267), 2, false, 4, 53456346, null, null },
+                    { 5, 1, new DateTime(2023, 9, 17, 17, 35, 48, 323, DateTimeKind.Local).AddTicks(1269), 3, false, 5, 34674575, null, null },
+                    { 6, 1, new DateTime(2023, 9, 17, 17, 35, 48, 323, DateTimeKind.Local).AddTicks(1271), 3, false, 6, 64672359, null, null }
                 });
 
             migrationBuilder.CreateIndex(

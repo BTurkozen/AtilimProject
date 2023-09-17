@@ -25,11 +25,6 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
                    .WithOne(b => b.Curriculum)
                    .HasForeignKey(b => b.CurriculumId)
                    .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasData(
-                new Curriculum() {Id =1, CreatedBy = 1, CurriculumName = "Bilgisayar_Mühendisliği" },
-                new Curriculum() {Id =2, CreatedBy = 1, CurriculumName = "Grafik_Mühendisliği" },
-                new Curriculum() {Id =3, CreatedBy = 1, CurriculumName = "Ingiliz_Dil_Edebiyatı" });
         }
     }
 }

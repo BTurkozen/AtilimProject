@@ -1,8 +1,5 @@
-﻿using Atilim.Services.Identity.Application.Dtos.ContactInformationDtos;
-using Atilim.Services.Identity.Application.Dtos.CurriculumDtos;
-using Atilim.Services.Identity.Application.Dtos.LessonDtos;
+﻿using Atilim.Services.Identity.Application.Dtos.CurriculumDtos;
 using Atilim.Services.Identity.Application.Dtos.StudentDtos;
-using Atilim.Services.Identity.Application.Dtos.StudentIdentityDtos;
 using Atilim.Services.Identity.Application.Interfaces.StudentInterfaces;
 using Atilim.Shared.Dtos;
 using AutoMapper;
@@ -34,12 +31,19 @@ namespace Atilim.Services.Identity.Application.Features.Queries.StudentQueries
                         StudentNo = s.StudentNo,
                         FullName = $"{s.StudentIdentity.Name} {s.StudentIdentity.Surname}",
                         IsDeleted = s.IsDeleted,
-                        Curriculum = new CurriculumDto
-                        {
-                            Id = s.Curriculum.Id,
-                            CurriculumName = s.Curriculum.CurriculumName,
-                        }
                     }).ToList();
+
+                    students.ForEach(student =>
+                    {
+                        if (student.CurriculumId.HasValue)
+                        {
+                            studentDtos.FirstOrDefault(s => s.Id == student.Id).Curriculum = new CurriculumDto
+                            {
+                                Id = student.Curriculum.Id,
+                                CurriculumName = student.Curriculum.CurriculumName,
+                            };
+                        }
+                    });
 
                     return ResponseDto<List<StudentDto>>.Success(studentDtos, System.Net.HttpStatusCode.OK);
                 }

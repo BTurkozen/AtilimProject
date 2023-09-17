@@ -10,7 +10,7 @@ namespace Atilim.Presentations.WebApplication.ViewModels.CurriculumViewModels
         }
 
         public int Id { get; set; }
-        public string CurriculumName { get; set; }
+        public string? CurriculumName { get; set; }
         public List<int> SelectedCurriculumLessons { get; set; }
         public List<CurriculumLessonViewModel> CurriculumLessons { get; set; }
         public List<LessonViewModel> Lessons { get; set; }

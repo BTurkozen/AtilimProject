@@ -1,6 +1,5 @@
-﻿using Atilim.Services.Identity.Application.Wrappers;
-using Atilim.Services.Identity.Domain.Entities.StudentEntities;
-using Atilim.Services.Identity.Domain.Entities;
+﻿using Atilim.Services.Identity.Application.Dtos.UserDtos;
+using Atilim.Services.Identity.Application.Wrappers;
 
 namespace Atilim.Services.Identity.Application.Dtos.StudentIdentityDtos
 {
@@ -12,6 +11,6 @@ namespace Atilim.Services.Identity.Application.Dtos.StudentIdentityDtos
         public string CityOfBirth { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
+        public UserDto User { get; set; }
     }
 }

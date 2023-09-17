@@ -16,7 +16,7 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
 
             builder.HasOne(cl => cl.Lesson)
                    .WithMany(l => l.CurriculumLessons)
-                   .HasForeignKey(cl => cl.LessonId);
+                   .HasForeignKey(cl => cl.LessonId); 
         }
     }
 }

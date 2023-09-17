@@ -1,5 +1,4 @@
 ﻿using Atilim.Services.Identity.Domain.Entities;
-using Atilim.Services.Identity.Domain.Entities.StudentEntities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +22,6 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
 
             CreateUserSeeds(provider);
 
-            UpdateLessonSeeds(context);
         }
 
         /// <summary>
@@ -56,8 +54,6 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
 
                 using var randomGen = RandomNumberGenerator.Create();
 
-                //userManager = provider.GetRequiredService<UserManager<User>>();
-
                 for (int i = 0; i < studentUsers.Count; i++)
                 {
                     randomGen.GetBytes(numberByte);
@@ -80,45 +76,6 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
                 }
 
                 #endregion
-            }
-        }
-
-        /// <summary>
-        /// Ders oluşturma.
-        /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
-        private static void UpdateLessonSeeds(IdentityContext context)
-        {
-            if (context.Lessons.Any() && context.Curriculums.Select(c => c.CurriculumLessons).Any() is false)
-            {
-                var curriculums = context.Curriculums.ToList();
-
-                var lessons = context.Lessons.ToList();
-
-                for (int i = 0; i < curriculums.Count; i++)
-                {
-                    var curriculumLessons = new List<CurriculumLesson>();
-
-                    if (curriculums[i].CurriculumName == "Bilgisayar_Mühendisliği")
-                    {
-                        curriculumLessons = lessons.Where(l => l.LessonCode == "MATH102" || l.LessonCode == "CMPE201" || l.LessonCode == "MATH201").Select(l => new CurriculumLesson { CurriculumId = curriculums[i].Id, LessonId = l.Id }).ToList();
-                    }
-                    else if (curriculums[i].CurriculumName == "Grafik_Mühendisliği")
-                    {
-                        curriculumLessons = lessons.Where(l => l.LessonCode == "GRA105" || l.LessonCode == "HUM101").Select(l => new CurriculumLesson { CurriculumId = curriculums[i].Id, LessonId = l.Id }).ToList();
-                    }
-                    else if (curriculums[i].CurriculumName == "Ingiliz_Dil_Edebiyatı")
-                    {
-                        curriculumLessons = lessons.Where(l => l.LessonCode == "MATH102" || l.LessonCode == "MATH201" || l.LessonCode == "ENG102").Select(l => new CurriculumLesson { CurriculumId = curriculums[i].Id, LessonId = l.Id }).ToList();
-                    }
-
-                    curriculums[i].CurriculumLessons = curriculumLessons;
-
-                    context.AddAsync(curriculums[i].CurriculumLessons);
-                }
-
-                context.SaveChanges();
             }
         }
     }

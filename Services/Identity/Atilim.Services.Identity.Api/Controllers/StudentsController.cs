@@ -1,4 +1,6 @@
-﻿using Atilim.Services.Identity.Application.Features.Queries.StudentQueries;
+﻿using Atilim.Services.Identity.Application.Dtos.StudentDtos;
+using Atilim.Services.Identity.Application.Features.Commands.StudentCommands;
+using Atilim.Services.Identity.Application.Features.Queries.StudentQueries;
 using Atilim.Shared.CustomControllerBases;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +34,12 @@ namespace Atilim.Services.Identity.Api.Controllers
             return CustomActionResult(await _medator.Send(new GetStudentByIdQuery() { StudentId = studentId }));
         }
 
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> Insert(CreateStudentDto createStudentDto)
+        {
+            return CustomActionResult(await _medator.Send(new CreateStudentCommand() { Student = createStudentDto }));
+        }
 
     }
 }

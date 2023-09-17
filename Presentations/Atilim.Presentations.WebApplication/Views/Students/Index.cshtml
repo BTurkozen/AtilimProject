@@ -13,6 +13,13 @@
     }
 </style>
 
+<div class="col-md-12 mb-2">
+    <h4>Students</h4>
+    <a asp-controller="Students" asp-action="CreateStudent" class="btn btn-success">
+        <i class="fa-solid fa-plus-minus"></i>
+    </a>
+</div>
+
 <div class="col-md-3">
     <div class="row">
         <div class="col-md-12 student-base-info">
@@ -35,7 +42,7 @@
                         <div class="col-md-12">
                             <p>
                                 <strong>Curriculum :</strong>
-                                <span>@student.Curriculum.CurriculumName</span>
+                                <span>@(student.Curriculum is null ? "-" : student.Curriculum.CurriculumName)</span>
                             </p>
                         </div>
                     </div>

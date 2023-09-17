@@ -6,5 +6,6 @@ namespace Atilim.Presentations.WebApplication.Services.Interfaces
     {
         Task<List<StudentViewModel>> GetAllAsync();
         Task<StudentViewModel> GetByIdAsync(int id);
+        Task<int> InsertAsync(CreateStudentViewModel createStudentViewModel);
     }
 }

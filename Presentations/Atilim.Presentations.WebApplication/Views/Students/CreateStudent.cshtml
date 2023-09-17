@@ -1,0 +1,92 @@
+﻿@model Atilim.Presentations.WebApplication.ViewModels.StudentViewModels.CreateStudentViewModel
+
+@{
+    ViewData["Title"] = "CreateStudent";
+}
+
+<h1>Create Student</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Students" asp-action="CreateStudent" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="StudentNo" class="control-label"></label>
+                        <input asp-for="StudentNo" class="form-control" />
+                        <span asp-validation-for="StudentNo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="StudentItentity.TCIdentificationNo" class="control-label"></label>
+                        <input asp-for="StudentItentity.TCIdentificationNo" class="form-control" />
+                        <span asp-validation-for="StudentItentity.TCIdentificationNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StudentItentity.Name" class="control-label"></label>
+                        <input asp-for="StudentItentity.Name" class="form-control" />
+                        <span asp-validation-for="StudentItentity.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StudentItentity.Surname" class="control-label"></label>
+                        <input asp-for="StudentItentity.Surname" class="form-control" />
+                        <span asp-validation-for="StudentItentity.Surname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StudentItentity.CityOfBirth" class="control-label"></label>
+                        <input asp-for="StudentItentity.CityOfBirth" class="form-control" />
+                        <span asp-validation-for="StudentItentity.CityOfBirth" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StudentItentity.DateOfBirth" class="control-label"></label>
+                        <input asp-for="StudentItentity.DateOfBirth" class="form-control" />
+                        <span asp-validation-for="StudentItentity.DateOfBirth" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ContactInformation.Address" class="control-label"></label>
+                        <input asp-for="ContactInformation.Address" class="form-control" />
+                        <span asp-validation-for="ContactInformation.Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ContactInformation.Country" class="control-label"></label>
+                        <input asp-for="ContactInformation.Country" class="form-control" />
+                        <span asp-validation-for="ContactInformation.Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ContactInformation.City" class="control-label"></label>
+                        <input asp-for="ContactInformation.City" class="form-control" />
+                        <span asp-validation-for="ContactInformation.City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ContactInformation.District" class="control-label"></label>
+                        <input asp-for="ContactInformation.District" class="form-control" />
+                        <span asp-validation-for="ContactInformation.District" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ContactInformation.Email" class="control-label"></label>
+                        <input asp-for="ContactInformation.Email" class="form-control" />
+                        <span asp-validation-for="ContactInformation.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ContactInformation.MobilePhoneNumber" class="control-label"></label>
+                        <input asp-for="ContactInformation.MobilePhoneNumber" class="form-control" />
+                        <span asp-validation-for="ContactInformation.MobilePhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

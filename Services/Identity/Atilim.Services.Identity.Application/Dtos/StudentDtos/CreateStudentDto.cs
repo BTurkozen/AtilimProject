@@ -1,4 +1,5 @@
-﻿using Atilim.Services.Identity.Application.Dtos.StudentIdentityDtos;
+﻿using Atilim.Services.Identity.Application.Dtos.ContactInformationDtos;
+using Atilim.Services.Identity.Application.Dtos.StudentIdentityDtos;
 
 namespace Atilim.Services.Identity.Application.Dtos.StudentDtos
 {
@@ -7,5 +8,7 @@ namespace Atilim.Services.Identity.Application.Dtos.StudentDtos
         public int StudentNo { get; set; }
 
         public StudentIdentityDto StudentItentity { get; set; }
+
+        public ContactInformationDto ContactInformation { get; set; }
     }
 }

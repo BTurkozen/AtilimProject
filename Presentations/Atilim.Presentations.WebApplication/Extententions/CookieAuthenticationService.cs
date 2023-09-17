@@ -31,8 +31,8 @@ namespace Atilim.Presentations.WebApplication.Extententions
             }).AddCookie(options =>
             {
                 options.LoginPath = new PathString("/Home/Index");
-                options.ExpireTimeSpan = TimeSpan.FromDays(tokenSettings.AccessTokenExpiration);
-                options.SlidingExpiration = true;
+                //options.ExpireTimeSpan = TimeSpan.FromDays(tokenSettings.AccessTokenExpiration);
+                //options.SlidingExpiration = true;
                 options.Cookie.Name = "atilimprojectcookie";
                 options.Events.OnSigningOut = context =>
                 {
