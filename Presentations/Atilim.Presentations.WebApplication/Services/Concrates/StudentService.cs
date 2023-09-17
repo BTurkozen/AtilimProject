@@ -51,11 +51,10 @@ namespace Atilim.Presentations.WebApplication.Services.Concrates
 
             var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PutAsync($"{_clientInfos.URL}/students/student-identity", content);
+            var response = await _httpClient.PutAsync($"{_clientInfos.URL}/StudentIdentities", content);
 
-            var result = await response.Content.ReadFromJsonAsync<ResponseDto<NoContentDto>>();
+            return response.StatusCode == System.Net.HttpStatusCode.NoContent;
 
-            return result.HttpStatusCode == System.Net.HttpStatusCode.NotFound;
         }
 
         public async Task<bool> UpdateContactInformationAsync(ContactInformationViewModel contactInformationViewModel)
@@ -66,15 +65,13 @@ namespace Atilim.Presentations.WebApplication.Services.Concrates
 
             var response = await _httpClient.PutAsync($"{_clientInfos.URL}/ContactInformations", content);
 
-            var result = await response.Content.ReadFromJsonAsync<ResponseDto<NoContentDto>>();
-
-            return result.HttpStatusCode == System.Net.HttpStatusCode.NotFound;
+            return response.StatusCode == System.Net.HttpStatusCode.NoContent;
 
         }
 
         public async Task<StudentIdentityViewModel> GetStudentIdentityByIdAsync(int id)
         {
-            var response = await _httpClient.GetFromJsonAsync<ResponseDto<StudentIdentityViewModel>>($"{_clientInfos.URL}/StudentIdentities/student-identity-id/{id}");
+            var response = await _httpClient.GetFromJsonAsync<ResponseDto<StudentIdentityViewModel>>($"{_clientInfos.URL}/StudentIdentities/{id}");
 
             var result = response.Data;
 

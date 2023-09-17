@@ -4,7 +4,7 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="UpdateContactInformation">
+        <form asp-controller="Students" asp-action="UpdateContactInformation">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <input asp-for="StudentIdentityId" type="hidden" />

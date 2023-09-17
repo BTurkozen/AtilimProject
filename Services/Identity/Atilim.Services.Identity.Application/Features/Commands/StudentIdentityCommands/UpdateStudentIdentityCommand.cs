@@ -31,6 +31,8 @@ namespace Atilim.Services.Identity.Application.Features.Commands.StudentIdentity
                     Name = request.StudentIdentity.Name,
                     Surname = request.StudentIdentity.Surname,
                     Id = request.StudentIdentity.Id,
+                    UserId = request.StudentIdentity.UserId,
+                    StudentId = request.StudentIdentity.StudentId,
                 };
 
                 var hasUpdated = await _studentIdentityService.UpdateAsync(studentIdentity);

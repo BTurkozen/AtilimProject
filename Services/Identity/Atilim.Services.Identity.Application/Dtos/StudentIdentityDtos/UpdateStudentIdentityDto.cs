@@ -8,5 +8,7 @@
         public string Surname { get; set; }
         public string CityOfBirth { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public int UserId { get; set; }
+        public int StudentId { get; set; }
     }
 }

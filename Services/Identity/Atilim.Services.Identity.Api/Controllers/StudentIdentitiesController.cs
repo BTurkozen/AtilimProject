@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Atilim.Services.Identity.Api.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public class StudentIdentitiesController : CustomControllerBase
@@ -20,7 +20,7 @@ namespace Atilim.Services.Identity.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("student-identity-id/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var queryModel = new GetStudentIdentityByIdQuery() { Id = id };
@@ -28,13 +28,13 @@ namespace Atilim.Services.Identity.Api.Controllers
             return CustomActionResult(await _mediator.Send(queryModel));
         }
 
-        [HttpGet("student-id/{studentId}")]
-        public async Task<IActionResult> GetByStudentId(int studentId)
-        {
-            var queryModel = new GetStudentIdentityByStudentIdQuery() { StudentId = studentId };
+        //[HttpGet("student-id/{studentId}")]
+        //public async Task<IActionResult> GetByStudentId(int studentId)
+        //{
+        //    var queryModel = new GetStudentIdentityByStudentIdQuery() { StudentId = studentId };
 
-            return CustomActionResult(await _mediator.Send(queryModel));
-        }
+        //    return CustomActionResult(await _mediator.Send(queryModel));
+        //}
 
         [HttpPut()]
         public async Task<IActionResult> UpdateStudentIdentity(UpdateStudentIdentityDto updateStudentIdentityDto)
