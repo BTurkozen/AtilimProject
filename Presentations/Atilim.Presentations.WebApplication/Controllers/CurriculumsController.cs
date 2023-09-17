@@ -34,9 +34,17 @@ namespace Atilim.Presentations.WebApplication.Controllers
 
         public async Task<IActionResult> Insert()
         {
+            var lessons = await _lessonService.GetAll();
+
+            var curriculumLessons = lessons.Select(l => new CurriculumLessonViewModel
+            {
+                LessonId = l.Id,
+                Lesson = l,
+            }).ToList();
+
             var result = new CurriculumWithLessonViewModel()
             {
-                Lessons = await _lessonService.GetAll(),
+                CurriculumLessons = curriculumLessons,
             };
 
             return View(result);
@@ -47,7 +55,13 @@ namespace Atilim.Presentations.WebApplication.Controllers
         {
             var lessons = await _lessonService.GetAll();
 
-            curriculumWithLessonViewModel.Lessons = lessons.Where(l => curriculumWithLessonViewModel.SelectedLessons.Contains(l.Id)).ToList();
+            curriculumWithLessonViewModel.CurriculumLessons = lessons.Where(l => curriculumWithLessonViewModel.SelectedCurriculumLessons.Contains(l.Id))
+                                                                     .Select(l => new CurriculumLessonViewModel
+                                                                     {
+                                                                         LessonId = l.Id,
+                                                                         Lesson = l,
+                                                                     })
+                                                                     .ToList();
 
             var result = await _curriculumService.InsertAsync(curriculumWithLessonViewModel);
 
@@ -60,13 +74,28 @@ namespace Atilim.Presentations.WebApplication.Controllers
         {
             var result = await _curriculumService.GetByIdAsync(id);
 
+            result.Lessons = await _lessonService.GetAll();
+
+            result.SelectedCurriculumLessons = result.CurriculumLessons.Select(cl => cl.LessonId).ToList();
+
             return View(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(CurriculumViewModel curriculumViewModel)
+        public async Task<IActionResult> Update(CurriculumWithLessonViewModel curriculumWithLessonViewModel)
         {
-            var result = await _curriculumService.UpdateAsync(curriculumViewModel);
+
+            var lessons = await _lessonService.GetAll();
+
+            curriculumWithLessonViewModel.CurriculumLessons = lessons.Where(l => curriculumWithLessonViewModel.SelectedCurriculumLessons.Contains(l.Id))
+                                                                    .Select(l => new CurriculumLessonViewModel
+                                                                    {
+                                                                        LessonId = l.Id,
+                                                                        Lesson = l,
+                                                                    })
+                                                                    .ToList();
+
+            var result = await _curriculumService.UpdateAsync(curriculumWithLessonViewModel);
 
             return RedirectToAction(nameof(Index));
         }

@@ -17,6 +17,8 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
         {
             var curriculum = await _context.Curriculums
                                            .AsNoTracking()
+                                           .Include(c => c.CurriculumLessons)
+                                             .ThenInclude(cl => cl.Lesson)
                                            .FirstOrDefaultAsync(c => c.Id == id);
 
             return curriculum;
@@ -26,6 +28,8 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
         {
             var curriculums = await _context.Curriculums
                                             .AsNoTracking()
+                                            .Include(c => c.CurriculumLessons)
+                                               .ThenInclude(cl => cl.Lesson)
                                             .ToListAsync();
 
             return curriculums;
@@ -35,7 +39,8 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
         {
             var curriculumWithLessonsDto = await _context.Curriculums
                                                          .AsNoTracking()
-                                                         .Include(c => c.Lessons)
+                                                         .Include(c => c.CurriculumLessons)
+                                                            .ThenInclude(cl => cl.Lesson)
                                                          .AsSplitQuery()
                                                          .FirstOrDefaultAsync(c => c.Id == id);
 
@@ -46,7 +51,8 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
         {
             var curriculumWithLessonsDtos = await _context.Curriculums
                                                           .AsNoTracking()
-                                                          .Include(c => c.Lessons)
+                                                          .Include(c => c.CurriculumLessons)
+                                                            .ThenInclude(cl => cl.Lesson)
                                                           .AsSplitQuery()
                                                           .ToListAsync();
             return curriculumWithLessonsDtos;
@@ -54,7 +60,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
 
         public async Task<int> InsertAsync(Curriculum curriculum)
         {
-            await _context.AddAsync(curriculum);
+            await _context.Curriculums.AddAsync(curriculum);
 
             await _context.SaveChangesAsync();
 
@@ -68,7 +74,15 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
 
             if (hasCurriculum)
             {
-                _context.Update(hasCurriculum);
+                var removeCurriculumLessons = await _context.CurriculumLesson.Where(cl => cl.CurriculumId == curriculum.Id).ToArrayAsync();
+
+                _context.RemoveRange(removeCurriculumLessons);
+
+                await _context.SaveChangesAsync();
+
+                _context.Curriculums.Update(curriculum);
+
+                await _context.CurriculumLesson.AddRangeAsync(curriculum.CurriculumLessons);
 
                 await _context.SaveChangesAsync();
             }
@@ -78,26 +92,32 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var hasCurriculum = await _context.Curriculums.AnyAsync(c => c.Id == id);
+            var curriculum = await _context.Curriculums
+                                           .Include(c => c.CurriculumLessons)
+                                           .FirstOrDefaultAsync(c => c.Id == id);
 
-            if (hasCurriculum)
+            if (curriculum is not null)
             {
-                var changeCurriculum = new Lesson()
-                {
-                    Id = id,
-                    IsDeleted = true,
-                };
+                //var changeCurriculum = new Lesson()
+                //{
+                //    Id = id,
+                //    IsDeleted = true,
+                //};
 
-                _context.Attach(changeCurriculum);
+                //_context.Attach(changeCurriculum);
 
-                _context.Entry(changeCurriculum)
-                        .Property(l => l.IsDeleted)
-                        .IsModified = true;
+                //_context.Entry(changeCurriculum)
+                //        .Property(l => l.IsDeleted)
+                //        .IsModified = true;
+
+                curriculum.IsDeleted = true;
+
+                curriculum.CurriculumLessons.Clear();
 
                 await _context.SaveChangesAsync();
             }
 
-            return hasCurriculum;
+            return curriculum is not null;
         }
     }
 }

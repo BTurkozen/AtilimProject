@@ -9,7 +9,7 @@ namespace Atilim.Services.Identity.Application.Features.Commands.CurriculumComma
 {
     public class UpdateCurriculumCommand : IRequest<ResponseDto<NoContentDto>>
     {
-        public UpdateCurriculumDto UpdateCurriculum { get; set; }
+        public UpdateCurriculumWithLessonsDto UpdateCurriculum { get; set; }
         public class UpdateCurriculumCommandHandler : IRequestHandler<UpdateCurriculumCommand, ResponseDto<NoContentDto>>
         {
             private readonly ICurriculumService _curriculumService;
@@ -23,7 +23,16 @@ namespace Atilim.Services.Identity.Application.Features.Commands.CurriculumComma
 
             public async Task<ResponseDto<NoContentDto>> Handle(UpdateCurriculumCommand request, CancellationToken cancellationToken)
             {
-                var curriculum = _mapper.Map<Curriculum>(request.UpdateCurriculum);
+                var curriculum = new Curriculum()
+                {
+                    Id = request.UpdateCurriculum.Id,
+                    CurriculumName = request.UpdateCurriculum.CurriculumName,
+                    CurriculumLessons = request.UpdateCurriculum.CurriculumLessons.Select(cl => new CurriculumLesson
+                    {
+                        CurriculumId = request.UpdateCurriculum.Id,
+                        LessonId = cl.LessonId,
+                    }).ToList(),
+                };
 
                 var hasUpdated = await _curriculumService.UpdateAsync(curriculum);
 

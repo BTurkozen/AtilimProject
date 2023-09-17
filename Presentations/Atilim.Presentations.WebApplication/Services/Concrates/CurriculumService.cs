@@ -2,6 +2,8 @@
 using Atilim.Presentations.WebApplication.ViewModels.CurriculumViewModels;
 using Atilim.Shared.Dtos;
 using Atilim.Shared.Settings.Interfaces;
+using System.Text;
+using System.Text.Json;
 
 namespace Atilim.Presentations.WebApplication.Services.Concrates
 {
@@ -25,11 +27,11 @@ namespace Atilim.Presentations.WebApplication.Services.Concrates
             return result.Data;
         }
 
-        public async Task<CurriculumViewModel> GetByIdAsync(int id)
+        public async Task<CurriculumWithLessonViewModel> GetByIdAsync(int id)
         {
             var response = await _httpClient.GetAsync($"{_clientInfos.URL}/curriculums/curriculum/{id}");
 
-            var result = await response.Content.ReadFromJsonAsync<ResponseDto<CurriculumViewModel>>();
+            var result = await response.Content.ReadFromJsonAsync<ResponseDto<CurriculumWithLessonViewModel>>();
 
             return result.Data;
         }
@@ -51,29 +53,33 @@ namespace Atilim.Presentations.WebApplication.Services.Concrates
 
         public async Task<int> InsertAsync(CurriculumWithLessonViewModel curriculumWithLessonViewModel)
         {
+            var jsonData = JsonSerializer.Serialize(curriculumWithLessonViewModel);
 
-            // TODO =>BURAK Bakılacak  Post işleminde 404 geliyor.
-            var response = await _httpClient.PostAsJsonAsync($"{_clientInfos.URL}/curriculums/InsertCurriculumWithLesson", curriculumWithLessonViewModel);
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync($"{_clientInfos.URL}/curriculums", content);
 
             var result = await response.Content.ReadFromJsonAsync<ResponseDto<int>>();
 
             return result.Data;
         }
 
-        public async Task<bool> UpdateAsync(CurriculumViewModel curriculumViewModel)
+        public async Task<bool> UpdateAsync(CurriculumWithLessonViewModel curriculumWithLessonViewModel)
         {
-            var response = await _httpClient.PutAsJsonAsync($"{_clientInfos.URL}/curriculums", curriculumViewModel);
+            var jsonData = JsonSerializer.Serialize(curriculumWithLessonViewModel);
 
-            var result = await response.Content.ReadFromJsonAsync<ResponseDto<bool>>();
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-            return result.Data;
+            var response = await _httpClient.PutAsync($"{_clientInfos.URL}/curriculums", content);
+
+            return response.StatusCode == System.Net.HttpStatusCode.NoContent;
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var response = await _httpClient.DeleteFromJsonAsync<ResponseDto<bool>>($"{_clientInfos.URL}/curriculums/{id}");
+            var response = await _httpClient.DeleteAsync($"{_clientInfos.URL}/curriculums/{id}");
 
-            return response.Data;
+            return response.StatusCode == System.Net.HttpStatusCode.NoContent;
         }
     }
 }

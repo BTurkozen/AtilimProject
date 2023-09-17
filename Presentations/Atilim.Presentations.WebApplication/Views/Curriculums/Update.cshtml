@@ -1,4 +1,4 @@
-﻿@model CurriculumViewModel
+﻿@model CurriculumWithLessonViewModel
 
 <div class="row">
     <div class="col-md-12">
@@ -13,6 +13,21 @@
                         <input asp-for="CurriculumName" class="form-control" />
                         <span asp-validation-for="CurriculumName" class="text-danger"></span>
                     </div>
+
+                    <ul class="list-group mt-2">
+                        @foreach (var lesson in Model.Lessons)
+                        {
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1"
+                                       type="checkbox"
+                                       name="SelectedCurriculumLessons"
+                                       value="@lesson.Id"
+                                       aria-label="..."
+                                @(Model.SelectedCurriculumLessons.Contains(lesson.Id) ? "checked" : "")>
+                                @lesson.LessonName
+                            </li>
+                        }
+                    </ul>
 
                     <div class="form-group mt-2">
                         <input type="submit" value="Update" class="btn btn-primary" />

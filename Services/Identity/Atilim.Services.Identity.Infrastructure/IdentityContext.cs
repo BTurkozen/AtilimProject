@@ -35,6 +35,8 @@ namespace Atilim.Services.Identity.Infrastructure
         /// </summary>
         public DbSet<Lesson> Lessons { get; set; }
 
+        public DbSet<CurriculumLesson> CurriculumLesson { get; set; }
+
         /// <summary>
         /// Kullanıcı Refresh Token Tablosu
         /// </summary>

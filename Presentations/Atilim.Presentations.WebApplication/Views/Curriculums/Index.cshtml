@@ -2,9 +2,9 @@
 
 <div class="row">
     <div class="col-md-6">
-        <h6>
+        <h4>
             Curriculum Page
-        </h6>
+        </h4>
     </div>
     <div class="col-md-6">
         <a asp-controller="Curriculums" asp-action="Insert" class="btn btn-success">
@@ -34,42 +34,42 @@
                         <td>@curriculum.Id</td>
                         <td>@curriculum.CurriculumName</td>
                         <td>
-                            <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#lesson-collapse-@curriculum.Id" aria-expanded="false" aria-controls="multiCollapseExample2">
-                                Lesson Count: @curriculum.Lessons.Where(l => l.Status).Count()
-                            </button>
-                            <div class="col">
-                                <div class="collapse" id="lesson-collapse-@curriculum.Id">
-                                    <div class="card card-body">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Id</th>
-                                                    <th>LessonName</th>
-                                                    <th>LessonCode</th>
-                                                    <th>Status</th>
-                                                    <th>Credit</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var lesson in curriculum.Lessons)
-                                                {
-                                                    <tr>
-                                                        <td>@lesson.Id</td>
-                                                        <td>@lesson.LessonName</td>
-                                                        <td>@lesson.LessonCode</td>
-                                                        <td>@lesson.Status</td>
-                                                        <td>@lesson.Credit</td>
-                                                    </tr>
-                                                }
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                            <a class="btn btn-dark w-50" data-toggle="collapse" href="#lesson-collapse-@curriculum.Id" role="button" aria-expanded="false" aria-controls="lesson-collapse-@curriculum.Id">
+                                Lesson Count: @curriculum.CurriculumLessons.Count()
+                            </a>
                         </td>
                         <td>
                             <a asp-controller="Curriculums" asp-action="Delete" asp-route-id="@curriculum.Id" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                             <a asp-controller="Curriculums" asp-action="Update" asp-route-id="@curriculum.Id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="collapse" id="lesson-collapse-@curriculum.Id" colspan="5">
+                            <div class="card card-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>LessonName</th>
+                                            <th>LessonCode</th>
+                                            <th>Status</th>
+                                            <th>Credit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var curriculumLesson in curriculum.CurriculumLessons)
+                                        {
+                                            <tr>
+                                                <td>@curriculumLesson.Lesson.Id</td>
+                                                <td>@curriculumLesson.Lesson.LessonName</td>
+                                                <td>@curriculumLesson.Lesson.LessonCode</td>
+                                                <td>@curriculumLesson.Lesson.Status</td>
+                                                <td>@curriculumLesson.Lesson.Credit</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </td>
                     </tr>
                 }

@@ -24,7 +24,16 @@ namespace Atilim.Services.Identity.Application.Features.Commands.CurriculumComma
 
             public async Task<ResponseDto<int>> Handle(CreateCurriculumWithLessonsCommand request, CancellationToken cancellationToken)
             {
-                var curriculum = _mapper.Map<Curriculum>(request.Curriculum);
+
+                var curriculum = new Curriculum()
+                {
+                    CurriculumName = request.Curriculum.CurriculumName,
+                    CurriculumLessons = request.Curriculum.CurriculumLessons.Select(cl => new CurriculumLesson
+                    {
+                        CurriculumId = cl.CurriculumId,
+                        LessonId = cl.LessonId,
+                    }).ToList()
+                };
 
                 var curriculumId = await _curriculumService.InsertAsync(curriculum);
 

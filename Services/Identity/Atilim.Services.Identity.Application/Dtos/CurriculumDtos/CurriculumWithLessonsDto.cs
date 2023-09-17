@@ -6,9 +6,9 @@ namespace Atilim.Services.Identity.Application.Dtos.CurriculumDtos
     {
         public CurriculumWithLessonsDto()
         {
-            Lessons = new List<LessonDto>();
+            CurriculumLessons = new List<CurriculumLessonDto>();
         }
 
-        public List<LessonDto> Lessons { get; set; }
+        public List<CurriculumLessonDto> CurriculumLessons { get; set; }
     }
 }

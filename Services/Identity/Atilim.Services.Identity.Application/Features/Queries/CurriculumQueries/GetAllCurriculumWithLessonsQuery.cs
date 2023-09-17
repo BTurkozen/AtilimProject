@@ -1,4 +1,5 @@
 ﻿using Atilim.Services.Identity.Application.Dtos.CurriculumDtos;
+using Atilim.Services.Identity.Application.Dtos.LessonDtos;
 using Atilim.Services.Identity.Application.Interfaces.StudentInterfaces;
 using Atilim.Shared.Dtos;
 using AutoMapper;
@@ -25,7 +26,30 @@ namespace Atilim.Services.Identity.Application.Features.Queries.CurriculumQuerie
 
                 if (curriculumWithLessons.Count > 0)
                 {
-                    var curriculumWithLessonsDtos = _mapper.Map<List<CurriculumWithLessonsDto>>(curriculumWithLessons);
+                    var curriculumWithLessonsDtos = curriculumWithLessons.Select(c => new CurriculumWithLessonsDto
+                    {
+                        Id = c.Id,
+                        CurriculumName = c.CurriculumName,
+                        IsDeleted = c.IsDeleted,
+                        CurriculumLessons = c.CurriculumLessons.Select(cl => new CurriculumLessonDto
+                        {
+                            CurriculumId = cl.CurriculumId,
+                            Curriculum = new CurriculumDto
+                            {
+                                CurriculumName = cl.Curriculum.CurriculumName,
+                                Id = cl.Curriculum.Id,
+                            },
+                            LessonId = cl.LessonId,
+                            Lesson = new LessonDto
+                            {
+                                Id = cl.LessonId,
+                                Credit = cl.Lesson.Credit,
+                                LessonCode = cl.Lesson.LessonCode,
+                                LessonName = cl.Lesson.LessonName,
+                                Status = cl.Lesson.Status
+                            }
+                        }).ToList()
+                    }).ToList();
 
                     return ResponseDto<List<CurriculumWithLessonsDto>>.Success(curriculumWithLessonsDtos, System.Net.HttpStatusCode.OK);
                 }

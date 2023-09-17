@@ -10,6 +10,7 @@ namespace Atilim.Services.Identity.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "admin")]
     public class CurriculumsController : CustomControllerBase
     {
         private readonly IMediator _mediator;
@@ -20,28 +21,24 @@ namespace Atilim.Services.Identity.Api.Controllers
         }
 
         [HttpGet("curriculums")]
-        [Authorize(Roles = "admin")]
         public async Task<IActionResult> GetAll()
         {
             return CustomActionResult(await _mediator.Send(new GetAllCurriculumQuery()));
         }
 
         [HttpGet("curriculum/{id}")]
-        [Authorize(Roles = "admin,student")]
         public async Task<IActionResult> GetById(int id)
         {
             return CustomActionResult(await _mediator.Send(new GetCurriculumByIdQuery() { Id = id }));
         }
 
         [HttpGet("curriculum-with-lessons")]
-        [Authorize(Roles = "admin,student")]
         public async Task<IActionResult> GetCurriculumWithLessons()
         {
             return CustomActionResult(await _mediator.Send(new GetAllCurriculumWithLessonsQuery()));
         }
 
         [HttpGet("curriculum-with-lessons-by-id/{id}")]
-        [Authorize(Roles = "admin,student")]
         public async Task<IActionResult> GetCurriculumWithLessonsById(int id)
         {
             return CustomActionResult(await _mediator.Send(new GetCurriculumWithLessonsByIdQuery() { Id = id }));
@@ -51,6 +48,18 @@ namespace Atilim.Services.Identity.Api.Controllers
         public async Task<IActionResult> InsertCurriculumWithLesson(CreateCurriculumWithLessonsDto curriculumWithLessonsDto)
         {
             return CustomActionResult(await _mediator.Send(new CreateCurriculumWithLessonsCommand() { Curriculum = curriculumWithLessonsDto }));
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateCurriculumWithLesson(UpdateCurriculumWithLessonsDto updateCurriculumWithLessonsDto)
+        {
+            return CustomActionResult(await _mediator.Send(new UpdateCurriculumCommand() { UpdateCurriculum = updateCurriculumWithLessonsDto }));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCurriculumWithLesson(int id)
+        {
+            return CustomActionResult(await _mediator.Send(new DeleteCurriculumCommand() { Id = id }));
         }
     }
 }

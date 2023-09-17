@@ -18,8 +18,8 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
                    .IsUnique()
                    .HasName("CurriculumName");
 
-            builder.HasMany(b => b.Lessons)
-                   .WithMany(b => b.Curriculums);
+            //builder.HasMany(b => b.Lessons)
+            //       .WithMany(b => b.Curriculums);
 
             builder.HasMany(b => b.Students)
                    .WithOne(b => b.Curriculum)

@@ -90,7 +90,7 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
         /// <returns></returns>
         private static void UpdateLessonSeeds(IdentityContext context)
         {
-            if (context.Lessons.Any() && context.Curriculums.Select(c => c.Lessons).Any() is false)
+            if (context.Lessons.Any() && context.Curriculums.Select(c => c.CurriculumLessons).Any() is false)
             {
                 var curriculums = context.Curriculums.ToList();
 
@@ -98,24 +98,24 @@ namespace Atilim.Services.Identity.Infrastructure.Seeds
 
                 for (int i = 0; i < curriculums.Count; i++)
                 {
-                    var curriculumLessons = new List<Lesson>();
+                    var curriculumLessons = new List<CurriculumLesson>();
 
                     if (curriculums[i].CurriculumName == "Bilgisayar_Mühendisliği")
                     {
-                        curriculumLessons = lessons.Where(l => l.LessonCode == "MATH102" || l.LessonCode == "CMPE201" || l.LessonCode == "MATH201").ToList();
+                        curriculumLessons = lessons.Where(l => l.LessonCode == "MATH102" || l.LessonCode == "CMPE201" || l.LessonCode == "MATH201").Select(l => new CurriculumLesson { CurriculumId = curriculums[i].Id, LessonId = l.Id }).ToList();
                     }
                     else if (curriculums[i].CurriculumName == "Grafik_Mühendisliği")
                     {
-                        curriculumLessons = lessons.Where(l => l.LessonCode == "GRA105" || l.LessonCode == "HUM101").ToList();
+                        curriculumLessons = lessons.Where(l => l.LessonCode == "GRA105" || l.LessonCode == "HUM101").Select(l => new CurriculumLesson { CurriculumId = curriculums[i].Id, LessonId = l.Id }).ToList();
                     }
                     else if (curriculums[i].CurriculumName == "Ingiliz_Dil_Edebiyatı")
                     {
-                        curriculumLessons = lessons.Where(l => l.LessonCode == "MATH102" || l.LessonCode == "MATH201" || l.LessonCode == "ENG102").ToList();
+                        curriculumLessons = lessons.Where(l => l.LessonCode == "MATH102" || l.LessonCode == "MATH201" || l.LessonCode == "ENG102").Select(l => new CurriculumLesson { CurriculumId = curriculums[i].Id, LessonId = l.Id }).ToList();
                     }
 
-                    curriculums[i].Lessons = curriculumLessons;
+                    curriculums[i].CurriculumLessons = curriculumLessons;
 
-                    context.AddAsync(curriculums[i].Lessons);
+                    context.AddAsync(curriculums[i].CurriculumLessons);
                 }
 
                 context.SaveChanges();

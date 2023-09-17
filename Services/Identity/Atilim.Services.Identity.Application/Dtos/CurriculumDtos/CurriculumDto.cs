@@ -5,5 +5,6 @@ namespace Atilim.Services.Identity.Application.Dtos.CurriculumDtos
     public class CurriculumDto : BaseEntityDto
     {
         public string CurriculumName { get; set; }
+        public List<CurriculumLessonDto> CurriculumLessons { get; set; }
     }
 }

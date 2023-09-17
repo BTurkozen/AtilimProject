@@ -25,8 +25,8 @@ namespace Atilim.Services.Identity.Infrastructure.Configurations
             builder.HasIndex(b => b.LessonCode)
                    .IsUnique();
 
-            builder.HasMany(b => b.Curriculums)
-                   .WithMany(b => b.Lessons);
+            //builder.HasMany(b => b.Curriculums)
+            //       .WithMany(b => b.Lessons);
 
             builder.HasData(
                 new Lesson() { Id = 1, CreatedBy = 1, LessonCode = "HUM101", LessonName = "Türk Demokrasi Tarihi", Status = true, Credit = 5 },

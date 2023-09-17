@@ -1,4 +1,5 @@
 ﻿@model CurriculumWithLessonViewModel
+
 <h4>CurriculumViewModel</h4>
 <hr />
 <div class="row">
@@ -16,11 +17,11 @@
             </div>
 
             <ul class="list-group mt-2">
-                @foreach (var lesson in Model.Lessons)
+                @foreach (var curriculumLesson in Model.CurriculumLessons)
                 {
                     <li class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" name="SelectedLessons" value="@lesson.Id" aria-label="...">
-                        @lesson.LessonName
+                        <input class="form-check-input me-1" type="checkbox" name="SelectedCurriculumLessons" value="@curriculumLesson.Lesson.Id" aria-label="...">
+                        @curriculumLesson.Lesson.LessonName
                     </li>
                 }
             </ul>

@@ -2,8 +2,10 @@
 
 namespace Atilim.Services.Identity.Application.Dtos.CurriculumDtos
 {
-    public sealed class UpdateCurriculumDto : BaseEntityDto
+    public sealed class UpdateCurriculumWithLessonsDto : BaseEntityDto
     {
+        public int Id { get; set; }
         public string CurriculumName { get; set; }
+        public List<CurriculumLessonDto> CurriculumLessons { get; set; }
     }
 }

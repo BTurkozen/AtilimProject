@@ -6,6 +6,8 @@
         public string LessonName { get; set; }
         public bool Status { get; set; }
         public int Credit { get; set; }
-        public ICollection<Curriculum> Curriculums { get; set; }
+        //public ICollection<Curriculum> Curriculums { get; set; }
+        public ICollection<CurriculumLesson> CurriculumLessons { get; set; }
+
     }
 }
