@@ -31,5 +31,7 @@ namespace Atilim.Services.Identity.Api.Controllers
         {
             return CustomActionResult(await _medator.Send(new GetStudentByIdQuery() { StudentId = studentId }));
         }
+
+
     }
 }

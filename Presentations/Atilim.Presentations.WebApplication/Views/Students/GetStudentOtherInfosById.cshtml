@@ -1,0 +1,125 @@
+﻿@model StudentViewModel
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table striped">
+            <caption class="font-weight-bold">Student Identity</caption>
+            <thead>
+                <tr>
+                    <th>TCIdentificationNo </th>
+                    <th>Name </th>
+                    <th>Surname </th>
+                    <th>CityOfBirth </th>
+                    <th>DateOfBirth </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.StudentIdentity.TCIdentificationNo </td>
+                    <td>@Model.StudentIdentity.Name </td>
+                    <td>@Model.StudentIdentity.Surname </td>
+                    <td>@Model.StudentIdentity.CityOfBirth </td>
+                    <td>@Model.StudentIdentity.DateOfBirth </td>
+                    <td>
+                        <a asp-controller="Student" asp-action="Update" asp-route-id="@Model.StudentIdentity.Id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table table striped">
+            <caption class="font-weight-bold">Contact Information</caption>
+            <thead>
+                <tr>
+                    <th>Address </th>
+                    <th>Country </th>
+                    <th>City </th>
+                    <th>District </th>
+                    <th>Email </th>
+                    <th>MobilePhoneNumber</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.ContactInformation.Address</td>
+                    <td>@Model.ContactInformation.Country</td>
+                    <td>@Model.ContactInformation.City</td>
+                    <td>@Model.ContactInformation.District</td>
+                    <td>@Model.ContactInformation.Email</td>
+                    <td>@Model.ContactInformation.MobilePhoneNumber </td>
+                    <td>
+                        <a asp-controller="Student" asp-action="Update" asp-route-id="@Model.ContactInformation.Id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <caption class="font-weight-bold">
+                Curriculum && Lesson
+            </caption>
+            <thead>
+                <tr>
+                    <th>CurriculumName</th>
+                    <th>Lessons</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Curriculum.CurriculumName</td>
+                    <td>
+                        <a class="btn btn-dark w-50" data-toggle="collapse" href="#lesson-collapse-@Model.Curriculum.Id" role="button" aria-expanded="false" aria-controls="lesson-collapse-@Model.Curriculum.Id">
+                            Lesson Count: @Model.Curriculum.CurriculumLessons.Count()
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-controller="Curriculums" asp-action="Update" asp-route-id="@Model.Curriculum.Id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="collapse" id="lesson-collapse-@Model.Curriculum.Id" colspan="5">
+                        <div class="card card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>LessonName</th>
+                                        <th>LessonCode</th>
+                                        <th>Status</th>
+                                        <th>Credit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var curriculumLesson in Model.Curriculum.CurriculumLessons)
+                                    {
+                                        <tr>
+                                            <td>@curriculumLesson.Lesson.Id</td>
+                                            <td>@curriculumLesson.Lesson.LessonName</td>
+                                            <td>@curriculumLesson.Lesson.LessonCode</td>
+                                            <td>@curriculumLesson.Lesson.Status</td>
+                                            <td>@curriculumLesson.Lesson.Credit</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+

@@ -12,10 +12,16 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
         {
             _context = context;
         }
-        public async Task<Student> GetStudentByIdAsycn(int studentId)
+        public async Task<Student> GetStudentByIdAsync(int studentId)
         {
             var student = await _context.Students
                                         .AsNoTracking()
+                                        .Include(s => s.Curriculum)
+                                           .ThenInclude(c => c.CurriculumLessons)
+                                               .ThenInclude(c => c.Lesson)
+                                        .Include(s => s.StudentIdentity)
+                                           .ThenInclude(s => s.ContactInformation)
+                                        .AsSplitQuery()
                                         .FirstOrDefaultAsync(s => s.Id == studentId);
 
             return student;
@@ -25,6 +31,8 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
         {
             var students = await _context.Students
                                          .AsNoTracking()
+                                         .Include(s => s.Curriculum)
+                                         .Include(s => s.StudentIdentity)
                                          .ToListAsync();
 
             return students;

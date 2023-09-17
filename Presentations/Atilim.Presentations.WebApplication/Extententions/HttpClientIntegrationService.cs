@@ -15,6 +15,8 @@ namespace Atilim.Presentations.WebApplication.Extententions
             services.AddHttpClient<ICurriculumService, CurriculumService>().AddHttpMessageHandler<JwtAuthenticationHandler>();
 
             services.AddHttpClient<ILessonService, LessonService>().AddHttpMessageHandler<JwtAuthenticationHandler>();
+
+            services.AddHttpClient<IStudentService, StudentService>().AddHttpMessageHandler<JwtAuthenticationHandler>();
         }
     }
 }

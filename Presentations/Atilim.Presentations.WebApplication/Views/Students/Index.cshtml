@@ -1,0 +1,37 @@
+﻿@model List<StudentViewModel>
+
+<div class="col-md-3">
+    <div class="row">
+        <div class="col-md-12">
+            @foreach (var student in Model)
+            {
+                <button class="btn btn-dark text-white w-100" onclick="on_click_load_student_infos(Number('@student.Id'))">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>Id :</strong> <span>@student.Id</span>
+                        </div>
+                        <div class="col-md-12">
+                            <strong>Full Name :</strong> <span>@student.FullName</span>
+                        </div>
+                        <div class="col-md-12">
+                            <strong>Curriculum :</strong> <span>@student.Curriculum.CurriculumName</span>
+                        </div>
+                    </div>
+                </button>
+            }
+        </div>
+    </div>
+</div>
+<div class="col-md-9 student-info-section">
+</div>
+
+<script>
+    function on_click_load_student_infos(studentId)
+    {
+        $.get('/Students/GetStudentOtherInfosById', { studentId }, (result) =>
+        {
+            $('.student-info-section').empty();
+            $('.student-info-section').html(result);
+        });
+    }
+</script>
