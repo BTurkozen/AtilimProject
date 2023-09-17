@@ -32,7 +32,7 @@ namespace Atilim.Services.Identity.Application.Features.Queries.StudentQueries
                     {
                         Id = s.Id,
                         StudentNo = s.StudentNo,
-                        FullName = $"{s.StudentIdentity.Name} {s.StudentIdentity.Name}",
+                        FullName = $"{s.StudentIdentity.Name} {s.StudentIdentity.Surname}",
                         IsDeleted = s.IsDeleted,
                         Curriculum = new CurriculumDto
                         {

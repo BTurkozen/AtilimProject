@@ -1,20 +1,42 @@
 ﻿@model List<StudentViewModel>
 
+<style>
+    .active {
+        color: black !important;
+        background-color: darkgrey !important;
+        border: 1px dashed black !important;
+    }
+
+    button p {
+        margin-bottom: 5px !important;
+        text-align: left !important;
+    }
+</style>
+
 <div class="col-md-3">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 student-base-info">
             @foreach (var student in Model)
             {
-                <button class="btn btn-dark text-white w-100" onclick="on_click_load_student_infos(Number('@student.Id'))">
+                <button class="btn btn-dark text-white w-100 mb-2" onclick="on_click_load_student_infos(this,Number('@student.Id'))">
                     <div class="row">
                         <div class="col-md-12">
-                            <strong>Id :</strong> <span>@student.Id</span>
+                            <p class="w-100">
+                                <span>Id :</span>
+                                <span>@student.Id</span>
+                            </p>
                         </div>
                         <div class="col-md-12">
-                            <strong>Full Name :</strong> <span>@student.FullName</span>
+                            <p>
+                                <strong>Full Name :</strong>
+                                <span>@student.FullName</span>
+                            </p>
                         </div>
                         <div class="col-md-12">
-                            <strong>Curriculum :</strong> <span>@student.Curriculum.CurriculumName</span>
+                            <p>
+                                <strong>Curriculum :</strong>
+                                <span>@student.Curriculum.CurriculumName</span>
+                            </p>
                         </div>
                     </div>
                 </button>
@@ -26,8 +48,12 @@
 </div>
 
 <script>
-    function on_click_load_student_infos(studentId)
+    function on_click_load_student_infos(e, studentId)
     {
+        $('.student-base-info button').removeClass("active");
+
+        $(e).addClass('active');
+
         $.get('/Students/GetStudentOtherInfosById', { studentId }, (result) =>
         {
             $('.student-info-section').empty();

@@ -35,7 +35,7 @@ namespace Atilim.Services.Identity.Application.Features.Queries.StudentQueries
                     {
                         Id = student.Id,
                         StudentNo = student.StudentNo,
-                        FullName = $"{student.StudentIdentity.Name} {student.StudentIdentity.Name}",
+                        FullName = $"{student.StudentIdentity.Name} {student.StudentIdentity.Surname}",
                         IsDeleted = student.IsDeleted,
                         Curriculum = new CurriculumDto
                         {
