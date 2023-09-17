@@ -22,7 +22,7 @@
                     <td>@Model.StudentIdentity.CityOfBirth </td>
                     <td>@Model.StudentIdentity.DateOfBirth </td>
                     <td>
-                        <button id="student-identity-update-button" type="button" class="btn btn-primary" data-id="@Model.StudentIdentity.Id" data-toggle="modal" data-target="#student-edit-modal">
+                        <button id="student-identity-update-button" type="button" class="btn btn-primary" data-id="" data-toggle="modal" data-target="#student-edit-modal" onclick="update_button(this, @Model.StudentIdentity.Id, @Model.Id, 'Students', 'UpdateStudentIdentity')">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                     </td>
@@ -53,7 +53,7 @@
                     <td>@Model.ContactInformation.Email</td>
                     <td>@Model.ContactInformation.MobilePhoneNumber </td>
                     <td>
-                        <button id="contact-information-update-button" type="button" class="btn btn-primary" data-id="@Model.ContactInformation.Id" data-toggle="modal" data-target="#student-edit-modal">
+                        <button id="contact-information-update-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#student-edit-modal" onclick="update_button(this, @Model.ContactInformation.Id, @Model.Id, 'Students', 'UpdateContactInformation')">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                     </td>

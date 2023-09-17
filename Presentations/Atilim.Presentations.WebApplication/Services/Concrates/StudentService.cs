@@ -64,7 +64,7 @@ namespace Atilim.Presentations.WebApplication.Services.Concrates
 
             var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PutAsync($"{_clientInfos.URL}/students/contact-information", content);
+            var response = await _httpClient.PutAsync($"{_clientInfos.URL}/ContactInformations", content);
 
             var result = await response.Content.ReadFromJsonAsync<ResponseDto<NoContentDto>>();
 
@@ -74,16 +74,16 @@ namespace Atilim.Presentations.WebApplication.Services.Concrates
 
         public async Task<StudentIdentityViewModel> GetStudentIdentityByIdAsync(int id)
         {
-            var response = await _httpClient.GetFromJsonAsync<ResponseDto<StudentIdentityViewModel>>($"{_clientInfos.URL}/StudentIdentities/{id}");
+            var response = await _httpClient.GetFromJsonAsync<ResponseDto<StudentIdentityViewModel>>($"{_clientInfos.URL}/StudentIdentities/student-identity-id/{id}");
 
             var result = response.Data;
 
             return result;
         }
 
-        public async Task<StudentIdentityViewModel> GetContactInformationByIdAsync(int id)
+        public async Task<ContactInformationViewModel> GetContactInformationByIdAsync(int id)
         {
-            var response = await _httpClient.GetFromJsonAsync<ResponseDto<StudentIdentityViewModel>>($"{_clientInfos.URL}/StudentIdentities/contact-information-by-id/{id}");
+            var response = await _httpClient.GetFromJsonAsync<ResponseDto<ContactInformationViewModel>>($"{_clientInfos.URL}/ContactInformations/{id}");
 
             var result = response.Data;
 

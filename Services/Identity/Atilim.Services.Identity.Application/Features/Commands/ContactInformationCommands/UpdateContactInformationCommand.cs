@@ -30,6 +30,7 @@ namespace Atilim.Services.Identity.Application.Features.Commands.ContactInformat
                     Email = request.ContactInformation.Email,
                     Id = request.ContactInformation.Id,
                     MobilePhoneNumber = request.ContactInformation.MobilePhoneNumber,
+                    StudentIdentityId = request.ContactInformation.StudentIdentityId,
                 };
 
                 var hasUpdateContactInformation = await _contactInformationService.UpdateAsync(contactInformation);

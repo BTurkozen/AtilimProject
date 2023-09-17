@@ -21,7 +21,7 @@ namespace Atilim.Services.Identity.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByStudentIdentityId(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             var queryModel = new ContactInformationByStudentIdentityIdQuery()
             {
@@ -31,7 +31,7 @@ namespace Atilim.Services.Identity.Api.Controllers
             return CustomActionResult(await _mediator.Send(queryModel));
         }
 
-        [HttpPut("contact-information-by-id/{id}")]
+        [HttpPut()]
         public async Task<IActionResult> UpdateContactInformation(UpdateContactInformationDto updateContactInformationDto)
         {
             var commandModel = new UpdateContactInformationCommand() { ContactInformation = updateContactInformationDto };

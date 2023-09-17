@@ -58,47 +58,47 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Update Modal</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
             </div>
-            <div class="modal-footer">
+            @* <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+            </div> *@
         </div>
     </div>
 </div>
 
-<script>
+@section Scripts{
 
-    $(document).ready(() =>
-    {
-        $('#contact-information-update-button').on('click', (this) =>
+    <script>
+        function update_button(e, id, studentId, controllerName, actionName)
         {
+            $('#student-edit-modal').modal('show');
+            $('#student-edit-modal .modal-body').empty();
 
-            console.log($(this));
-        });
+            $.get(`/${controllerName}/${actionName}`, { id }, (result) =>
+            {
+                $('#student-edit-modal .modal-body').html(result);
 
-        $('#student-identity-update-button').on('click', (this) =>
+            });
+        }
+
+        function on_click_load_student_infos(e, studentId)
         {
-            console.log($(this));
-        });
-    });
+            $('.student-base-info button').removeClass("active");
 
-    function on_click_load_student_infos(e, studentId)
-    {
-        $('.student-base-info button').removeClass("active");
+            $(e).addClass('active');
 
-        $(e).addClass('active');
-
-        $.get('/Students/GetStudentOtherInfosById', { studentId }, (result) =>
-        {
-            $('.student-info-section').empty();
-            $('.student-info-section').html(result);
-        });
-    }
-</script>
+            $.get('/Students/GetStudentOtherInfosById', { studentId }, (result) =>
+            {
+                $('.student-info-section').empty();
+                $('.student-info-section').html(result);
+            });
+        }
+    </script>
+}

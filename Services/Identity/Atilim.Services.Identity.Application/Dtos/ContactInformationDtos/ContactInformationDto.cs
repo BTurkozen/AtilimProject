@@ -10,5 +10,6 @@ namespace Atilim.Services.Identity.Application.Dtos.ContactInformationDtos
         public string District { get; set; }
         public string Email { get; set; }
         public string MobilePhoneNumber { get; set; }
+        public int StudentIdentityId { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace Atilim.Presentations.WebApplication.Services.Interfaces
         Task<StudentViewModel> GetByIdAsync(int id);
 
         Task<StudentIdentityViewModel> GetStudentIdentityByIdAsync(int id);
-        Task<StudentIdentityViewModel> GetContactInformationByIdAsync(int id);
+        Task<ContactInformationViewModel> GetContactInformationByIdAsync(int id);
 
         Task<int> InsertAsync(CreateStudentViewModel createStudentViewModel);
         Task<bool> UpdateStudentIdentityAsync(StudentIdentityViewModel studentIdentityViewModel);

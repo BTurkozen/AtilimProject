@@ -35,6 +35,7 @@ namespace Atilim.Services.Identity.Application.Features.Queries.ContactInformati
                         District = contactInformation.District,
                         Email = contactInformation.Email,
                         MobilePhoneNumber = contactInformation.MobilePhoneNumber,
+                        StudentIdentityId = contactInformation.StudentIdentityId,
                     };
 
                     return ResponseDto<ContactInformationDto>.Success(contactIdentityDto, System.Net.HttpStatusCode.OK);

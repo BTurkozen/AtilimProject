@@ -20,7 +20,7 @@ namespace Atilim.Services.Identity.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("student-identity-id/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var queryModel = new GetStudentIdentityByIdQuery() { Id = id };
@@ -28,7 +28,7 @@ namespace Atilim.Services.Identity.Api.Controllers
             return CustomActionResult(await _mediator.Send(queryModel));
         }
 
-        [HttpGet("{studentId}")]
+        [HttpGet("student-id/{studentId}")]
         public async Task<IActionResult> GetByStudentId(int studentId)
         {
             var queryModel = new GetStudentIdentityByStudentIdQuery() { StudentId = studentId };
