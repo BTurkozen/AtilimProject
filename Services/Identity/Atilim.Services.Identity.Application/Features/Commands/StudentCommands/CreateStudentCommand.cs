@@ -6,6 +6,7 @@ using Atilim.Shared.Dtos;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Security.Cryptography;
 
 namespace Atilim.Services.Identity.Application.Features.Commands.StudentCommands
@@ -18,38 +19,43 @@ namespace Atilim.Services.Identity.Application.Features.Commands.StudentCommands
             private readonly IStudentService _studentService;
             private readonly IMapper _mapper;
             private readonly UserManager<User> _userManager;
+            private readonly IUserService _userService;
 
-            public CreateStudentCommandHandler(IStudentService studentService, IMapper mapper, UserManager<User> userManager)
+            public CreateStudentCommandHandler(IStudentService studentService, IMapper mapper, UserManager<User> userManager, IUserService userService)
             {
                 _studentService = studentService;
                 _mapper = mapper;
                 _userManager = userManager;
+                _userService = userService;
             }
 
             public async Task<ResponseDto<int>> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
             {
-                var user = new User()
-                {
-                    Email = request.Student.ContactInformation.Email,
-                    Name = request.Student.StudentItentity.Name,
-                    Surname = request.Student.StudentItentity.Surname,
-                    ConcurrencyStamp = Guid.NewGuid().ToString(),
-                    NormalizedEmail = request.Student.ContactInformation.Email.ToUpper(),
-                    NormalizedUserName = $"{request.Student.StudentItentity.Name}.{request.Student.StudentItentity.Surname}".ToUpper(),
-                    UserName = $"{request.Student.StudentItentity.Name}.{request.Student.StudentItentity.Surname}".ToLowerInvariant(),
-                    PhoneNumber = request.Student.ContactInformation.MobilePhoneNumber,
-                    SecurityStamp = Guid.NewGuid().ToString(),
-                };
 
-                var numberByte = new byte[4];
+                var userId = await _userService.CreateUserAsync(request.Student);
 
-                using var randomGen = RandomNumberGenerator.Create();
+                //var user = new User()
+                //{
+                //    Email = request.Student.ContactInformation.Email,
+                //    Name = request.Student.StudentItentity.Name,
+                //    Surname = request.Student.StudentItentity.Surname,
+                //    ConcurrencyStamp = Guid.NewGuid().ToString(),
+                //    NormalizedEmail = request.Student.ContactInformation.Email.ToUpper(),
+                //    NormalizedUserName = $"{request.Student.StudentItentity.Name}.{request.Student.StudentItentity.Surname}".ToUpper(),
+                //    UserName = $"{request.Student.StudentItentity.Name}.{request.Student.StudentItentity.Surname}".ToLowerInvariant(),
+                //    PhoneNumber = request.Student.ContactInformation.MobilePhoneNumber,
+                //    SecurityStamp = Guid.NewGuid().ToString(),
+                //};
 
-                randomGen.GetBytes(numberByte);
+                //var numberByte = new byte[4];
 
-                var pss = Convert.ToBase64String(numberByte);
+                //using var randomGen = RandomNumberGenerator.Create();
 
-                await _userManager.CreateAsync(user, pss);
+                //randomGen.GetBytes(numberByte);
+
+                //var pss = Convert.ToBase64String(numberByte);
+
+                //await _userManager.CreateAsync(user, pss);
 
                 // Mail Gönderimi eklenebilir.
                 // sonuç olarak kullanıcıyı biz oluşturuyorsak kullanıcıya şifresi bir şekilde ulaştırılması gerekiyor.
@@ -74,7 +80,7 @@ namespace Atilim.Services.Identity.Application.Features.Commands.StudentCommands
                             Email = request.Student.ContactInformation.Email,
                             MobilePhoneNumber = request.Student.ContactInformation.MobilePhoneNumber,
                         },
-                        UserId = user.Id,
+                        UserId = userId,
                     }
                 };
 

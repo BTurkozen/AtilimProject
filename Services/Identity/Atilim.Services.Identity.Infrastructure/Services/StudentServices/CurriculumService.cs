@@ -53,6 +53,7 @@ namespace Atilim.Services.Identity.Infrastructure.Services.StudentServices
                                                           .AsNoTracking()
                                                           .Include(c => c.CurriculumLessons)
                                                             .ThenInclude(cl => cl.Lesson)
+                                                          .Include(c => c.Students)
                                                           .AsSplitQuery()
                                                           .ToListAsync();
             return curriculumWithLessonsDtos;

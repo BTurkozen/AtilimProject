@@ -32,6 +32,8 @@ namespace Atilim.Services.Identity.Infrastructure
             services.AddScoped<ICurriculumService, CurriculumService>();
 
             services.AddScoped<ILessonService, LessonService>();
+
+            services.AddScoped<IUserService, UserService>();
             #endregion
 
         }

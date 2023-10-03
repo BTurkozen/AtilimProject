@@ -10,5 +10,7 @@ namespace Atilim.Services.Identity.Application.Dtos.CurriculumDtos
         }
 
         public List<CurriculumLessonDto> CurriculumLessons { get; set; }
+
+        public bool HasStudent { get; set; }
     }
 }

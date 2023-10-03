@@ -14,5 +14,6 @@ namespace Atilim.Presentations.WebApplication.ViewModels.CurriculumViewModels
         public List<int> SelectedCurriculumLessons { get; set; }
         public List<CurriculumLessonViewModel> CurriculumLessons { get; set; }
         public List<LessonViewModel> Lessons { get; set; }
+        public bool HasStudent { get; set; }
     }
 }

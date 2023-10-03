@@ -31,6 +31,7 @@ namespace Atilim.Services.Identity.Application.Features.Queries.CurriculumQuerie
                         Id = c.Id,
                         CurriculumName = c.CurriculumName,
                         IsDeleted = c.IsDeleted,
+                        HasStudent = c.Students.Count > 0,
                         CurriculumLessons = c.CurriculumLessons.Select(cl => new CurriculumLessonDto
                         {
                             CurriculumId = cl.CurriculumId,
